@@ -4,41 +4,84 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
-android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
-    defaultConfig {
-        applicationId "com.jiangxk.zhengyuansmallclassroom"
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+apply plugin: 'kotlin-kapt'
+apply from: rootProject.file('releaseinfo.gradle')
+apply from: rootProject.file('libbase.gradle')
+
+kapt {
+    arguments {
+        arg(arouter_module_name, project.getName())
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+}
+
+android {
+    signingConfigs {
+        release {//release版的签名配置信息
+            storeFile file(rootProject.ext.signConfigs.storeFile)
+            storePassword rootProject.ext.signConfigs.storePassword
+            keyAlias rootProject.ext.signConfigs.keyAlias
+            keyPassword rootProject.ext.signConfigs.keyPassword
+        }
+        debug {//debug版的签名配置信息
+            storeFile file(rootProject.ext.signConfigs.storeFile)
+            storePassword rootProject.ext.signConfigs.storePassword
+            keyAlias rootProject.ext.signConfigs.keyAlias
+            keyPassword rootProject.ext.signConfigs.keyPassword
         }
     }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+    defaultConfig {
+        applicationId rootProject.ext.android.applicationId
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true //混淆编译
+            shrinkResources true //移除无用资源
+            zipAlignEnabled true //zipalign优化
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            buildConfigField("boolean", "LOG_DEBUG", "false")//正式版不打印日志
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.debug
+            buildConfigField("boolean", "LOG_DEBUG", "true")
+        }
+    }
+
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+
+//    //规定资源命名前缀为app_
+//    resourcePrefix "app_"
+
+    //自定义输出apk名字
+    applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                if (variant.getBuildType().getName() == 'release') {
+                    outputFileName = new File("app_v" + variant.versionName + "_" +
+                            new Date().format("yyyy-MM-dd_HH", TimeZone.getTimeZone("UTC")) + "_" +
+                            variant.getBuildType().getName() + ".apk")
+                }
+            }
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.2.0'
-    implementation 'com.google.android.material:material:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.navigation:navigation-fragment:2.2.1'
-    implementation 'androidx.navigation:navigation-ui:2.2.1'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.2.1'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.2.1'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation project(':provider')
+    implementation project(':common')
+    kapt "com.alibaba:arouter-compiler:$arouter_compiler_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    kapt "com.alibaba:arouter-compiler:$arouter_compiler_version"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 }

@@ -1,0 +1,53 @@
+apply plugin: 'com.android.library'
+apply from:rootProject.file('libbase.gradle')
+
+kapt {
+    arguments {
+        arg(arouter_module_name, project.getName())
+    }
+}
+
+dependencies {
+    api dependence.libAppcompat
+    api dependence.libCoreKtx
+    api dependence.libMaterial
+    api dependence.libConstraintlayout
+    api dependence.libNavigationFragment
+    api dependence.libNavigationFragment
+    api dependence.libNavigationFragmentKtx
+    api dependence.libNavigationUi
+    api dependence.libNavigationUiKtx
+    api dependence.libLifecycleExtensions
+
+    api dependence.libLeakConstraintLayout
+    api dependence.libKotlinJre7
+    api dependence.libDesign
+    api dependence.libRecyclerview
+    api dependence.libGlide
+    api dependence.libRetrofit
+    api dependence.libRetrofitConvert
+    api dependence.libRetrofitAdapter
+    api dependence.libOkhttp
+    api dependence.libokhttp3LoggingInterceptor
+    api dependence.libRxkotlin
+    api dependence.libRxlifecycle2
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    api dependence.libDagger
+    api dependence.libLogger
+    api dependence.libBottomBar
+    api dependence.libStatusBar
+    api dependence.libLRecyclerView
+    api dependence.libLJsoup
+    api dependence.libOkgo
+    api dependence.libBanner
+    api dependence.libArouter
+    api dependence.libFlexbox
+    api dependence.libCardview
+    api dependence.libAnkoSqlite
+    api dependence.libPalette
+    api dependence.libCircleImageView
+//    api dependence.libBugly
+    api dependence.libRhinoAndroid
+    api files('libs/tbs_sdk_thirdapp_v4.3.0.jar')
+    kapt "com.alibaba:arouter-compiler:$arouter_compiler_version"
+}

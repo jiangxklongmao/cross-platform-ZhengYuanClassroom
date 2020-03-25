@@ -1,2 +1,2 @@
-include ':app', ':sharedcode'
-rootProject.name='ZhengYuanSmallClassroom'
+include ':app', ':common', ':provider'
+rootProject.name = 'ZhengYuanSmallClassroom'
