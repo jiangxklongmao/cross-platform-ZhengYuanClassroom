@@ -1,8 +1,6 @@
 package com.jiangxk.zhengyuansmallclassroom.ui.login
 
 import android.widget.Toast
-import com.jiangxk.common.mvp.presenter.BaseMvpPresenter
-import com.jiangxk.common.mvp.view.BaseView
 import com.jiangxk.common.ui.activity.BaseMvpActivity
 import com.jiangxk.zhengyuansmallclassroom.R
 import com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerLoginComponent
@@ -18,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_login.*
  * @author jiangxk
  * @time 2020-03-25  15:08
  */
-class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginContract.View {
+class LoginActivity : BaseMvpActivity<LoginContract.View, LoginPresenter>(), LoginContract.View {
 
     override fun injectComponent() {
         DaggerLoginComponent.builder().activityComponent(mActivityComponent)

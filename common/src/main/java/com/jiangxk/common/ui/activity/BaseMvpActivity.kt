@@ -13,7 +13,7 @@ import javax.inject.Inject
  * @author jiangxk
  * @time 2020-03-26  17:25
  */
-abstract class BaseMvpActivity<T : BaseMvpPresenter<BaseView>> : BaseActivity(), BaseView {
+abstract class BaseMvpActivity<V : BaseView, T : BaseMvpPresenter<V>> : BaseActivity(), BaseView {
     @Inject
     lateinit var mPresenter: T
 
@@ -22,7 +22,7 @@ abstract class BaseMvpActivity<T : BaseMvpPresenter<BaseView>> : BaseActivity(),
     override fun initOperate() {
         initActivityInjection()
         injectComponent()
-        mPresenter.attachView(this as BaseView)
+        mPresenter.attachView(this as V)
     }
 
     /*注册依赖关系*/
