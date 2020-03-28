@@ -10,5 +10,5 @@ import com.jiangxk.common.mvp.view.BaseView
  */
 interface HomeContract {
     interface View :BaseView{}
-    interface Presenter:BasePresenter{}
+    interface Presenter:BasePresenter<View>{}
 }

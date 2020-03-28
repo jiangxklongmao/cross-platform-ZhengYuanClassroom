@@ -3,9 +3,12 @@
     xmlns:dist="http://schemas.android.com/apk/distribution"
     package="com.jiangxk.zhengyuansmallclassroom">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <dist:module dist:instant="true" />
 
     <application
+        android:name="com.jiangxk.common.common.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -13,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.login.LoginActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

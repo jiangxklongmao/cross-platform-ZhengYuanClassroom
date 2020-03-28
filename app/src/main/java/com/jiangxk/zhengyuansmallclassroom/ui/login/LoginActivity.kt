@@ -1,14 +1,35 @@
 package com.jiangxk.zhengyuansmallclassroom.ui.login
 
-import com.jiangxk.common.ui.activity.BaseActivity
+import android.widget.Toast
+import com.jiangxk.common.mvp.presenter.BaseMvpPresenter
+import com.jiangxk.common.mvp.view.BaseView
+import com.jiangxk.common.ui.activity.BaseMvpActivity
 import com.jiangxk.zhengyuansmallclassroom.R
+import com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerLoginComponent
+import com.jiangxk.zhengyuansmallclassroom.injection.module.LoginModule
+import com.jiangxk.zhengyuansmallclassroom.mvp.contract.LoginContract
+import com.jiangxk.zhengyuansmallclassroom.mvp.presenter.LoginPresenter
+import com.jiangxk.zhengyuansmallclassroom.repository.login.remote.UserRepository
+import com.orhanobut.logger.Logger
+import kotlinx.android.synthetic.main.activity_login.*
 
 /**
  * @description com.jiangxk.zhengyuansmallclassroom.ui.login
  * @author jiangxk
  * @time 2020-03-25  15:08
  */
-class LoginActivity : BaseActivity() {
+class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginContract.View {
+
+    override fun injectComponent() {
+        DaggerLoginComponent.builder().activityComponent(mActivityComponent)
+            .loginModule(LoginModule(this, UserRepository()))
+            .build().inject(this)
+    }
+
+    override fun showMessage(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+        Logger.i("showMessage = $message")
+    }
 
 
     override fun getLayoutId(): Int {
@@ -16,11 +37,18 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun initView() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        btn_login.setOnClickListener {
+            //            presenter.login("jiangxk", "123456")
+            (mPresenter as LoginPresenter)
+                .getToken(
+                    "client_credential",
+                    "wx5950e05f747a9d13",
+                    "5e4099f3e0a87d45256e3215ac39df1e"
+                )
+        }
     }
 
     override fun initData() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 }

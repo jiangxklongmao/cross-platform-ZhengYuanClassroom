@@ -9,6 +9,8 @@ class BaseConstant {
     companion object {
         const val BUGLY_APPID = "4e8d7c7498"
 
-        const val BASE_URL = "http://www.vip-free.com"
+
+        const val NETWORK_SUCCESS = 200
+        const val NETWORK_SERVER_ERROR = 500
     }
 }

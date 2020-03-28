@@ -7,6 +7,12 @@ kapt {
     }
 }
 
+android{
+    kotlinOptions{
+        jvmTarget = "1.8"
+    }
+}
+
 dependencies {
     api dependence.libAppcompat
     api dependence.libCoreKtx

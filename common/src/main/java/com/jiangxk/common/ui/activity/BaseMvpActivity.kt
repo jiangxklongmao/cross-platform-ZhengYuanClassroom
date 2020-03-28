@@ -1,28 +1,28 @@
-package com.jiangxk.common.ui.fragment
+package com.jiangxk.common.ui.activity
 
 import android.app.Activity
 import com.jiangxk.common.common.BaseApplication
 import com.jiangxk.common.injection.component.DaggerActivityComponent
 import com.jiangxk.common.injection.module.ActivityModule
-import com.jiangxk.common.mvp.presenter.BasePresenter
+import com.jiangxk.common.mvp.presenter.BaseMvpPresenter
 import com.jiangxk.common.mvp.view.BaseView
 import javax.inject.Inject
 
 /**
- * @desc
- * @auth jiangxk
- * @time 2019-10-16  17:45
+ * @description com.jiangxk.common.ui.activity
+ * @author jiangxk
+ * @time 2020-03-26  17:25
  */
-abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView {
-
+abstract class BaseMvpActivity<T : BaseMvpPresenter<BaseView>> : BaseActivity(), BaseView {
     @Inject
-    lateinit var presenter: T
+    lateinit var mPresenter: T
 
     lateinit var mActivityComponent: DaggerActivityComponent
 
     override fun initOperate() {
         initActivityInjection()
         injectComponent()
+        mPresenter.attachView(this as BaseView)
     }
 
     /*注册依赖关系*/
@@ -30,8 +30,8 @@ abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView 
 
     private fun initActivityInjection() {
         mActivityComponent = DaggerActivityComponent.builder()
-            .appComponent((activity?.application as BaseApplication).appComponent)
-            .activityModule(ActivityModule(activity as Activity))
+            .appComponent((this.application as BaseApplication).appComponent)
+            .activityModule(ActivityModule(this as Activity))
             .build() as DaggerActivityComponent
     }
 
@@ -41,5 +41,10 @@ abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView 
 
     override fun showError() {
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mPresenter.detachView()
     }
 }

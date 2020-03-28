@@ -21,6 +21,8 @@ interface BaseView {
      */
     fun showError()
 
+    fun showMessage(message: String)
+
     /**
      * 显示Empty
      */

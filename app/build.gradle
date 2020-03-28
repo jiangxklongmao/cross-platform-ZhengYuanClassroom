@@ -35,6 +35,10 @@ android {
         targetCompatibility 1.8
     }
 
+    kotlinOptions{
+        jvmTarget = "1.8"
+    }
+
     defaultConfig {
         applicationId rootProject.ext.android.applicationId
         versionCode rootProject.ext.android.versionCode
@@ -57,9 +61,7 @@ android {
         }
     }
 
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
+
 
 //    //规定资源命名前缀为app_
 //    resourcePrefix "app_"
