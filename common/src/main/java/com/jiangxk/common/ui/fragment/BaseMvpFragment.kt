@@ -31,7 +31,7 @@ abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView 
     private fun initActivityInjection() {
         mActivityComponent = DaggerActivityComponent.builder()
             .appComponent((activity?.application as BaseApplication).appComponent)
-            .activityModule(ActivityModule(activity as Activity))
+            .activityModule(ActivityModule(activity as Activity, this))
             .build() as DaggerActivityComponent
     }
 

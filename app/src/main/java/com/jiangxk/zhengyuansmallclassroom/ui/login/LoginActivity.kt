@@ -37,7 +37,7 @@ class LoginActivity : BaseMvpActivity<LoginContract.View, LoginPresenter>(), Log
     override fun initView() {
         btn_login.setOnClickListener {
             //            presenter.login("jiangxk", "123456")
-            (mPresenter as LoginPresenter)
+            mPresenter
                 .getToken(
                     "client_credential",
                     "wx5950e05f747a9d13",

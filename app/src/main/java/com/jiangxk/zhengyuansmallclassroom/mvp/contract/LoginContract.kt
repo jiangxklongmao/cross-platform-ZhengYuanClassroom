@@ -9,7 +9,8 @@ import com.jiangxk.common.mvp.view.BaseView
  * @time 2020-03-26  17:29
  */
 interface LoginContract {
-    interface View : BaseView {}
+    interface View : BaseView {
+    }
     interface Presenter : BasePresenter<View> {
 
 

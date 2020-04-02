@@ -1,6 +1,5 @@
 package com.jiangxk.common.ui.activity
 
-import android.app.Activity
 import com.jiangxk.common.common.BaseApplication
 import com.jiangxk.common.injection.component.DaggerActivityComponent
 import com.jiangxk.common.injection.module.ActivityModule
@@ -22,7 +21,7 @@ abstract class BaseMvpActivity<V : BaseView, T : BaseMvpPresenter<V>> : BaseActi
     override fun initOperate() {
         initActivityInjection()
         injectComponent()
-        mPresenter.attachView(this as V)
+//        mPresenter.attachView(this as V)
     }
 
     /*注册依赖关系*/
@@ -31,7 +30,7 @@ abstract class BaseMvpActivity<V : BaseView, T : BaseMvpPresenter<V>> : BaseActi
     private fun initActivityInjection() {
         mActivityComponent = DaggerActivityComponent.builder()
             .appComponent((this.application as BaseApplication).appComponent)
-            .activityModule(ActivityModule(this as Activity))
+            .activityModule(ActivityModule(this, this))
             .build() as DaggerActivityComponent
     }
 

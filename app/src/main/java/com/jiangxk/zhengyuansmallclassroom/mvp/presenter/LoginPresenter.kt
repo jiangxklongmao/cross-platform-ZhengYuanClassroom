@@ -53,6 +53,13 @@ class LoginPresenter @Inject constructor(private val userRepository: UserReposit
     }
 
     override fun login(phoneNumber: String, password: String) {
+
+        if (phoneNumber.isNullOrEmpty()) {
+            mView?.showMessage("请输入手机号")
+            return
+        }
+
+
         userRepository.userLogin(phoneNumber, password)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : LoadingObserver<UserModel>(mView, userRepository) {
