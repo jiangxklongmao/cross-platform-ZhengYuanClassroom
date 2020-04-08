@@ -5,10 +5,10 @@ package com.jiangxk.zhengyuansmallclassroom.model
  * @author jiangxk
  * @time 2020-03-27  17:07
  */
-data class TokenModel(
+data class TokenStringModel(
     val access_token: String,
-    val expires_in: Int,
-    val expires_timestamp: Long,
-    val errcode: Int,
+    val expires_in: String,
+    val expires_timestamp: String,
+    val errcode: String,
     val errmsg: String
 )

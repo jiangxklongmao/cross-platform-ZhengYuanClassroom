@@ -1,9 +1,13 @@
 package com.jiangxk.common.ext
 
+import com.google.gson.Gson
+import com.google.gson.JsonSyntaxException
 import com.jiangxk.common.utils.GlideImageLoader
 import com.youth.banner.Banner
 import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
+import java.io.StringReader
+import java.lang.reflect.Type
 
 /**
  * @desc
@@ -36,4 +40,10 @@ fun Banner.player(titles: List<String>?, bannerImages: List<String>?) {
         setBannerAnimation(Transformer.Default)
         start()
     }
+}
+
+@Throws(JsonSyntaxException::class)
+inline fun <reified T> Gson.fromJson2(json: String, typeOfT: Type): T {
+    val reader = StringReader(json)
+    return fromJson(reader, typeOfT)
 }

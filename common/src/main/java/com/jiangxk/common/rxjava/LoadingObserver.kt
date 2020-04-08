@@ -1,11 +1,12 @@
 package com.jiangxk.common.rxjava
 
-import com.jiangxk.common.common.BaseConstant
-import com.jiangxk.common.model.BaseModel
+import com.jiangxk.common.constant.Constant
 import com.jiangxk.common.mvp.view.BaseView
-import com.jiangxk.common.repository.BaseRepository
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
+import java.io.IOException
+import java.net.ConnectException
+import java.net.SocketTimeoutException
 
 /**
  * @description com.jiangxk.common.rxjava
@@ -13,37 +14,48 @@ import io.reactivex.disposables.Disposable
  * @time 2020-03-26  15:30
  */
 abstract class LoadingObserver<T>(
-    private val mView: BaseView?,
-    private val mRepository: BaseRepository
-) : Observer<BaseModel<T>> {
+    private val mView: BaseView
+) : Observer<T> {
 
     override fun onSubscribe(d: Disposable) {
-        mRepository.addSubsribe(d)
-        mView?.showLoading()
+        mView.showLoading()
+        onDispose(d)
     }
 
-    override fun onNext(baseModel: BaseModel<T>) {
-        when (baseModel.code) {
-            BaseConstant.NETWORK_SUCCESS -> {
-                onSuccess(baseModel.data)
-            }
-        }
+    override fun onNext(t: T) {
+        onSuccess(t)
     }
 
     override fun onError(e: Throwable) {
-        mView?.showError()
-        e.message?.let {
-            mView?.showMessage(it)
+        mView.showError()
+
+        val error = when (e) {
+            is ClassroomThrowable -> {
+                e
+            }
+            is IOException -> {
+                ClassroomThrowable(Constant.NETWORK_ERROR_CODE_10003, e.message, e.cause)
+            }
+            is ConnectException, is SocketTimeoutException -> {
+                ClassroomThrowable(Constant.NETWORK_ERROR_CODE_10004, e.message, e.cause)
+            }
+            is ClassCastException -> {
+                ClassroomThrowable(Constant.NETWORK_ERROR_CODE_10005, e.message, e.cause)
+            }
+            else -> {
+                ClassroomThrowable(Constant.NETWORK_ERROR_CODE_10006, e.message, e.cause)
+            }
         }
-        onFailure(e)
+        mView.showMessage(error.toString())
     }
 
     override fun onComplete() {
-        mView?.showContent()
+        mView.showContent()
     }
 
-    abstract fun onSuccess(data: T)
+    abstract fun onDispose(disposable: Disposable)
 
-    abstract fun onFailure(e: Throwable)
+    abstract fun onSuccess(t: T)
+
 
 }

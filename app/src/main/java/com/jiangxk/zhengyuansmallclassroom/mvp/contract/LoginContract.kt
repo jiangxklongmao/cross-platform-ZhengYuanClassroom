@@ -11,15 +11,11 @@ import com.jiangxk.common.mvp.view.BaseView
 interface LoginContract {
     interface View : BaseView {
     }
+
     interface Presenter : BasePresenter<View> {
 
-
-        fun getToken(
-            grant_type: String,
-            appId: String,
-            secret: String
-        )
-
         fun login(phoneNumber: String, password: String)
+
+        fun queryUserFromDatabase()
     }
 }

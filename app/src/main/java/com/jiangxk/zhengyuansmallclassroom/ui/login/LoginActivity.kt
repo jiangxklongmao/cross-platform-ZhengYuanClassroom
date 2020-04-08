@@ -1,13 +1,16 @@
 package com.jiangxk.zhengyuansmallclassroom.ui.login
 
 import android.widget.Toast
+import com.jiangxk.common.ddatabase.DatabaseOpenHelper
 import com.jiangxk.common.ui.activity.BaseMvpActivity
 import com.jiangxk.zhengyuansmallclassroom.R
 import com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerLoginComponent
 import com.jiangxk.zhengyuansmallclassroom.injection.module.LoginModule
 import com.jiangxk.zhengyuansmallclassroom.mvp.contract.LoginContract
 import com.jiangxk.zhengyuansmallclassroom.mvp.presenter.LoginPresenter
-import com.jiangxk.zhengyuansmallclassroom.repository.login.remote.UserRepository
+import com.jiangxk.zhengyuansmallclassroom.repository.user.UserRepository
+import com.jiangxk.zhengyuansmallclassroom.repository.user.local.UserLocalApi
+import com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi
 import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -20,7 +23,12 @@ class LoginActivity : BaseMvpActivity<LoginContract.View, LoginPresenter>(), Log
 
     override fun injectComponent() {
         DaggerLoginComponent.builder().activityComponent(mActivityComponent)
-            .loginModule(LoginModule(this, UserRepository()))
+            .loginModule(
+                LoginModule(
+                    this,
+                    UserRepository.getInstance(UserLocalApi(DatabaseOpenHelper), UserRemoteApi())
+                )
+            )
             .build().inject(this)
     }
 
@@ -36,13 +44,11 @@ class LoginActivity : BaseMvpActivity<LoginContract.View, LoginPresenter>(), Log
 
     override fun initView() {
         btn_login.setOnClickListener {
-            //            presenter.login("jiangxk", "123456")
-            mPresenter
-                .getToken(
-                    "client_credential",
-                    "wx5950e05f747a9d13",
-                    "5e4099f3e0a87d45256e3215ac39df1e"
-                )
+            mPresenter.login(edt_phoneNumber.text.toString(), edt_password.text.toString())
+        }
+
+        civ_logo.setOnClickListener {
+            mPresenter.queryUserFromDatabase()
         }
     }
 

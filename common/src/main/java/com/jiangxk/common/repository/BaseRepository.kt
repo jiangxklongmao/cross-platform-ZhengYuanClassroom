@@ -11,7 +11,7 @@ import io.reactivex.disposables.Disposable
 open class BaseRepository {
     private val mCompositeDisposable by lazy { CompositeDisposable() }
 
-    fun addSubsribe(disposable: Disposable) = mCompositeDisposable.add(disposable)
+    fun addSubscribe(disposable: Disposable) = mCompositeDisposable.add(disposable)
 
     fun unSubscribe() = mCompositeDisposable.dispose()
 }

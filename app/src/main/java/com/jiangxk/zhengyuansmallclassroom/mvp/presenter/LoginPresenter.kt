@@ -2,14 +2,14 @@ package com.jiangxk.zhengyuansmallclassroom.mvp.presenter
 
 import com.jiangxk.common.mvp.presenter.BaseMvpPresenter
 import com.jiangxk.common.rxjava.LoadingObserver
-import com.jiangxk.zhengyuansmallclassroom.model.TokenModel
 import com.jiangxk.zhengyuansmallclassroom.model.UserModel
 import com.jiangxk.zhengyuansmallclassroom.mvp.contract.LoginContract
-import com.jiangxk.zhengyuansmallclassroom.repository.login.remote.UserRepository
+import com.jiangxk.zhengyuansmallclassroom.repository.user.UserRepository
 import com.orhanobut.logger.Logger
-import io.reactivex.Observer
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 /**
@@ -20,60 +20,67 @@ import javax.inject.Inject
 class LoginPresenter @Inject constructor(private val userRepository: UserRepository) :
     BaseMvpPresenter<LoginContract.View>(), LoginContract.Presenter {
 
-    override fun getToken(
-        grant_type: String,
-        appId: String,
-        secret: String
-    ) {
-        userRepository.getToken(grant_type, appId, secret)
-            .subscribe(object : Observer<TokenModel> {
-                override fun onSubscribe(d: Disposable) {
-                    addDisposable(d)
-                    Logger.i("onSubscribe", TAG)
+
+    override fun login(phoneNumber: String, password: String) {
+
+        if (phoneNumber.isNullOrEmpty()) {
+            mView.showMessage("请输入手机号")
+            return
+        }
+
+        if (phoneNumber.length != 11) {
+            mView.showMessage("请输入正确的手机号")
+            return
+        }
+
+        if (password.isNullOrEmpty()) {
+            mView.showMessage("请输入密码")
+            return
+        }
+
+        if (password.length < 6) {
+            mView.showMessage("请输入6位以上有效密码")
+            return
+        }
+
+        userRepository.userLogin(phoneNumber, password)
+            .concatMap {
+                Observable.fromArray(*it)
+            }
+            .doOnNext {
+                userRepository.saveUser(it)
+            }
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : LoadingObserver<UserModel>(mView) {
+                override fun onDispose(disposable: Disposable) {
+                    addDisposable(disposable)
                 }
 
-                override fun onNext(t: TokenModel) {
-                    Logger.i("onNext", TAG)
-                    Logger.i("t = $t", TAG)
-
-                    mView?.showMessage(t.access_token)
-
-                }
-
-                override fun onError(e: Throwable) {
-                    Logger.i("onError", TAG)
-                    Logger.i("e = ${e.message}", TAG)
-                }
-
-                override fun onComplete() {
-                    Logger.i("onComplete", TAG)
+                override fun onSuccess(user: UserModel) {
+                    mView.showMessage("onSuccess")
+                    mView.showMessage(user.userName)
                 }
 
             })
     }
 
-    override fun login(phoneNumber: String, password: String) {
-
-        if (phoneNumber.isNullOrEmpty()) {
-            mView?.showMessage("请输入手机号")
-            return
-        }
-
-
-        userRepository.userLogin(phoneNumber, password)
+    override fun queryUserFromDatabase() {
+        userRepository.queryUserById(1000)
+            .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : LoadingObserver<UserModel>(mView, userRepository) {
-                override fun onSuccess(data: UserModel) {
-                    Logger.i(TAG, "onSuccess")
+            .subscribe(object : LoadingObserver<UserModel>(mView) {
+                override fun onDispose(disposable: Disposable) {
+                    addDisposable(disposable)
                 }
 
-                override fun onFailure(e: Throwable) {
-                    Logger.i(TAG, "Failure " + e.message)
+                override fun onSuccess(user: UserModel) {
+                    mView.showMessage("onSuccess")
+                    mView.showMessage(user.userName)
+
+                    Logger.i(user.toString())
                 }
 
             })
-
-
     }
 
 

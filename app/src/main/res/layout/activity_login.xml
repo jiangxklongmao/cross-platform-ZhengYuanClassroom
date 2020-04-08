@@ -1,55 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/shape_color_4caf50"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="450dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="15dp"
-        android:background="@drawable/shape_color_ffffff_radius_40">
-
-
-        <TextView
-            android:id="@+id/tv_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="50dp"
-            android:text="LOGIN"
-            android:textSize="30sp" />
+        android:layout_height="480dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginRight="30dp"
+        app:cardBackgroundColor="@color/color_4CC6F4"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="0dp">
 
         <EditText
             android:id="@+id/edt_phoneNumber"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_login"
+            android:layout_height="60dp"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="150dp"
             android:layout_marginRight="30dp"
-            android:hint="请输入手机号" />
+            android:background="@drawable/shape_color_ffffff_radius_40"
+            android:hint="请输入手机号"
+            android:inputType="phone"
+            android:maxLines="1"
+            android:paddingLeft="30dp"
+            android:textColor="@color/textColor" />
 
         <EditText
             android:id="@+id/edt_password"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_below="@+id/edt_phoneNumber"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="250dp"
             android:layout_marginRight="30dp"
-            android:hint="请输入密码" />
+            android:background="@drawable/shape_color_ffffff_radius_40"
+            android:hint="请输入密码"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:paddingLeft="30dp"
+            android:textColor="@color/textColor" />
 
-    </RelativeLayout>
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="350dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/shape_color_4caf50_radius_30"
+            android:text="登录" />
 
-    <Button
-        android:id="@+id/btn_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="登录" />
+
+    </androidx.cardview.widget.CardView>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/civ_logo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginRight="30dp"
+        android:src="@drawable/vector_drawable_logo"
+        app:civ_circle_background_color="@color/colorWhite" />
+
 
 </FrameLayout>
