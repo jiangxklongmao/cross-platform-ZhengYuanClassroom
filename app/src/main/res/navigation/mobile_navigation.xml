@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_my"
-        android:name="com.jiangxk.zhengyuansmallclassroom.ui.fragment.dashboard.MyFragment"
+        android:name="com.jiangxk.zhengyuansmallclassroom.ui.fragment.my.MyFragment"
         android:label="@string/app_title_my"
         tools:layout="@layout/fragment_my" />
 

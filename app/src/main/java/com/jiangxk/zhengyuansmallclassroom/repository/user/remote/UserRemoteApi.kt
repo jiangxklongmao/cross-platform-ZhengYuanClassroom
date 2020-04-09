@@ -53,10 +53,10 @@ class UserRemoteApi : ApiRepository(), IUserRemoteApi {
 
                 //调用云函数 用户登录
                 userService.userLogin(queryHashMap, requestBody)
-            }.concatMap {
-
+            }
+            .filter { miniProgramResponseFilter(it) }
+            .concatMap {
                 Logger.i("it.resp_data = " + it.resp_data)
-
 
                 Observable.just(it.getData() as BaseModel<Array<UserModel>>)
             }

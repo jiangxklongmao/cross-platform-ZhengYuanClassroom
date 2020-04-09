@@ -1,9 +1,11 @@
 package com.jiangxk.zhengyuansmallclassroom.repository
 
-import com.jiangxk.common.http.RetrofitFactory
+import com.jiangxk.common.common.model.BaseMiniProgramModel
 import com.jiangxk.common.common.model.BaseModel
+import com.jiangxk.common.http.RetrofitFactory
 import com.jiangxk.common.repository.BaseRepository
 import com.jiangxk.common.repository.QueryHashMap
+import com.jiangxk.common.rxjava.ClassroomThrowable
 import com.jiangxk.common.utils.AppPrefsUtils
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant
 import com.jiangxk.zhengyuansmallclassroom.model.TokenModel
@@ -97,4 +99,44 @@ abstract class ApiRepository : BaseRepository() {
         }
     }
 
+
+    /**
+     * 小程序云返回 过滤错误码
+     * @param base BaseMiniProgramModel<T>
+     * @return Boolean
+     */
+    protected fun <T> miniProgramResponseFilter(base: BaseMiniProgramModel<T>): Boolean {
+        if (base == null) {
+            throw ClassroomThrowable(
+                com.jiangxk.common.constant.Constant.NETWORK_ERROR_CODE_10007,
+                "云服务返回空",
+                Throwable()
+            )
+        }
+        if (base.errcode == 0) {
+            return true
+        }
+
+        var message =
+            when (base.errcode) {
+                -1 -> {
+                    "云服务系统错误"
+                }
+                -1000 -> {
+                    "云服务系统错误"
+                }
+                42001 -> {
+                    AppPrefsUtils.putString(Constant.SP_MINI_PROGRAM_CLASSROOM_TOKEN_KEY, "")
+                    "AccessToken过期，请重试"
+                }
+                else -> {
+                    "云服务未知错误"
+                }
+            }
+        throw ClassroomThrowable(
+            base.errcode,
+            message,
+            Throwable()
+        )
+    }
 }

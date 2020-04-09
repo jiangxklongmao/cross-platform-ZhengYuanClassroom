@@ -13,7 +13,8 @@ object Constant {
     const val NETWORK_ERROR_CODE_10003 = 10003 //RxJava 网络错误
     const val NETWORK_ERROR_CODE_10004 = 10004 //RxJava 服务器错误
     const val NETWORK_ERROR_CODE_10005 = 10005 //RxJava 数据转换错误
-    const val NETWORK_ERROR_CODE_10006 = 10005 //RxJava 未知错误
+    const val NETWORK_ERROR_CODE_10006 = 10006 //RxJava 未知错误
+    const val NETWORK_ERROR_CODE_10007 = 10007 //RxJava 小程序返回错误
 
 
     //region 数据库

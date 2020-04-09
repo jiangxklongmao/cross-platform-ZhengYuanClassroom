@@ -1,4 +1,4 @@
-package com.jiangxk.zhengyuansmallclassroom.ui.fragment.dashboard
+package com.jiangxk.zhengyuansmallclassroom.ui.fragment.my
 
 import android.os.Bundle
 import android.view.LayoutInflater
