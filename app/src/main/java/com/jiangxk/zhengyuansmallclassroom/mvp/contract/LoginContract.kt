@@ -10,12 +10,15 @@ import com.jiangxk.common.mvp.view.BaseView
  */
 interface LoginContract {
     interface View : BaseView {
+        /**
+         * 登录成功
+         */
+        fun loginSuccess()
     }
 
     interface Presenter : BasePresenter<View> {
 
         fun login(phoneNumber: String, password: String)
 
-        fun queryUserFromDatabase()
     }
 }

@@ -3,7 +3,7 @@ package com.jiangxk.zhengyuansmallclassroom.injection.component
 import com.jiangxk.common.injection.component.ActivityComponent
 import com.jiangxk.common.injection.scope.PerComponentScope
 import com.jiangxk.zhengyuansmallclassroom.injection.module.LoginModule
-import com.jiangxk.zhengyuansmallclassroom.ui.login.LoginActivity
+import com.jiangxk.zhengyuansmallclassroom.ui.activity.login.LoginActivity
 import dagger.Component
 
 /**

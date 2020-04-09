@@ -3,7 +3,7 @@ package com.jiangxk.zhengyuansmallclassroom.injection.component
 import com.jiangxk.common.injection.component.ActivityComponent
 import com.jiangxk.common.injection.scope.PerComponentScope
 import com.jiangxk.zhengyuansmallclassroom.injection.module.HomeModule
-import com.jiangxk.zhengyuansmallclassroom.ui.home.HomeFragment
+import com.jiangxk.zhengyuansmallclassroom.ui.fragment.home.HomeFragment
 import dagger.Component
 
 /**

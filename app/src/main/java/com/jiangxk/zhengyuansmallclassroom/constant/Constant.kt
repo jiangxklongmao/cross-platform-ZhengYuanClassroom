@@ -47,6 +47,15 @@ object Constant {
         "sp_mini_program_classroom_token_expire_timestamp_key"
     //endregion
 
+    //region 个人信息相关
+
+    const val SP_PERSONAL_INFORMATION_USER_ID_KEY = "sp_personal_information_user_id_key"
+    const val SP_PERSONAL_INFORMATION_OPEN_ID_KEY = "sp_personal_information_open_id_key"
+    const val SP_PERSONAL_INFORMATION_PHONE_NUMBER_KEY = "sp_personal_information_phone_number_key"
+    const val SP_PERSONAL_INFORMATION_PASSWORD_KEY = "sp_personal_information_password_key"
+    const val SP_PERSONAL_INFORMATION_USER_NAME_KEY = "sp_personal_information_user_name_key"
+    const val SP_PERSONAL_INFORMATION_AVATAR_URL_KEY = "sp_personal_information_avatar_url_key"
+
     //endregion
 
 }

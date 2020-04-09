@@ -1,6 +1,6 @@
 package com.jiangxk.provider.service
 
-import com.jiangxk.common.ui.fragment.BaseFragment
+import com.jiangxk.common.common.fragment.BaseFragment
 
 /**
  * @desc Home模块提供的服务

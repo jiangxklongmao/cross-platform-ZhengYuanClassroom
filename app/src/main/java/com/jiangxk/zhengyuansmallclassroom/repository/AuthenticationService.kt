@@ -1,6 +1,6 @@
 package com.jiangxk.zhengyuansmallclassroom.repository
 
-import com.jiangxk.common.model.BaseMiniProgramModel
+import com.jiangxk.common.common.model.BaseMiniProgramModel
 import com.jiangxk.common.repository.QueryHashMap
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant
 import com.jiangxk.zhengyuansmallclassroom.model.TokenModel

@@ -1,7 +1,7 @@
 package com.jiangxk.common.rxjava
 
+import com.jiangxk.common.common.model.BaseModel
 import com.jiangxk.common.constant.Constant
-import com.jiangxk.common.model.BaseModel
 import io.reactivex.functions.Function
 
 /**

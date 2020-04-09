@@ -1,8 +1,8 @@
 package com.jiangxk.zhengyuansmallclassroom.component
 
-import com.jiangxk.common.ui.fragment.BaseFragment
+import com.jiangxk.common.common.fragment.BaseFragment
 import com.jiangxk.provider.service.HomeService
-import com.jiangxk.zhengyuansmallclassroom.ui.home.HomeFragment
+import com.jiangxk.zhengyuansmallclassroom.ui.fragment.home.HomeFragment
 
 /**
  * @description com.jiangxk.zhengyuansmallclassroom.component

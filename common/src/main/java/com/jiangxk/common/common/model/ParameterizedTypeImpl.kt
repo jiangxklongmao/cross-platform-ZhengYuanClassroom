@@ -1,4 +1,4 @@
-package com.jiangxk.common.model
+package com.jiangxk.common.common.model
 
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type

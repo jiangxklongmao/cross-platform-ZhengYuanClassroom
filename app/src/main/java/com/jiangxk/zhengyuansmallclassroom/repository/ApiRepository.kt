@@ -1,7 +1,7 @@
 package com.jiangxk.zhengyuansmallclassroom.repository
 
 import com.jiangxk.common.http.RetrofitFactory
-import com.jiangxk.common.model.BaseModel
+import com.jiangxk.common.common.model.BaseModel
 import com.jiangxk.common.repository.BaseRepository
 import com.jiangxk.common.repository.QueryHashMap
 import com.jiangxk.common.utils.AppPrefsUtils

@@ -1,9 +1,10 @@
-package com.jiangxk.common.ui.activity
+package com.jiangxk.common.common.activity
 
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.gyf.immersionbar.ImmersionBar
 import com.jiangxk.common.R
@@ -31,6 +32,13 @@ abstract class BaseActivity : AppCompatActivity() {
             val rootView = LayoutInflater.from(this).inflate(layoutId, null)
             setContentView(rootView)
         }
+
+        if (isHideActionBar()) {
+            supportActionBar?.let {
+                it.hide()
+            }
+        }
+
         AppManager.addActivity(this)
         if (isSetStateBar()) {
             setStatusBar()
@@ -44,8 +52,11 @@ abstract class BaseActivity : AppCompatActivity() {
         setListener()
     }
 
-    /** 是都设置沉浸式状态来，true：设置，默认为设置*/
+    /** 是否设置沉浸式状态来，true：设置，默认为设置*/
     open fun isSetStateBar() = true
+
+    /** 是否隐藏ActionBar，true：隐藏，默认为隐藏*/
+    open fun isHideActionBar() = true
 
     /** 配置多状态布局*/
     private fun setStatusLayout() {
@@ -83,6 +94,10 @@ abstract class BaseActivity : AppCompatActivity() {
         statusView?.showContent()
     }
 
+    fun showMessage(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
+
     /**
      * 设置透明状态栏
      */
@@ -101,15 +116,15 @@ abstract class BaseActivity : AppCompatActivity() {
                 0,
                 0
             )
-            rootView.setBackgroundColor(resources.getColor(R.color.common_white))
+            rootView.setBackgroundColor(resources.getColor(R.color.transparent))
         }
     }
 
     /**
-     * 是否设置布局与状态栏之间的paddingTop,默认值为true
+     * 是否设置布局与状态栏之间的paddingTop,默认值为false
      * @return Boolean
      */
-    open fun isSetPaddingTop(): Boolean = true
+    open fun isSetPaddingTop(): Boolean = false
 
     override fun onDestroy() {
         super.onDestroy()

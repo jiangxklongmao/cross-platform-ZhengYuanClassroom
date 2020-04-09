@@ -1,9 +1,9 @@
-package com.jiangxk.zhengyuansmallclassroom.ui.home
+package com.jiangxk.zhengyuansmallclassroom.ui.fragment.home
 
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.jiangxk.common.ui.fragment.BaseMvpFragment
+import com.jiangxk.common.common.fragment.BaseMvpFragment
 import com.jiangxk.zhengyuansmallclassroom.R
 import com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerHomeComponent
 import com.jiangxk.zhengyuansmallclassroom.injection.module.HomeModule

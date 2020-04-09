@@ -152,6 +152,8 @@ class StateView constructor(context: Context, attrs: AttributeSet? = null, defSt
         currentState = STATE_CONTENT
         //隐藏状态View，调用 setVisibility(visibility: Int) 方法
         visibility = GONE
+        hideViews(mLoadingView)
+        mLoadingView?.visibility = GONE
     }
 
     /**

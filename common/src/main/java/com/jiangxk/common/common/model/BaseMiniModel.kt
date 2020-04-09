@@ -1,4 +1,4 @@
-package com.jiangxk.common.model
+package com.jiangxk.common.common.model
 
 /**
  * @description com.jiangxk.common.model

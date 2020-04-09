@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@id/content_id"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/shape_color_4caf50"
@@ -14,7 +15,7 @@
         android:layout_marginRight="30dp"
         app:cardBackgroundColor="@color/color_4CC6F4"
         app:cardCornerRadius="30dp"
-        app:cardElevation="0dp">
+        app:cardElevation="4dp">
 
         <EditText
             android:id="@+id/edt_phoneNumber"
@@ -24,10 +25,10 @@
             android:layout_marginTop="150dp"
             android:layout_marginRight="30dp"
             android:background="@drawable/shape_color_ffffff_radius_40"
+            android:gravity="center"
             android:hint="请输入手机号"
             android:inputType="phone"
             android:maxLines="1"
-            android:paddingLeft="30dp"
             android:textColor="@color/textColor" />
 
         <EditText
@@ -39,10 +40,10 @@
             android:layout_marginTop="250dp"
             android:layout_marginRight="30dp"
             android:background="@drawable/shape_color_ffffff_radius_40"
+            android:gravity="center"
             android:hint="请输入密码"
             android:inputType="textPassword"
             android:maxLines="1"
-            android:paddingLeft="30dp"
             android:textColor="@color/textColor" />
 
         <Button
@@ -54,7 +55,9 @@
             android:layout_marginTop="350dp"
             android:layout_marginRight="30dp"
             android:background="@drawable/shape_color_4caf50_radius_30"
-            android:text="登录" />
+            android:text="登\t\t\t\t录"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp" />
 
 
     </androidx.cardview.widget.CardView>
@@ -67,6 +70,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="100dp"
         android:layout_marginRight="30dp"
+        android:elevation="8dp"
         android:src="@drawable/vector_drawable_logo"
         app:civ_circle_background_color="@color/colorWhite" />
 

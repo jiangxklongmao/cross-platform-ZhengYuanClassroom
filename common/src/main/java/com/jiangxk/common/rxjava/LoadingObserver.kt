@@ -34,19 +34,20 @@ abstract class LoadingObserver<T>(
                 e
             }
             is IOException -> {
-                ClassroomThrowable(Constant.NETWORK_ERROR_CODE_10003, e.message, e.cause)
+                ClassroomThrowable(Constant.NETWORK_ERROR_CODE_10003, "网络错误", e.cause)
             }
             is ConnectException, is SocketTimeoutException -> {
-                ClassroomThrowable(Constant.NETWORK_ERROR_CODE_10004, e.message, e.cause)
+                ClassroomThrowable(Constant.NETWORK_ERROR_CODE_10004, "服务器错误", e.cause)
             }
             is ClassCastException -> {
-                ClassroomThrowable(Constant.NETWORK_ERROR_CODE_10005, e.message, e.cause)
+                ClassroomThrowable(Constant.NETWORK_ERROR_CODE_10005, "数据转换错误", e.cause)
             }
             else -> {
-                ClassroomThrowable(Constant.NETWORK_ERROR_CODE_10006, e.message, e.cause)
+                ClassroomThrowable(Constant.NETWORK_ERROR_CODE_10006, "未知错误", e.cause)
             }
         }
         mView.showMessage(error.toString())
+        mView.showContent()
     }
 
     override fun onComplete() {

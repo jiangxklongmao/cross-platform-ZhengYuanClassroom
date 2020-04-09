@@ -2,14 +2,14 @@ package com.jiangxk.zhengyuansmallclassroom.mvp.presenter
 
 import com.jiangxk.common.mvp.presenter.BaseMvpPresenter
 import com.jiangxk.common.rxjava.LoadingObserver
+import com.jiangxk.common.utils.AppPrefsUtils
+import com.jiangxk.zhengyuansmallclassroom.constant.Constant
 import com.jiangxk.zhengyuansmallclassroom.model.UserModel
 import com.jiangxk.zhengyuansmallclassroom.mvp.contract.LoginContract
 import com.jiangxk.zhengyuansmallclassroom.repository.user.UserRepository
-import com.orhanobut.logger.Logger
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 /**
@@ -49,6 +49,36 @@ class LoginPresenter @Inject constructor(private val userRepository: UserReposit
             }
             .doOnNext {
                 userRepository.saveUser(it)
+
+                AppPrefsUtils.putString(
+                    Constant.SP_PERSONAL_INFORMATION_OPEN_ID_KEY,
+                    it.openId
+                )
+                AppPrefsUtils.putInt(
+                    Constant.SP_PERSONAL_INFORMATION_USER_ID_KEY,
+                    it.userId
+                )
+                AppPrefsUtils.putString(
+                    Constant.SP_PERSONAL_INFORMATION_PHONE_NUMBER_KEY,
+                    it.phoneNumber
+                )
+                AppPrefsUtils.putString(
+                    Constant.SP_PERSONAL_INFORMATION_PASSWORD_KEY,
+                    it.password
+                )
+                AppPrefsUtils.putString(
+                    Constant.SP_PERSONAL_INFORMATION_OPEN_ID_KEY,
+                    it.openId
+                )
+                AppPrefsUtils.putString(
+                    Constant.SP_PERSONAL_INFORMATION_USER_NAME_KEY,
+                    it.userName
+                )
+                AppPrefsUtils.putString(
+                    Constant.SP_PERSONAL_INFORMATION_AVATAR_URL_KEY,
+                    it.avatarUrl
+                )
+
             }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : LoadingObserver<UserModel>(mView) {
@@ -57,27 +87,7 @@ class LoginPresenter @Inject constructor(private val userRepository: UserReposit
                 }
 
                 override fun onSuccess(user: UserModel) {
-                    mView.showMessage("onSuccess")
-                    mView.showMessage(user.userName)
-                }
-
-            })
-    }
-
-    override fun queryUserFromDatabase() {
-        userRepository.queryUserById(1000)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : LoadingObserver<UserModel>(mView) {
-                override fun onDispose(disposable: Disposable) {
-                    addDisposable(disposable)
-                }
-
-                override fun onSuccess(user: UserModel) {
-                    mView.showMessage("onSuccess")
-                    mView.showMessage(user.userName)
-
-                    Logger.i(user.toString())
+                    mView.loginSuccess()
                 }
 
             })

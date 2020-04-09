@@ -1,4 +1,4 @@
-package com.jiangxk.common.ui.fragment
+package com.jiangxk.common.common.fragment
 
 import android.app.Activity
 import com.jiangxk.common.common.BaseApplication

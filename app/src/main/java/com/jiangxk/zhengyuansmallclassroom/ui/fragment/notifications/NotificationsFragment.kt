@@ -1,4 +1,4 @@
-package com.jiangxk.zhengyuansmallclassroom.ui.notifications
+package com.jiangxk.zhengyuansmallclassroom.ui.fragment.notifications
 
 import android.os.Bundle
 import android.view.LayoutInflater

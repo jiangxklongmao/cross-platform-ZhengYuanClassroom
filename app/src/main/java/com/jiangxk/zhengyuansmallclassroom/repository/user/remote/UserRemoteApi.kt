@@ -1,7 +1,7 @@
 package com.jiangxk.zhengyuansmallclassroom.repository.user.remote
 
 import com.google.gson.JsonObject
-import com.jiangxk.common.model.BaseModel
+import com.jiangxk.common.common.model.BaseModel
 import com.jiangxk.common.repository.QueryHashMap
 import com.jiangxk.common.rxjava.Mapper
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant

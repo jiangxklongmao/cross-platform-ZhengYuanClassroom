@@ -1,4 +1,4 @@
-package com.jiangxk.common.ui.activity
+package com.jiangxk.common.common.activity
 
 import com.jiangxk.common.common.BaseApplication
 import com.jiangxk.common.injection.component.DaggerActivityComponent

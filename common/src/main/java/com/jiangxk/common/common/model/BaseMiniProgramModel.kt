@@ -1,4 +1,4 @@
-package com.jiangxk.common.model
+package com.jiangxk.common.common.model
 
 import com.google.gson.Gson
 import com.google.gson.JsonParser

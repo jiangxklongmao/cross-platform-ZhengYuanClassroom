@@ -1,4 +1,4 @@
-package com.jiangxk.common.model
+package com.jiangxk.common.common.model
 
 import com.jiangxk.common.common.BaseConstant
 
