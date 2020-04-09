@@ -25,15 +25,15 @@ abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView 
         injectComponent()
     }
 
-    /*注册依赖关系*/
-    abstract fun injectComponent()
-
     private fun initActivityInjection() {
         mActivityComponent = DaggerActivityComponent.builder()
             .appComponent((activity?.application as BaseApplication).appComponent)
             .activityModule(ActivityModule(activity as Activity, this))
             .build() as DaggerActivityComponent
     }
+
+    /*注册依赖关系*/
+    abstract fun injectComponent()
 
     override fun showEmpty() {
 

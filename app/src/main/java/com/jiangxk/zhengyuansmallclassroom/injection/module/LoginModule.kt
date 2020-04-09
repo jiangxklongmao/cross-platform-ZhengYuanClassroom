@@ -1,6 +1,6 @@
 package com.jiangxk.zhengyuansmallclassroom.injection.module
 
-import com.jiangxk.zhengyuansmallclassroom.mvp.contract.LoginContract
+import com.jiangxk.zhengyuansmallclassroom.mvp.contract.login.LoginContract
 import com.jiangxk.zhengyuansmallclassroom.repository.user.UserRepository
 import dagger.Module
 import dagger.Provides

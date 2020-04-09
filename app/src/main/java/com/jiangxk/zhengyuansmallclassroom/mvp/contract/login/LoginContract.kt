@@ -1,4 +1,4 @@
-package com.jiangxk.zhengyuansmallclassroom.mvp.contract
+package com.jiangxk.zhengyuansmallclassroom.mvp.contract.login
 
 import com.jiangxk.common.mvp.presenter.BasePresenter
 import com.jiangxk.common.mvp.view.BaseView

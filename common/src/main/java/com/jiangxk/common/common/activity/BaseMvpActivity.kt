@@ -21,7 +21,6 @@ abstract class BaseMvpActivity<V : BaseView, T : BaseMvpPresenter<V>> : BaseActi
     override fun initOperate() {
         initActivityInjection()
         injectComponent()
-//        mPresenter.attachView(this as V)
     }
 
     /*注册依赖关系*/

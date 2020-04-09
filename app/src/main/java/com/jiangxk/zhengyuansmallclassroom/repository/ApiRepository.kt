@@ -9,6 +9,7 @@ import com.jiangxk.common.rxjava.ClassroomThrowable
 import com.jiangxk.common.utils.AppPrefsUtils
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant
 import com.jiangxk.zhengyuansmallclassroom.model.TokenModel
+import com.jiangxk.zhengyuansmallclassroom.repository.course.remote.CourseService
 import com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserService
 import com.orhanobut.logger.Logger
 import io.reactivex.Observable
@@ -34,6 +35,10 @@ abstract class ApiRepository : BaseRepository() {
 
     protected val userService: UserService by lazy {
         retrofitFactory.create(UserService::class.java)
+    }
+
+    protected val courseService: CourseService by lazy {
+        retrofitFactory.create(CourseService::class.java)
     }
 
     protected fun authentication(): Observable<String> {

@@ -1,11 +1,11 @@
-package com.jiangxk.zhengyuansmallclassroom.mvp.presenter
+package com.jiangxk.zhengyuansmallclassroom.mvp.presenter.login
 
 import com.jiangxk.common.mvp.presenter.BaseMvpPresenter
 import com.jiangxk.common.rxjava.LoadingObserver
 import com.jiangxk.common.utils.AppPrefsUtils
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant
 import com.jiangxk.zhengyuansmallclassroom.model.UserModel
-import com.jiangxk.zhengyuansmallclassroom.mvp.contract.LoginContract
+import com.jiangxk.zhengyuansmallclassroom.mvp.contract.login.LoginContract
 import com.jiangxk.zhengyuansmallclassroom.repository.user.UserRepository
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers

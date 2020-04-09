@@ -7,8 +7,8 @@ import com.jiangxk.zhengyuansmallclassroom.R
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant
 import com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerLoginComponent
 import com.jiangxk.zhengyuansmallclassroom.injection.module.LoginModule
-import com.jiangxk.zhengyuansmallclassroom.mvp.contract.LoginContract
-import com.jiangxk.zhengyuansmallclassroom.mvp.presenter.LoginPresenter
+import com.jiangxk.zhengyuansmallclassroom.mvp.contract.login.LoginContract
+import com.jiangxk.zhengyuansmallclassroom.mvp.presenter.login.LoginPresenter
 import com.jiangxk.zhengyuansmallclassroom.repository.user.UserRepository
 import com.jiangxk.zhengyuansmallclassroom.repository.user.local.UserLocalApi
 import com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi
@@ -58,6 +58,7 @@ class LoginActivity : BaseMvpActivity<LoginContract.View, LoginPresenter>(), Log
 
     override fun loginSuccess() {
         HomeActivity.start(this)
+        finish()
     }
 
 }
