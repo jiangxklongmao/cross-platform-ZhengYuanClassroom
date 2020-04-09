@@ -20,6 +20,7 @@ import com.orhanobut.logger.Logger
  * @time 2020-04-08  23:02
  */
 class HomeActivity : BaseActivity() {
+    private var clickTime: Long = 0
 
     companion object {
         fun start(context: Context) {
@@ -34,13 +35,13 @@ class HomeActivity : BaseActivity() {
         Logger.i("supportActionBar = " + supportActionBar.toString())
 
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
-
+        navView.itemIconTintList = null
         val navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+                R.id.navigation_home, R.id.navigation_my
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -53,6 +54,23 @@ class HomeActivity : BaseActivity() {
         ) {
             showMessage("用户信息获取失败，请重新登录")
             finish()
+        }
+    }
+
+    override fun onBackPressed() {
+        exit()
+    }
+
+
+    /**
+     * 连续按两下退出程序
+     */
+    private fun exit() {
+        if ((System.currentTimeMillis() - clickTime) > 2000) {
+            showMessage("再按一次退出程序")
+            clickTime = System.currentTimeMillis()
+        } else {
+            this.finish()
         }
     }
 

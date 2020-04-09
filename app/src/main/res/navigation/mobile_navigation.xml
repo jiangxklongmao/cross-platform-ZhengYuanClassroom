@@ -12,14 +12,9 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.jiangxk.zhengyuansmallclassroom.ui.fragment.dashboard.DashboardFragment"
-        android:label="@string/app_title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_my"
+        android:name="com.jiangxk.zhengyuansmallclassroom.ui.fragment.dashboard.MyFragment"
+        android:label="@string/app_title_my"
+        tools:layout="@layout/fragment_my" />
 
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.jiangxk.zhengyuansmallclassroom.ui.fragment.notifications.NotificationsFragment"
-        android:label="@string/app_title_notifications"
-        tools:layout="@layout/fragment_notifications" />
 </navigation>
