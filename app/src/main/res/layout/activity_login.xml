@@ -17,48 +17,72 @@
         app:cardCornerRadius="30dp"
         app:cardElevation="4dp">
 
-        <EditText
-            android:id="@+id/edt_phoneNumber"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="150dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/shape_color_ffffff_radius_40"
-            android:gravity="center"
-            android:hint="请输入手机号"
-            android:inputType="phone"
-            android:maxLines="1"
-            android:textColor="@color/textColor" />
+            android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/edt_password"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_below="@+id/edt_phoneNumber"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="250dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/shape_color_ffffff_radius_40"
-            android:gravity="center"
-            android:hint="请输入密码"
-            android:inputType="textPassword"
-            android:maxLines="1"
-            android:textColor="@color/textColor" />
+            <EditText
+                android:id="@+id/edt_phoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="150dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/shape_color_ffffff_radius_40"
+                android:gravity="center"
+                android:hint="请输入手机号"
+                android:inputType="phone"
+                android:maxLines="1"
+                android:textColor="@color/textColor" />
 
-        <Button
-            android:id="@+id/btn_login"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="350dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/shape_color_4caf50_radius_30"
-            android:text="登\t\t\t\t录"
-            android:textColor="@color/colorWhite"
-            android:textSize="18sp" />
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignLeft="@+id/edt_phoneNumber"
+                android:layout_alignTop="@+id/edt_phoneNumber"
+                android:layout_alignBottom="@+id/edt_phoneNumber"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/vector_drawable_phonenumber" />
 
+            <EditText
+                android:id="@+id/edt_password"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@+id/edt_phoneNumber"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/shape_color_ffffff_radius_40"
+                android:gravity="center"
+                android:hint="请输入密码"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:textColor="@color/textColor" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignLeft="@+id/edt_password"
+                android:layout_alignTop="@+id/edt_password"
+                android:layout_alignBottom="@+id/edt_password"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/vector_drawable_password" />
+
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@+id/edt_password"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/shape_color_4caf50_radius_30"
+                android:text="登\t\t\t\t录"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
 

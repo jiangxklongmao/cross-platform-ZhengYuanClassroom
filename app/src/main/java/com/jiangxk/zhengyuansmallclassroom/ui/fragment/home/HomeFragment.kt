@@ -1,5 +1,6 @@
 package com.jiangxk.zhengyuansmallclassroom.ui.fragment.home
 
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +16,7 @@ import com.jiangxk.zhengyuansmallclassroom.repository.course.local.CourseLocalAp
 import com.jiangxk.zhengyuansmallclassroom.repository.course.remote.CourseRemoteApi
 import com.jiangxk.zhengyuansmallclassroom.ui.adapter.HomeGradeAdapter
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.include_toolbar.*
 
 
 class HomeFragment : BaseMvpFragment<HomePresenter>(), HomeContract.View {
@@ -46,6 +48,9 @@ class HomeFragment : BaseMvpFragment<HomePresenter>(), HomeContract.View {
     }
 
     override fun initView() {
+        tv_title.text = "课程列表"
+        iv_back.visibility = View.GONE
+
         context?.let {
             homeGradeAdapter = HomeGradeAdapter(it)
             recyclerView.layoutManager = LinearLayoutManager(context)

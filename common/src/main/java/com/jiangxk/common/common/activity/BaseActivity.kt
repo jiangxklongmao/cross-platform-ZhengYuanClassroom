@@ -104,7 +104,7 @@ abstract class BaseActivity : AppCompatActivity() {
     private fun setStatusBar() {
         ImmersionBar.with(this)
             .statusBarDarkFont(true, 0.2f)
-            .navigationBarColor(R.color.common_app_Gray)
+            .navigationBarColor(R.color.common_white)
             .keyboardEnable(true)
             .init()
         //添加内容布局距离屏幕的距离
@@ -116,7 +116,7 @@ abstract class BaseActivity : AppCompatActivity() {
                 0,
                 0
             )
-            rootView.setBackgroundColor(resources.getColor(R.color.transparent))
+            rootView.setBackgroundColor(resources.getColor(R.color.common_white))
         }
     }
 
