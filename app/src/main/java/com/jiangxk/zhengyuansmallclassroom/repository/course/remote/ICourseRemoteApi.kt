@@ -1,6 +1,7 @@
 package com.jiangxk.zhengyuansmallclassroom.repository.course.remote
 
 import com.jiangxk.zhengyuansmallclassroom.model.GradeModel
+import com.jiangxk.zhengyuansmallclassroom.model.NodeModel
 import com.jiangxk.zhengyuansmallclassroom.model.SubjectModel
 import io.reactivex.Observable
 
@@ -22,4 +23,11 @@ interface ICourseRemoteApi {
      * @return Observable<List<SubjectModel>>
      */
     fun getSubjectList(gradeId: Int): Observable<List<SubjectModel>>
+
+    /**
+     * 获取NodeList
+     * @param subjectId Int
+     * @return Observable<List<NodeModel>>
+     */
+    fun getNodeList(subjectId: Int): Observable<List<NodeModel>>
 }

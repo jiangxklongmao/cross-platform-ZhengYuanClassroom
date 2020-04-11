@@ -90,7 +90,7 @@ class SubjectPageActivity : BaseMvpActivity<SubjectPageContract.View, SubjectPag
                     showMessage(getString(R.string.app_tips_course_not_open))
                     return
                 }
-                showMessage(data.subjectName)
+                NodePageActivity.start(context, data.subjectId, data.subjectName)
             }
         })
     }

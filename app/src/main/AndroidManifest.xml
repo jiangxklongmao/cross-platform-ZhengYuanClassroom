@@ -32,6 +32,10 @@
         <activity
             android:name=".ui.activity.course.SubjectPageActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.activity.course.NodePageActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

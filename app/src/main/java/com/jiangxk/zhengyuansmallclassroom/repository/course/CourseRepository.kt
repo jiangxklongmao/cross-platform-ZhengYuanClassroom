@@ -2,6 +2,7 @@ package com.jiangxk.zhengyuansmallclassroom.repository.course
 
 import com.jiangxk.common.singleton.SingletonHolder2
 import com.jiangxk.zhengyuansmallclassroom.model.GradeModel
+import com.jiangxk.zhengyuansmallclassroom.model.NodeModel
 import com.jiangxk.zhengyuansmallclassroom.model.SubjectModel
 import com.jiangxk.zhengyuansmallclassroom.repository.course.local.ICourseLocalApi
 import com.jiangxk.zhengyuansmallclassroom.repository.course.remote.ICourseRemoteApi
@@ -29,5 +30,7 @@ class CourseRepository private constructor(
         return courseRemoteApi.getSubjectList(gradeId)
     }
 
-
+    override fun getNodeList(subjectId: Int): Observable<List<NodeModel>> {
+        return courseRemoteApi.getNodeList(subjectId)
+    }
 }
