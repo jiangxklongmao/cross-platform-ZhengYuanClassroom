@@ -30,9 +30,6 @@ class HomeActivity : BaseActivity() {
 
     override fun getLayoutId() = R.layout.activity_home
 
-    override fun isSetPaddingTop(): Boolean {
-        return true
-    }
 
     override fun initView() {
 

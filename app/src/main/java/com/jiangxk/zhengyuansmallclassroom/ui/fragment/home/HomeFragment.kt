@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jiangxk.common.common.fragment.BaseMvpFragment
+import com.jiangxk.common.ui.adapter.BaseAdapter
 import com.jiangxk.zhengyuansmallclassroom.R
 import com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerHomeComponent
 import com.jiangxk.zhengyuansmallclassroom.injection.module.HomeModule
@@ -14,6 +15,7 @@ import com.jiangxk.zhengyuansmallclassroom.mvp.presenter.home.HomePresenter
 import com.jiangxk.zhengyuansmallclassroom.repository.course.CourseRepository
 import com.jiangxk.zhengyuansmallclassroom.repository.course.local.CourseLocalApi
 import com.jiangxk.zhengyuansmallclassroom.repository.course.remote.CourseRemoteApi
+import com.jiangxk.zhengyuansmallclassroom.ui.activity.course.SubjectPageActivity
 import com.jiangxk.zhengyuansmallclassroom.ui.adapter.HomeGradeAdapter
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.include_toolbar.*
@@ -30,7 +32,7 @@ class HomeFragment : BaseMvpFragment<HomePresenter>(), HomeContract.View {
             .homeModule(
                 HomeModule(
                     this,
-                    CourseRepository.getInstance(CourseLocalApi(), CourseRemoteApi())
+                    CourseRepository.getInstance(CourseLocalApi, CourseRemoteApi)
                 )
             )
             .build().inject(this)
@@ -56,6 +58,17 @@ class HomeFragment : BaseMvpFragment<HomePresenter>(), HomeContract.View {
             recyclerView.layoutManager = LinearLayoutManager(context)
             recyclerView.adapter = homeGradeAdapter
         }
+
+        homeGradeAdapter.setOnItemClickListener(object : BaseAdapter.OnItemClickListener {
+            override fun onItemClick(view: View, position: Int) {
+                val data = homeGradeAdapter.getData()[position]
+                if (!data.isOpen) {
+                    showMessage(getString(R.string.app_tips_course_not_open))
+                    return
+                }
+                SubjectPageActivity.start(context, data.gradeId, data.gradeName)
+            }
+        })
     }
 
     override fun initData() {

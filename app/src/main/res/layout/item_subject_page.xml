@@ -25,7 +25,7 @@
             android:src="@drawable/vector_drawable_logo" />
 
         <TextView
-            android:id="@+id/tv_gradeName"
+            android:id="@+id/tv_subjectName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"

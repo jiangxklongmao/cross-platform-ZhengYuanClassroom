@@ -35,7 +35,7 @@ class LoginActivity : BaseMvpActivity<LoginContract.View, LoginPresenter>(), Log
 
     override fun getLayoutId() = R.layout.activity_login
 
-    override fun isSetStateView() = true
+    override fun isSetPaddingTop() = false
 
     override fun initView() {
         btn_login.setOnClickListener {

@@ -67,7 +67,7 @@ abstract class BaseActivity : AppCompatActivity() {
      * 是否设置多状态View 默认为false
      * @return Boolean true:设置
      */
-    open fun isSetStateView(): Boolean = false
+    open fun isSetStateView(): Boolean = true
 
     /** 初始化操作，在onCreate中调用*/
     open fun initOperate() {}
@@ -121,10 +121,10 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     /**
-     * 是否设置布局与状态栏之间的paddingTop,默认值为false
+     * 是否设置布局与状态栏之间的paddingTop,默认值为true
      * @return Boolean
      */
-    open fun isSetPaddingTop(): Boolean = false
+    open fun isSetPaddingTop(): Boolean = true
 
     override fun onDestroy() {
         super.onDestroy()
