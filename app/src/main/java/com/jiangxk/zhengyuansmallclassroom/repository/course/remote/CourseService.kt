@@ -3,10 +3,7 @@ package com.jiangxk.zhengyuansmallclassroom.repository.course.remote
 import com.jiangxk.common.common.model.BaseMiniProgramModel
 import com.jiangxk.common.repository.QueryHashMap
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant
-import com.jiangxk.zhengyuansmallclassroom.model.ChapterModel
-import com.jiangxk.zhengyuansmallclassroom.model.GradeModel
-import com.jiangxk.zhengyuansmallclassroom.model.NodeModel
-import com.jiangxk.zhengyuansmallclassroom.model.SubjectModel
+import com.jiangxk.zhengyuansmallclassroom.model.*
 import io.reactivex.Observable
 import okhttp3.RequestBody
 import retrofit2.http.*
@@ -55,4 +52,14 @@ interface CourseService {
     @Headers("Content-type:application/json")
     @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
     fun getChapterList(@QueryMap queryHashMap: QueryHashMap, @Body body: RequestBody): Observable<BaseMiniProgramModel<List<ChapterModel>>>
+
+    /**
+     * 获取 courseList
+     * @param queryHashMap QueryHashMap
+     * @param body RequestBody
+     * @return Observable<BaseMiniProgramModel<List<ChapterModel>>>
+     */
+    @Headers("Content-type:application/json")
+    @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
+    fun getCourseList(@QueryMap queryHashMap: QueryHashMap, @Body body: RequestBody): Observable<BaseMiniProgramModel<List<CourseModel>>>
 }

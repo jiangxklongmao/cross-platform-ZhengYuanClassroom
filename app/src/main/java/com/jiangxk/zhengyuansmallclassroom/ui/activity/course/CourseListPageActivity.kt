@@ -9,78 +9,80 @@ import com.github.jdsjlzx.view.ArrowRefreshHeader
 import com.github.jdsjlzx.view.LoadingFooter
 import com.jiangxk.common.common.activity.BaseMvpActivity
 import com.jiangxk.zhengyuansmallclassroom.R
-import com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerChapterPageComponent
-import com.jiangxk.zhengyuansmallclassroom.injection.module.ChapterPageModule
-import com.jiangxk.zhengyuansmallclassroom.model.ChapterModel
-import com.jiangxk.zhengyuansmallclassroom.mvp.contract.course.ChapterPageContract
-import com.jiangxk.zhengyuansmallclassroom.mvp.presenter.course.ChapterPagePresenter
+import com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerCourseListPageComponent
+import com.jiangxk.zhengyuansmallclassroom.injection.module.CourseListPageModule
+import com.jiangxk.zhengyuansmallclassroom.model.CourseModel
+import com.jiangxk.zhengyuansmallclassroom.mvp.contract.course.CourseListPageContract
+import com.jiangxk.zhengyuansmallclassroom.mvp.presenter.course.CourseListPagePresenter
 import com.jiangxk.zhengyuansmallclassroom.repository.course.CourseRepository
 import com.jiangxk.zhengyuansmallclassroom.repository.course.local.CourseLocalApi
 import com.jiangxk.zhengyuansmallclassroom.repository.course.remote.CourseRemoteApi
-import com.jiangxk.zhengyuansmallclassroom.ui.adapter.ChapterPageAdapter
+import com.jiangxk.zhengyuansmallclassroom.ui.adapter.CoursePageAdapter
 import kotlinx.android.synthetic.main.activity_chapter_page.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 
 /**
  * @description com.jiangxk.zhengyuansmallclassroom.ui.activity.course
  * @author jiangxk
- * @time 2020-04-11  18:34
+ * @time 2020-04-12  18:43
  */
-class ChapterPageActivity : BaseMvpActivity<ChapterPageContract.View, ChapterPagePresenter>(),
-    ChapterPageContract.View {
+class CourseListPageActivity :
+    BaseMvpActivity<CourseListPageContract.View, CourseListPagePresenter>(),
+    CourseListPageContract.View {
 
-    private lateinit var chapterAdapter: ChapterPageAdapter
+
+    private lateinit var coursePageAdapter: CoursePageAdapter
     private lateinit var lRecyclerViewAdapter: LRecyclerViewAdapter
     private lateinit var arrowRefreshHeader: ArrowRefreshHeader
     private lateinit var loadingFooter: LoadingFooter
-    private var nodeId: Int = 0
-    private lateinit var nodeName: String
+    private var chapterId: Int = 0
+    private lateinit var chapterName: String
     private var page: Int = 0
     private val pageSize: Int = 20
 
     companion object {
-        const val EXTRA_NODE_ID = "extra_node_id"
-        const val EXTRA_NODE_NAME = "extra_node_name"
+        const val EXTRA_CHAPTER_ID = "extra_chapter_id"
+        const val EXTRA_CHAPTER_NAME = "extra_chapter_name"
 
         /**
          *
          * @param context Context?
-         * @param nodeId Int
-         * @param nodeName String
+         * @param chapterId Int
+         * @param chapterName String
          */
-        fun start(context: Context?, nodeId: Int, nodeName: String) {
-            val intent = Intent(context, ChapterPageActivity::class.java)
-            intent.putExtra(EXTRA_NODE_ID, nodeId)
-            intent.putExtra(EXTRA_NODE_NAME, nodeName)
+        fun start(context: Context?, chapterId: Int, chapterName: String) {
+            val intent = Intent(context, CourseListPageActivity::class.java)
+            intent.putExtra(EXTRA_CHAPTER_ID, chapterId)
+            intent.putExtra(EXTRA_CHAPTER_NAME, chapterName)
             context?.startActivity(intent)
         }
     }
 
     override fun injectComponent() {
-        DaggerChapterPageComponent.builder().activityComponent(mActivityComponent)
-            .chapterPageModule(
-                ChapterPageModule(
+        DaggerCourseListPageComponent.builder().activityComponent(mActivityComponent)
+            .courseListPageModule(
+                CourseListPageModule(
                     this,
                     CourseRepository.getInstance(CourseLocalApi, CourseRemoteApi)
                 )
             ).build().inject(this)
     }
 
+    override fun getLayoutId() = R.layout.activity_course_list_page
+
     override fun initOperate() {
         super.initOperate()
-        nodeId = intent.getIntExtra(EXTRA_NODE_ID, 0)
-        nodeName = intent.getStringExtra(EXTRA_NODE_NAME)
+        chapterId = intent.getIntExtra(EXTRA_CHAPTER_ID, 0)
+        chapterName = intent.getStringExtra(EXTRA_CHAPTER_NAME)
 
-        if (nodeId == 0) {
+        if (chapterId == 0) {
             showMessage("获取课程ID失败")
             finish()
         }
     }
 
-    override fun getLayoutId() = R.layout.activity_chapter_page
-
     override fun initView() {
-        tv_title.text = nodeName
+        tv_title.text = chapterName
         iv_back.visibility = View.VISIBLE
 
         arrowRefreshHeader = ArrowRefreshHeader(this)
@@ -88,8 +90,8 @@ class ChapterPageActivity : BaseMvpActivity<ChapterPageContract.View, ChapterPag
         recyclerView.setRefreshHeader(arrowRefreshHeader)
         recyclerView.setLoadMoreFooter(loadingFooter, false)
 
-        chapterAdapter = ChapterPageAdapter(this)
-        lRecyclerViewAdapter = LRecyclerViewAdapter(chapterAdapter)
+        coursePageAdapter = CoursePageAdapter(this)
+        lRecyclerViewAdapter = LRecyclerViewAdapter(coursePageAdapter)
 
         val layoutManager = LinearLayoutManager(context)
         recyclerView.layoutManager = layoutManager
@@ -98,12 +100,10 @@ class ChapterPageActivity : BaseMvpActivity<ChapterPageContract.View, ChapterPag
         recyclerView.setPullRefreshEnabled(true)
 
         recyclerView.refreshComplete(pageSize)
-
-
     }
 
     override fun initData() {
-        mPresenter.getChapterList(nodeId, page, pageSize)
+        mPresenter.getCourseList(chapterId, page, pageSize)
     }
 
     override fun setListener() {
@@ -113,24 +113,24 @@ class ChapterPageActivity : BaseMvpActivity<ChapterPageContract.View, ChapterPag
         }
 
         lRecyclerViewAdapter.setOnItemClickListener { _, position ->
-            val data = chapterAdapter.getData()[position]
-            CourseListPageActivity.start(this, data.chapterId, data.chapterName)
+            val data = coursePageAdapter.getData()[position]
+            showMessage(data.courseName)
         }
 
         recyclerView.setOnRefreshListener {
             page = 0
-            mPresenter.getChapterList(nodeId, page, pageSize)
+            mPresenter.getCourseList(chapterId, page, pageSize)
         }
         recyclerView.setOnLoadMoreListener {
-            mPresenter.getChapterList(nodeId, ++page, pageSize)
+            mPresenter.getCourseList(chapterId, ++page, pageSize)
         }
     }
 
-    override fun showChapterList(nodeList: List<ChapterModel>) {
+    override fun showCourseList(courseList: List<CourseModel>) {
         if (page == 0) {
-            chapterAdapter.updateData(nodeList)
+            coursePageAdapter.updateData(courseList)
         } else {
-            chapterAdapter.addAll(nodeList)
+            coursePageAdapter.addAll(courseList)
         }
         lRecyclerViewAdapter.notifyDataSetChanged()
         recyclerView.refreshComplete(pageSize)
