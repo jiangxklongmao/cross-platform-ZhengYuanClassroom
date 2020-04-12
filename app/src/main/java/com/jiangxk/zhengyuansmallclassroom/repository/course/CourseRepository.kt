@@ -41,10 +41,11 @@ class CourseRepository private constructor(
     }
 
     override fun getCourseList(
+        subjectId: Int,
         chapterId: Int,
         page: Int,
         pageSize: Int
     ): Observable<List<CourseModel>> {
-        return courseRemoteApi.getCourseList(chapterId, page, pageSize)
+        return courseRemoteApi.getCourseList(subjectId, chapterId, page, pageSize)
     }
 }

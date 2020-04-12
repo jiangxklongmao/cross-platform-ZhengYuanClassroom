@@ -32,14 +32,24 @@ interface ICourseRemoteApi {
     /**
      * 获取 chapterList
      * @param nodeId Int
+     * @param page Int
+     * @param pageSize Int
      * @return Observable<List<ChapterModel>>
      */
     fun getChapterList(nodeId: Int, page: Int, pageSize: Int): Observable<List<ChapterModel>>
 
     /**
      * 获取 courseList
+     * @param subjectId Int
      * @param chapterId Int
+     * @param page Int
+     * @param pageSize Int
      * @return Observable<List<CourseModel>>
      */
-    fun getCourseList(chapterId: Int, page: Int, pageSize: Int): Observable<List<CourseModel>>
+    fun getCourseList(
+        subjectId: Int,
+        chapterId: Int,
+        page: Int,
+        pageSize: Int
+    ): Observable<List<CourseModel>>
 }

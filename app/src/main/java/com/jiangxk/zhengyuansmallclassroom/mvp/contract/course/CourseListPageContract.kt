@@ -22,10 +22,11 @@ interface CourseListPageContract {
 
         /**
          * 获取 课程列表
+         * @param subjectId Int
          * @param chapterId Int
          * @param page Int
          * @param pageSize Int
          */
-        fun getCourseList(chapterId: Int, page: Int, pageSize: Int)
+        fun getCourseList(subjectId: Int, chapterId: Int, page: Int, pageSize: Int)
     }
 }

@@ -40,5 +40,41 @@ class ResourceUtils {
             }
         }
 
+        /**
+         * 获取 小程序函数名
+         * @param subjectId Int
+         * @return String
+         */
+        fun getRightMiniProgramFunctionName(subjectId: Int): String {
+            return when (subjectId) {
+                1 -> {  //少儿硬笔书法
+                    ""
+                }
+                2 -> {  //逻辑思维训练
+                    "appGetPrimarySchoolMathematicsOlympicsCourseList"
+                }
+                3 -> {  //小学数学
+                    "appGetPrimarySchoolMathCourseList"
+                }
+                4 -> {  //小学国学语文
+                    "appGetPrimarySchoolChineseCourseList"
+                }
+                5 -> {  //初中数学
+                    "appGetJuniorMiddleSchoolMathList"
+                }
+                6 -> {  //初中物理
+                    "appGetJuniorMiddleSchoolPhysicsList"
+                }
+                7 -> {  //初中化学
+                    "appGetJuniorMiddleSchoolChemistryList"
+                }
+                else -> {
+                    ""
+                }
+            }
+        }
+
     }
+
+
 }

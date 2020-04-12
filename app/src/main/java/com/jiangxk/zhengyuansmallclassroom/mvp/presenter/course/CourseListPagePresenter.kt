@@ -17,8 +17,8 @@ import javax.inject.Inject
 class CourseListPagePresenter @Inject constructor(private val courseRepository: CourseRepository) :
     BaseMvpPresenter<CourseListPageContract.View>(), CourseListPageContract.Presenter {
 
-    override fun getCourseList(chapterId: Int, page: Int, pageSize: Int) {
-        courseRepository.getCourseList(chapterId, page, pageSize)
+    override fun getCourseList(subjecId: Int, chapterId: Int, page: Int, pageSize: Int) {
+        courseRepository.getCourseList(subjecId, chapterId, page, pageSize)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : LoadingObserver<List<CourseModel>>(mView) {
                 override fun onDispose(disposable: Disposable) {

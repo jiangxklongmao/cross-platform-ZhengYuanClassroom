@@ -17,6 +17,7 @@ import com.jiangxk.zhengyuansmallclassroom.mvp.presenter.course.CourseListPagePr
 import com.jiangxk.zhengyuansmallclassroom.repository.course.CourseRepository
 import com.jiangxk.zhengyuansmallclassroom.repository.course.local.CourseLocalApi
 import com.jiangxk.zhengyuansmallclassroom.repository.course.remote.CourseRemoteApi
+import com.jiangxk.zhengyuansmallclassroom.ui.activity.course.NodePageActivity.Companion.EXTRA_SUBJECT_ID
 import com.jiangxk.zhengyuansmallclassroom.ui.adapter.CoursePageAdapter
 import kotlinx.android.synthetic.main.activity_chapter_page.*
 import kotlinx.android.synthetic.main.include_toolbar.*
@@ -35,6 +36,7 @@ class CourseListPageActivity :
     private lateinit var lRecyclerViewAdapter: LRecyclerViewAdapter
     private lateinit var arrowRefreshHeader: ArrowRefreshHeader
     private lateinit var loadingFooter: LoadingFooter
+    private var subjectId: Int = 0
     private var chapterId: Int = 0
     private lateinit var chapterName: String
     private var page: Int = 0
@@ -50,8 +52,9 @@ class CourseListPageActivity :
          * @param chapterId Int
          * @param chapterName String
          */
-        fun start(context: Context?, chapterId: Int, chapterName: String) {
+        fun start(context: Context?, subjectId: Int, chapterId: Int, chapterName: String) {
             val intent = Intent(context, CourseListPageActivity::class.java)
+            intent.putExtra(EXTRA_SUBJECT_ID, subjectId)
             intent.putExtra(EXTRA_CHAPTER_ID, chapterId)
             intent.putExtra(EXTRA_CHAPTER_NAME, chapterName)
             context?.startActivity(intent)
@@ -72,6 +75,7 @@ class CourseListPageActivity :
 
     override fun initOperate() {
         super.initOperate()
+        subjectId = intent.getIntExtra(EXTRA_SUBJECT_ID, 0)
         chapterId = intent.getIntExtra(EXTRA_CHAPTER_ID, 0)
         chapterName = intent.getStringExtra(EXTRA_CHAPTER_NAME)
 
@@ -103,7 +107,7 @@ class CourseListPageActivity :
     }
 
     override fun initData() {
-        mPresenter.getCourseList(chapterId, page, pageSize)
+        mPresenter.getCourseList(subjectId, chapterId, page, pageSize)
     }
 
     override fun setListener() {
@@ -119,10 +123,11 @@ class CourseListPageActivity :
 
         recyclerView.setOnRefreshListener {
             page = 0
-            mPresenter.getCourseList(chapterId, page, pageSize)
+            recyclerView.setLoadMoreEnabled(true)
+            mPresenter.getCourseList(subjectId, chapterId, page, pageSize)
         }
         recyclerView.setOnLoadMoreListener {
-            mPresenter.getCourseList(chapterId, ++page, pageSize)
+            mPresenter.getCourseList(subjectId, chapterId, ++page, pageSize)
         }
     }
 
@@ -133,6 +138,9 @@ class CourseListPageActivity :
             coursePageAdapter.addAll(courseList)
         }
         lRecyclerViewAdapter.notifyDataSetChanged()
+        if (courseList.size < pageSize) {
+            recyclerView.setLoadMoreEnabled(false)
+        }
         recyclerView.refreshComplete(pageSize)
     }
 

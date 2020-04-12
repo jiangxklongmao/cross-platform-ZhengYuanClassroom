@@ -7,6 +7,7 @@ import com.jiangxk.common.rxjava.Mapper
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant
 import com.jiangxk.zhengyuansmallclassroom.model.*
 import com.jiangxk.zhengyuansmallclassroom.repository.ApiRepository
+import com.jiangxk.zhengyuansmallclassroom.utils.ResourceUtils.Companion.getRightMiniProgramFunctionName
 import com.orhanobut.logger.Logger
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
@@ -136,6 +137,7 @@ object CourseRemoteApi : ApiRepository(), ICourseRemoteApi {
     }
 
     override fun getCourseList(
+        subjectId: Int,
         chapterId: Int,
         page: Int,
         pageSize: Int
@@ -146,7 +148,7 @@ object CourseRemoteApi : ApiRepository(), ICourseRemoteApi {
                 val queryHashMap = QueryHashMap().apply {
                     put(Constant.PARAMETER_ACCESS_TOKEN, it)
                     put(Constant.PARAMETER_ENV, Constant.MINI_PROGRAM_CLASSROOM_ENV)
-                    put(Constant.PARAMETER_NAME, "appGetCourseList")
+                    put(Constant.PARAMETER_NAME, getRightMiniProgramFunctionName(subjectId))
                 }
 
                 val jsonObject = JsonObject()

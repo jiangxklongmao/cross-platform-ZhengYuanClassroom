@@ -87,7 +87,7 @@ class NodePageActivity : BaseMvpActivity<NodePageContract.View, NodePagePresente
             override fun onItemClick(view: View, position: Int) {
                 val data = nodeAdapter.getData()[position]
 
-                ChapterPageActivity.start(context, data.nodeId, data.nodeName)
+                ChapterPageActivity.start(context, data.subjectId, data.nodeId, data.nodeName)
             }
         })
     }

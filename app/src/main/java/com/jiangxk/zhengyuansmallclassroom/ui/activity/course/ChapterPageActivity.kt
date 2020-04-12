@@ -17,6 +17,7 @@ import com.jiangxk.zhengyuansmallclassroom.mvp.presenter.course.ChapterPagePrese
 import com.jiangxk.zhengyuansmallclassroom.repository.course.CourseRepository
 import com.jiangxk.zhengyuansmallclassroom.repository.course.local.CourseLocalApi
 import com.jiangxk.zhengyuansmallclassroom.repository.course.remote.CourseRemoteApi
+import com.jiangxk.zhengyuansmallclassroom.ui.activity.course.NodePageActivity.Companion.EXTRA_SUBJECT_ID
 import com.jiangxk.zhengyuansmallclassroom.ui.adapter.ChapterPageAdapter
 import kotlinx.android.synthetic.main.activity_chapter_page.*
 import kotlinx.android.synthetic.main.include_toolbar.*
@@ -33,6 +34,7 @@ class ChapterPageActivity : BaseMvpActivity<ChapterPageContract.View, ChapterPag
     private lateinit var lRecyclerViewAdapter: LRecyclerViewAdapter
     private lateinit var arrowRefreshHeader: ArrowRefreshHeader
     private lateinit var loadingFooter: LoadingFooter
+    private var subjectId: Int = 0
     private var nodeId: Int = 0
     private lateinit var nodeName: String
     private var page: Int = 0
@@ -48,8 +50,9 @@ class ChapterPageActivity : BaseMvpActivity<ChapterPageContract.View, ChapterPag
          * @param nodeId Int
          * @param nodeName String
          */
-        fun start(context: Context?, nodeId: Int, nodeName: String) {
+        fun start(context: Context?, subjectId: Int, nodeId: Int, nodeName: String) {
             val intent = Intent(context, ChapterPageActivity::class.java)
+            intent.putExtra(EXTRA_SUBJECT_ID, subjectId)
             intent.putExtra(EXTRA_NODE_ID, nodeId)
             intent.putExtra(EXTRA_NODE_NAME, nodeName)
             context?.startActivity(intent)
@@ -68,6 +71,7 @@ class ChapterPageActivity : BaseMvpActivity<ChapterPageContract.View, ChapterPag
 
     override fun initOperate() {
         super.initOperate()
+        subjectId = intent.getIntExtra(EXTRA_SUBJECT_ID, 0)
         nodeId = intent.getIntExtra(EXTRA_NODE_ID, 0)
         nodeName = intent.getStringExtra(EXTRA_NODE_NAME)
 
@@ -114,11 +118,12 @@ class ChapterPageActivity : BaseMvpActivity<ChapterPageContract.View, ChapterPag
 
         lRecyclerViewAdapter.setOnItemClickListener { _, position ->
             val data = chapterAdapter.getData()[position]
-            CourseListPageActivity.start(this, data.chapterId, data.chapterName)
+            CourseListPageActivity.start(this, subjectId, data.chapterId, data.chapterName)
         }
 
         recyclerView.setOnRefreshListener {
             page = 0
+            recyclerView.setLoadMoreEnabled(true)
             mPresenter.getChapterList(nodeId, page, pageSize)
         }
         recyclerView.setOnLoadMoreListener {
@@ -131,6 +136,9 @@ class ChapterPageActivity : BaseMvpActivity<ChapterPageContract.View, ChapterPag
             chapterAdapter.updateData(nodeList)
         } else {
             chapterAdapter.addAll(nodeList)
+        }
+        if (nodeList.size < pageSize) {
+            recyclerView.setLoadMoreEnabled(false)
         }
         lRecyclerViewAdapter.notifyDataSetChanged()
         recyclerView.refreshComplete(pageSize)
