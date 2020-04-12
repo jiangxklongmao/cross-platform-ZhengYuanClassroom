@@ -1,5 +1,6 @@
 package com.jiangxk.zhengyuansmallclassroom.repository.course.remote
 
+import com.jiangxk.zhengyuansmallclassroom.model.ChapterModel
 import com.jiangxk.zhengyuansmallclassroom.model.GradeModel
 import com.jiangxk.zhengyuansmallclassroom.model.NodeModel
 import com.jiangxk.zhengyuansmallclassroom.model.SubjectModel
@@ -30,4 +31,11 @@ interface ICourseRemoteApi {
      * @return Observable<List<NodeModel>>
      */
     fun getNodeList(subjectId: Int): Observable<List<NodeModel>>
+
+    /**
+     * 获取 chapterList
+     * @param nodeId Int
+     * @return Observable<List<ChapterModel>>
+     */
+    fun getChapterList(nodeId: Int, page: Int, pageSize: Int): Observable<List<ChapterModel>>
 }

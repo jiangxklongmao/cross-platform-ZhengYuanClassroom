@@ -4,7 +4,7 @@ import android.content.Context
 import com.jiangxk.common.ui.adapter.BaseAdapter
 import com.jiangxk.common.ui.adapter.BaseViewHolder
 import com.jiangxk.zhengyuansmallclassroom.R
-import com.jiangxk.zhengyuansmallclassroom.model.NodeModel
+import com.jiangxk.zhengyuansmallclassroom.model.ChapterModel
 import com.jiangxk.zhengyuansmallclassroom.utils.ResourceUtils
 import kotlin.random.Random
 
@@ -13,7 +13,7 @@ import kotlin.random.Random
  * @author jiangxk
  * @time 2020-04-09  18:00
  */
-class NodePageAdapter(context: Context) : BaseAdapter<NodeModel>(context) {
+class ChapterPageAdapter(context: Context) : BaseAdapter<ChapterModel>(context) {
     override fun getItemLayoutId(): Int {
         return R.layout.item_node_page
     }
@@ -21,7 +21,7 @@ class NodePageAdapter(context: Context) : BaseAdapter<NodeModel>(context) {
     override fun onBindView(holder: BaseViewHolder, position: Int) {
         val data = mData[position]
         holder.apply {
-            setText(R.id.tv_gradeName, data.nodeName)
+            setText(R.id.tv_gradeName, data.chapterName)
             setImageReource(R.id.iv_image, getRandomImageResource())
         }
     }

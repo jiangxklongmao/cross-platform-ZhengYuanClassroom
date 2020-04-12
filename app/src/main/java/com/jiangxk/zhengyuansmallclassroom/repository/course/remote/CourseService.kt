@@ -3,6 +3,7 @@ package com.jiangxk.zhengyuansmallclassroom.repository.course.remote
 import com.jiangxk.common.common.model.BaseMiniProgramModel
 import com.jiangxk.common.repository.QueryHashMap
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant
+import com.jiangxk.zhengyuansmallclassroom.model.ChapterModel
 import com.jiangxk.zhengyuansmallclassroom.model.GradeModel
 import com.jiangxk.zhengyuansmallclassroom.model.NodeModel
 import com.jiangxk.zhengyuansmallclassroom.model.SubjectModel
@@ -44,4 +45,14 @@ interface CourseService {
     @Headers("Content-type:application/json")
     @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
     fun getNodeList(@QueryMap queryHashMap: QueryHashMap, @Body body: RequestBody): Observable<BaseMiniProgramModel<List<NodeModel>>>
+
+    /**
+     * 获取 ChapterList
+     * @param queryHashMap QueryHashMap
+     * @param body RequestBody
+     * @return Observable<BaseMiniProgramModel<List<ChapterModel>>>
+     */
+    @Headers("Content-type:application/json")
+    @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
+    fun getChapterList(@QueryMap queryHashMap: QueryHashMap, @Body body: RequestBody): Observable<BaseMiniProgramModel<List<ChapterModel>>>
 }

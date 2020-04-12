@@ -1,6 +1,7 @@
 package com.jiangxk.zhengyuansmallclassroom.repository.course
 
 import com.jiangxk.common.singleton.SingletonHolder2
+import com.jiangxk.zhengyuansmallclassroom.model.ChapterModel
 import com.jiangxk.zhengyuansmallclassroom.model.GradeModel
 import com.jiangxk.zhengyuansmallclassroom.model.NodeModel
 import com.jiangxk.zhengyuansmallclassroom.model.SubjectModel
@@ -18,6 +19,7 @@ class CourseRepository private constructor(
     private val courseRemoteApi: ICourseRemoteApi
 ) : ICourseLocalApi, ICourseRemoteApi {
 
+
     companion object :
         SingletonHolder2<CourseRepository, ICourseLocalApi, ICourseRemoteApi>(::CourseRepository)
 
@@ -32,5 +34,13 @@ class CourseRepository private constructor(
 
     override fun getNodeList(subjectId: Int): Observable<List<NodeModel>> {
         return courseRemoteApi.getNodeList(subjectId)
+    }
+
+    override fun getChapterList(
+        nodeId: Int,
+        page: Int,
+        pageSize: Int
+    ): Observable<List<ChapterModel>> {
+        return courseRemoteApi.getChapterList(nodeId, page, pageSize)
     }
 }
