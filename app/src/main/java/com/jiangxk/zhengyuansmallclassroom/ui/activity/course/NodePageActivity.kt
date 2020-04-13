@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.jiangxk.common.common.activity.BaseMvpActivity
 import com.jiangxk.common.ui.adapter.BaseAdapter
 import com.jiangxk.zhengyuansmallclassroom.R
+import com.jiangxk.zhengyuansmallclassroom.constant.Constant.EXTRA_PARAMETER
 import com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerNodePageComponent
 import com.jiangxk.zhengyuansmallclassroom.injection.module.NodePageModule
 import com.jiangxk.zhengyuansmallclassroom.model.NodeModel
+import com.jiangxk.zhengyuansmallclassroom.model.ParameterModel
 import com.jiangxk.zhengyuansmallclassroom.mvp.contract.course.NodePageContract
 import com.jiangxk.zhengyuansmallclassroom.mvp.presenter.course.NodePagePresenter
 import com.jiangxk.zhengyuansmallclassroom.repository.course.CourseRepository
@@ -29,23 +31,17 @@ class NodePageActivity : BaseMvpActivity<NodePageContract.View, NodePagePresente
 
 
     private lateinit var nodeAdapter: NodePageAdapter
-    private var subjectId: Int = 0
-    private lateinit var subjectName: String
+    private lateinit var parameterModel: ParameterModel
 
     companion object {
-        const val EXTRA_SUBJECT_ID = "extra_subject_id"
-        const val EXTRA_SUBJECT_NAME = "extra_subject_name"
-
         /**
          *
-         * @param context Context
-         * @param gradeId Int
-         * @param gradeName String
+         * @param context Context?
+         * @param parameterModel ParameterModel
          */
-        fun start(context: Context?, subjectId: Int, subjectName: String) {
+        fun start(context: Context?, parameterModel: ParameterModel) {
             val intent = Intent(context, NodePageActivity::class.java)
-            intent.putExtra(EXTRA_SUBJECT_ID, subjectId)
-            intent.putExtra(EXTRA_SUBJECT_NAME, subjectName)
+            intent.putExtra(EXTRA_PARAMETER, parameterModel)
             context?.startActivity(intent)
         }
     }
@@ -64,17 +60,17 @@ class NodePageActivity : BaseMvpActivity<NodePageContract.View, NodePagePresente
 
     override fun initOperate() {
         super.initOperate()
-        subjectId = intent.getIntExtra(EXTRA_SUBJECT_ID, 0)
-        subjectName = intent.getStringExtra(EXTRA_SUBJECT_NAME)
+        parameterModel = intent.getParcelableExtra(EXTRA_PARAMETER)
 
-        if (subjectId == 0) {
+
+        if (parameterModel.subjectId == 0) {
             showMessage("获取课程ID失败")
             finish()
         }
     }
 
     override fun initView() {
-        tv_title.text = subjectName
+        tv_title.text = parameterModel.subjectName
         iv_back.visibility = View.VISIBLE
 
         context?.let {
@@ -86,14 +82,15 @@ class NodePageActivity : BaseMvpActivity<NodePageContract.View, NodePagePresente
         nodeAdapter.setOnItemClickListener(object : BaseAdapter.OnItemClickListener {
             override fun onItemClick(view: View, position: Int) {
                 val data = nodeAdapter.getData()[position]
-
-                ChapterPageActivity.start(context, data.subjectId, data.nodeId, data.nodeName)
+                parameterModel.nodeId = data.nodeId
+                parameterModel.nodeName = data.nodeName
+                ChapterPageActivity.start(context, parameterModel)
             }
         })
     }
 
     override fun initData() {
-        mPresenter.getNodeList(subjectId)
+        mPresenter.getNodeList(parameterModel.subjectId)
     }
 
     override fun setListener() {

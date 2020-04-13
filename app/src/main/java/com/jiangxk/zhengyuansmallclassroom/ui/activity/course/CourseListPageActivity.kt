@@ -9,15 +9,16 @@ import com.github.jdsjlzx.view.ArrowRefreshHeader
 import com.github.jdsjlzx.view.LoadingFooter
 import com.jiangxk.common.common.activity.BaseMvpActivity
 import com.jiangxk.zhengyuansmallclassroom.R
+import com.jiangxk.zhengyuansmallclassroom.constant.Constant
 import com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerCourseListPageComponent
 import com.jiangxk.zhengyuansmallclassroom.injection.module.CourseListPageModule
 import com.jiangxk.zhengyuansmallclassroom.model.CourseModel
+import com.jiangxk.zhengyuansmallclassroom.model.ParameterModel
 import com.jiangxk.zhengyuansmallclassroom.mvp.contract.course.CourseListPageContract
 import com.jiangxk.zhengyuansmallclassroom.mvp.presenter.course.CourseListPagePresenter
 import com.jiangxk.zhengyuansmallclassroom.repository.course.CourseRepository
 import com.jiangxk.zhengyuansmallclassroom.repository.course.local.CourseLocalApi
 import com.jiangxk.zhengyuansmallclassroom.repository.course.remote.CourseRemoteApi
-import com.jiangxk.zhengyuansmallclassroom.ui.activity.course.NodePageActivity.Companion.EXTRA_SUBJECT_ID
 import com.jiangxk.zhengyuansmallclassroom.ui.adapter.CoursePageAdapter
 import kotlinx.android.synthetic.main.activity_chapter_page.*
 import kotlinx.android.synthetic.main.include_toolbar.*
@@ -36,27 +37,20 @@ class CourseListPageActivity :
     private lateinit var lRecyclerViewAdapter: LRecyclerViewAdapter
     private lateinit var arrowRefreshHeader: ArrowRefreshHeader
     private lateinit var loadingFooter: LoadingFooter
-    private var subjectId: Int = 0
-    private var chapterId: Int = 0
-    private lateinit var chapterName: String
     private var page: Int = 0
     private val pageSize: Int = 20
+    private lateinit var parameterModel: ParameterModel
 
     companion object {
-        const val EXTRA_CHAPTER_ID = "extra_chapter_id"
-        const val EXTRA_CHAPTER_NAME = "extra_chapter_name"
 
         /**
          *
          * @param context Context?
-         * @param chapterId Int
-         * @param chapterName String
+         * @param parameterModel ParameterModel
          */
-        fun start(context: Context?, subjectId: Int, chapterId: Int, chapterName: String) {
+        fun start(context: Context?, parameterModel: ParameterModel) {
             val intent = Intent(context, CourseListPageActivity::class.java)
-            intent.putExtra(EXTRA_SUBJECT_ID, subjectId)
-            intent.putExtra(EXTRA_CHAPTER_ID, chapterId)
-            intent.putExtra(EXTRA_CHAPTER_NAME, chapterName)
+            intent.putExtra(Constant.EXTRA_PARAMETER, parameterModel)
             context?.startActivity(intent)
         }
     }
@@ -75,18 +69,16 @@ class CourseListPageActivity :
 
     override fun initOperate() {
         super.initOperate()
-        subjectId = intent.getIntExtra(EXTRA_SUBJECT_ID, 0)
-        chapterId = intent.getIntExtra(EXTRA_CHAPTER_ID, 0)
-        chapterName = intent.getStringExtra(EXTRA_CHAPTER_NAME)
+        parameterModel = intent.getParcelableExtra(Constant.EXTRA_PARAMETER)
 
-        if (chapterId == 0) {
+        if (parameterModel.chapterId == 0) {
             showMessage("获取课程ID失败")
             finish()
         }
     }
 
     override fun initView() {
-        tv_title.text = chapterName
+        tv_title.text = parameterModel.chapterName
         iv_back.visibility = View.VISIBLE
 
         arrowRefreshHeader = ArrowRefreshHeader(this)
@@ -107,7 +99,7 @@ class CourseListPageActivity :
     }
 
     override fun initData() {
-        mPresenter.getCourseList(subjectId, chapterId, page, pageSize)
+        mPresenter.getCourseList(parameterModel.subjectId, parameterModel.chapterId, page, pageSize)
     }
 
     override fun setListener() {
@@ -118,16 +110,32 @@ class CourseListPageActivity :
 
         lRecyclerViewAdapter.setOnItemClickListener { _, position ->
             val data = coursePageAdapter.getData()[position]
-            showMessage(data.courseName)
+            parameterModel.courseId = data.courseId
+            parameterModel.courseName = data.courseName
+            parameterModel.videoUrl = data.videoUrl
+            CourseVideoPlayerActivity.start(
+                this,
+                parameterModel
+            )
         }
 
         recyclerView.setOnRefreshListener {
             page = 0
             recyclerView.setLoadMoreEnabled(true)
-            mPresenter.getCourseList(subjectId, chapterId, page, pageSize)
+            mPresenter.getCourseList(
+                parameterModel.subjectId,
+                parameterModel.chapterId,
+                page,
+                pageSize
+            )
         }
         recyclerView.setOnLoadMoreListener {
-            mPresenter.getCourseList(subjectId, chapterId, ++page, pageSize)
+            mPresenter.getCourseList(
+                parameterModel.subjectId,
+                parameterModel.chapterId,
+                ++page,
+                pageSize
+            )
         }
     }
 

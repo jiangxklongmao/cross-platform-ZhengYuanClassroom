@@ -58,4 +58,11 @@ object Constant {
 
     //endregion
 
+    //region 传参 extra arguments
+
+    const val EXTRA_PARAMETER = "extra_parameter"
+
+    const val EXTRA_PLATFORM = "Android"
+    //endreigon
+
 }

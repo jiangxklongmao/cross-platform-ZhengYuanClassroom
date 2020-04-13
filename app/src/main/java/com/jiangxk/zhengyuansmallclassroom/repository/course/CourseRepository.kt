@@ -48,4 +48,16 @@ class CourseRepository private constructor(
     ): Observable<List<CourseModel>> {
         return courseRemoteApi.getCourseList(subjectId, chapterId, page, pageSize)
     }
+
+    override fun uploadLearningLog(parameterModel: ParameterModel): Observable<String> {
+        return courseRemoteApi.uploadLearningLog(parameterModel)
+    }
+
+    override fun updateLearningLogDuration(
+        logId: String,
+        parameterModel: ParameterModel,
+        learningDuration: Long
+    ): Observable<String> {
+        return courseRemoteApi.updateLearningLogDuration(logId, parameterModel, learningDuration)
+    }
 }

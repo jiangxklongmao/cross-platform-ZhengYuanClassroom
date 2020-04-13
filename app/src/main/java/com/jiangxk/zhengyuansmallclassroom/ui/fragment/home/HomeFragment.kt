@@ -10,6 +10,7 @@ import com.jiangxk.zhengyuansmallclassroom.R
 import com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerHomeComponent
 import com.jiangxk.zhengyuansmallclassroom.injection.module.HomeModule
 import com.jiangxk.zhengyuansmallclassroom.model.GradeModel
+import com.jiangxk.zhengyuansmallclassroom.model.ParameterModel
 import com.jiangxk.zhengyuansmallclassroom.mvp.contract.home.HomeContract
 import com.jiangxk.zhengyuansmallclassroom.mvp.presenter.home.HomePresenter
 import com.jiangxk.zhengyuansmallclassroom.repository.course.CourseRepository
@@ -66,7 +67,9 @@ class HomeFragment : BaseMvpFragment<HomePresenter>(), HomeContract.View {
                     showMessage(getString(R.string.app_tips_course_not_open))
                     return
                 }
-                SubjectPageActivity.start(context, data.gradeId, data.gradeName)
+                SubjectPageActivity.start(
+                    context, ParameterModel.getGradeParameter(data.gradeId, data.gradeName)
+                )
             }
         })
     }

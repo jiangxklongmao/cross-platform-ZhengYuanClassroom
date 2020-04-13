@@ -52,4 +52,24 @@ interface ICourseRemoteApi {
         page: Int,
         pageSize: Int
     ): Observable<List<CourseModel>>
+
+    /**
+     * 上传 学习日志
+     * @param parameterModel ParameterModel
+     * @return Observable<String>
+     */
+    fun uploadLearningLog(parameterModel: ParameterModel): Observable<String>
+
+    /**
+     * 更新学习日志时长
+     * @param logId String
+     * @param parameterModel ParameterModel
+     * @param learningDuration Long
+     * @return Observable<String>
+     */
+    fun updateLearningLogDuration(
+        logId: String,
+        parameterModel: ParameterModel,
+        learningDuration: Long
+    ): Observable<String>
 }

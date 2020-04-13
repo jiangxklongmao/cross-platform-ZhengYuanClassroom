@@ -62,4 +62,24 @@ interface CourseService {
     @Headers("Content-type:application/json")
     @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
     fun getCourseList(@QueryMap queryHashMap: QueryHashMap, @Body body: RequestBody): Observable<BaseMiniProgramModel<List<CourseModel>>>
+
+    /**
+     * 上传学习日志
+     * @param queryHashMap QueryHashMap
+     * @param body RequestBody
+     * @return Observable<BaseMiniProgramModel<String>>
+     */
+    @Headers("Content-type:application/json")
+    @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
+    fun uploadLearningLog(@QueryMap queryHashMap: QueryHashMap, @Body body: RequestBody): Observable<BaseMiniProgramModel<String>>
+
+    /**
+     * 更新学习日志时长
+     * @param queryHashMap QueryHashMap
+     * @param body RequestBody
+     * @return Observable<BaseMiniProgramModel<String>>
+     */
+    @Headers("Content-type:application/json")
+    @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
+    fun updateLearningLogDuration(@QueryMap queryHashMap: QueryHashMap, @Body body: RequestBody): Observable<BaseMiniProgramModel<String>>
 }

@@ -44,6 +44,11 @@
         <activity
             android:name=".ui.activity.course.CourseListPageActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.activity.course.CourseVideoPlayerActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/FullscreenTheme" />
     </application>
 
 </manifest>

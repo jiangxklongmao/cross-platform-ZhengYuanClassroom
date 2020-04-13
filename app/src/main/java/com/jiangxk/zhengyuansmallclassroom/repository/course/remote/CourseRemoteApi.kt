@@ -5,6 +5,7 @@ import com.jiangxk.common.common.model.BaseModel
 import com.jiangxk.common.repository.QueryHashMap
 import com.jiangxk.common.rxjava.Mapper
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant
+import com.jiangxk.zhengyuansmallclassroom.constant.Constant.EXTRA_PLATFORM
 import com.jiangxk.zhengyuansmallclassroom.model.*
 import com.jiangxk.zhengyuansmallclassroom.repository.ApiRepository
 import com.jiangxk.zhengyuansmallclassroom.utils.ResourceUtils.Companion.getRightMiniProgramFunctionName
@@ -170,5 +171,79 @@ object CourseRemoteApi : ApiRepository(), ICourseRemoteApi {
             .map(Mapper())
             .subscribeOn(Schedulers.io())
 
+    }
+
+    override fun uploadLearningLog(parameterModel: ParameterModel): Observable<String> {
+        return authentication()
+            .flatMap {
+                val queryHashMap = QueryHashMap().apply {
+                    put(Constant.PARAMETER_ACCESS_TOKEN, it)
+                    put(Constant.PARAMETER_ENV, Constant.MINI_PROGRAM_CLASSROOM_ENV)
+                    put(Constant.PARAMETER_NAME, "appAddLearningLog")
+                }
+
+                val jsonObject = JsonObject()
+                jsonObject.addProperty("userId", parameterModel.userId)
+                jsonObject.addProperty("userName", parameterModel.userName)
+                jsonObject.addProperty("phoneNumber", parameterModel.phoneNumber)
+                jsonObject.addProperty("gradeId", parameterModel.gradeId)
+                jsonObject.addProperty("subjectId", parameterModel.subjectId)
+                jsonObject.addProperty("nodeId", parameterModel.nodeId)
+                jsonObject.addProperty("chapterId", parameterModel.chapterId)
+                jsonObject.addProperty("courseId", parameterModel.courseId)
+                jsonObject.addProperty("courseName", parameterModel.courseName)
+                jsonObject.addProperty("platform", EXTRA_PLATFORM)
+                jsonObject.addProperty("videoUrl", parameterModel.videoUrl)
+
+                val requestBody = jsonObject.toString()
+                    .toRequestBody("application/json;charset=UTF-8".toMediaTypeOrNull())
+
+                //调用云函数
+                courseService.uploadLearningLog(queryHashMap, requestBody)
+            }
+            .filter { miniProgramResponseFilter(it) }
+            .concatMap {
+                Logger.i("it.resp_data = " + it.resp_data)
+                Observable.just(it.getData() as BaseModel<String>)
+            }
+            .map(Mapper())
+            .subscribeOn(Schedulers.io())
+    }
+
+    override fun updateLearningLogDuration(
+        logId: String,
+        parameterModel: ParameterModel,
+        learningDuration: Long
+    ): Observable<String> {
+        return authentication()
+            .flatMap {
+                val queryHashMap = QueryHashMap().apply {
+                    put(Constant.PARAMETER_ACCESS_TOKEN, it)
+                    put(Constant.PARAMETER_ENV, Constant.MINI_PROGRAM_CLASSROOM_ENV)
+                    put(Constant.PARAMETER_NAME, "appUpdateLearningLogDuration")
+                }
+
+                val jsonObject = JsonObject()
+                jsonObject.addProperty("id", logId)
+                jsonObject.addProperty("userId", parameterModel.userId)
+                jsonObject.addProperty("userName", parameterModel.userName)
+                jsonObject.addProperty("courseId", parameterModel.courseId)
+                jsonObject.addProperty("courseName", parameterModel.courseName)
+                jsonObject.addProperty("learningDuration", learningDuration)
+                jsonObject.addProperty("platform", EXTRA_PLATFORM)
+
+                val requestBody = jsonObject.toString()
+                    .toRequestBody("application/json;charset=UTF-8".toMediaTypeOrNull())
+
+                //调用云函数
+                courseService.updateLearningLogDuration(queryHashMap, requestBody)
+            }
+            .filter { miniProgramResponseFilter(it) }
+            .concatMap {
+                Logger.i("it.resp_data = " + it.resp_data)
+                Observable.just(it.getData() as BaseModel<String>)
+            }
+            .map(Mapper())
+            .subscribeOn(Schedulers.io())
     }
 }

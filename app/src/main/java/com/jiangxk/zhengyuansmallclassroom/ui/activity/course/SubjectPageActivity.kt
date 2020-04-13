@@ -7,8 +7,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.jiangxk.common.common.activity.BaseMvpActivity
 import com.jiangxk.common.ui.adapter.BaseAdapter
 import com.jiangxk.zhengyuansmallclassroom.R
+import com.jiangxk.zhengyuansmallclassroom.constant.Constant.EXTRA_PARAMETER
 import com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerSubjectPageComponent
 import com.jiangxk.zhengyuansmallclassroom.injection.module.SubjectPageModule
+import com.jiangxk.zhengyuansmallclassroom.model.ParameterModel
 import com.jiangxk.zhengyuansmallclassroom.model.SubjectModel
 import com.jiangxk.zhengyuansmallclassroom.mvp.contract.course.SubjectPageContract
 import com.jiangxk.zhengyuansmallclassroom.mvp.presenter.course.SubjectPagePresenter
@@ -29,23 +31,17 @@ class SubjectPageActivity : BaseMvpActivity<SubjectPageContract.View, SubjectPag
 
 
     private lateinit var subjectAdapter: SubjectPageAdapter
-    private var gradeId: Int = 0
-    private lateinit var gradeName: String
+    private lateinit var parameterModel: ParameterModel
 
     companion object {
-        const val EXTRA_GRADE_ID = "extra_grade_id"
-        const val EXTRA_GRADE_NAME = "extra_grade_name"
-
         /**
          *
-         * @param context Context
-         * @param gradeId Int
-         * @param gradeName String
+         * @param context Context?
+         * @param parameterModel ParameterModel
          */
-        fun start(context: Context?, gradeId: Int, gradeName: String) {
+        fun start(context: Context?, parameterModel: ParameterModel) {
             val intent = Intent(context, SubjectPageActivity::class.java)
-            intent.putExtra(EXTRA_GRADE_ID, gradeId)
-            intent.putExtra(EXTRA_GRADE_NAME, gradeName)
+            intent.putExtra(EXTRA_PARAMETER, parameterModel)
             context?.startActivity(intent)
         }
     }
@@ -64,17 +60,16 @@ class SubjectPageActivity : BaseMvpActivity<SubjectPageContract.View, SubjectPag
 
     override fun initOperate() {
         super.initOperate()
-        gradeId = intent.getIntExtra(EXTRA_GRADE_ID, 0)
-        gradeName = intent.getStringExtra(EXTRA_GRADE_NAME)
+        parameterModel = intent.getParcelableExtra(EXTRA_PARAMETER)
 
-        if (gradeId == 0) {
+        if (parameterModel.gradeId == 0) {
             showMessage("获取年级课程ID失败")
             finish()
         }
     }
 
     override fun initView() {
-        tv_title.text = gradeName
+        tv_title.text = parameterModel.gradeName
         iv_back.visibility = View.VISIBLE
 
         context?.let {
@@ -90,13 +85,16 @@ class SubjectPageActivity : BaseMvpActivity<SubjectPageContract.View, SubjectPag
                     showMessage(getString(R.string.app_tips_course_not_open))
                     return
                 }
-                NodePageActivity.start(context, data.subjectId, data.subjectName)
+                parameterModel.subjectId = data.subjectId
+                parameterModel.subjectName = data.subjectName
+
+                NodePageActivity.start(context, parameterModel)
             }
         })
     }
 
     override fun initData() {
-        mPresenter.getSubjectList(gradeId)
+        mPresenter.getSubjectList(parameterModel.gradeId)
     }
 
     override fun setListener() {

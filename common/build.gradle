@@ -52,6 +52,7 @@ dependencies {
     api dependence.libAnkoSqlite
     api dependence.libPalette
     api dependence.libCircleImageView
+    api dependence.libGSYVideoPlayer
 //    api dependence.libBugly
     api dependence.libRhinoAndroid
     api files('libs/tbs_sdk_thirdapp_v4.3.0.jar')
