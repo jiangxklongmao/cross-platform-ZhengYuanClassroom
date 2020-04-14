@@ -16,6 +16,7 @@ class CourseRepository private constructor(
     private val courseRemoteApi: ICourseRemoteApi
 ) : ICourseLocalApi, ICourseRemoteApi {
 
+
     companion object :
         SingletonHolder2<CourseRepository, ICourseLocalApi, ICourseRemoteApi>(::CourseRepository)
 
@@ -59,5 +60,13 @@ class CourseRepository private constructor(
         learningDuration: Long
     ): Observable<String> {
         return courseRemoteApi.updateLearningLogDuration(logId, parameterModel, learningDuration)
+    }
+
+    override fun getCalligraphyCourseList(
+        nodeId: Int,
+        page: Int,
+        pageSize: Int
+    ): Observable<List<CourseModel>> {
+        return courseRemoteApi.getCalligraphyCourseList(nodeId, page, pageSize)
     }
 }

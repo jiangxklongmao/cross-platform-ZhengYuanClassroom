@@ -16,6 +16,7 @@ import com.jiangxk.zhengyuansmallclassroom.mvp.presenter.course.CourseVideoPlaye
 import com.jiangxk.zhengyuansmallclassroom.repository.course.CourseRepository
 import com.jiangxk.zhengyuansmallclassroom.repository.course.local.CourseLocalApi
 import com.jiangxk.zhengyuansmallclassroom.repository.course.remote.CourseRemoteApi
+import com.jiangxk.zhengyuansmallclassroom.utils.DeviceUtils
 import com.orhanobut.logger.Logger
 import com.shuyu.gsyvideoplayer.GSYVideoManager
 import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack
@@ -93,7 +94,15 @@ class CourseVideoPlayerActivity :
 //        imageView.setImageResource(com.jiangxk.zhengyuansmallclassroom.R.mipmap.xxx1)
 //        videoPlayer.setThumbImageView(imageView)
         //增加title
+
+
         videoPlayer.titleTextView.visibility = VISIBLE
+        videoPlayer.setPadding(
+            videoPlayer.paddingLeft,
+            DeviceUtils.getStatusBarHeight(),
+            videoPlayer.paddingRight,
+            videoPlayer.paddingBottom
+        )
         //设置返回键
         videoPlayer.backButton.visibility = VISIBLE
         //设置旋转
@@ -256,6 +265,22 @@ class CourseVideoPlayerActivity :
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         Logger.i("onConfigurationChanged")
+
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            videoPlayer.setPadding(
+                videoPlayer.paddingLeft,
+                0,
+                videoPlayer.paddingRight,
+                videoPlayer.paddingBottom
+            )
+        } else {
+            videoPlayer.setPadding(
+                videoPlayer.paddingLeft,
+                DeviceUtils.getStatusBarHeight(),
+                videoPlayer.paddingRight,
+                videoPlayer.paddingBottom
+            )
+        }
     }
 
 }

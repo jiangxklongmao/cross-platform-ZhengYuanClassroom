@@ -72,4 +72,17 @@ interface ICourseRemoteApi {
         parameterModel: ParameterModel,
         learningDuration: Long
     ): Observable<String>
+
+    /**
+     * 获取 书法课程 courseList
+     * @param nodeId Int
+     * @param page Int
+     * @param pageSize Int
+     * @return Observable<List<CourseModel>>
+     */
+    fun getCalligraphyCourseList(
+        nodeId: Int,
+        page: Int,
+        pageSize: Int
+    ): Observable<List<CourseModel>>
 }

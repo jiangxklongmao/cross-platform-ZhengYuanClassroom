@@ -84,7 +84,17 @@ class NodePageActivity : BaseMvpActivity<NodePageContract.View, NodePagePresente
                 val data = nodeAdapter.getData()[position]
                 parameterModel.nodeId = data.nodeId
                 parameterModel.nodeName = data.nodeName
-                ChapterPageActivity.start(context, parameterModel)
+
+                when (data.subjectId) {
+                    1 -> {
+                        CalligraphyCourseListActivity.start(context, parameterModel)
+                    }
+                    else -> {
+                        ChapterPageActivity.start(context, parameterModel)
+                    }
+                }
+
+
             }
         })
     }

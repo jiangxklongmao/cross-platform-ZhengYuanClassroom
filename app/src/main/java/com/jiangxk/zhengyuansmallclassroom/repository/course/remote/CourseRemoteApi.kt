@@ -246,4 +246,39 @@ object CourseRemoteApi : ApiRepository(), ICourseRemoteApi {
             .map(Mapper())
             .subscribeOn(Schedulers.io())
     }
+
+    override fun getCalligraphyCourseList(
+        nodeId: Int,
+        page: Int,
+        pageSize: Int
+    ): Observable<List<CourseModel>> {
+
+        return authentication()
+            .flatMap {
+                val queryHashMap = QueryHashMap().apply {
+                    put(Constant.PARAMETER_ACCESS_TOKEN, it)
+                    put(Constant.PARAMETER_ENV, Constant.MINI_PROGRAM_CLASSROOM_ENV)
+                    put(Constant.PARAMETER_NAME, "appGetCalligraphyCourseList")
+                }
+
+                val jsonObject = JsonObject()
+                jsonObject.addProperty("nodeId", nodeId)
+                jsonObject.addProperty("page", page)
+                jsonObject.addProperty("pageSize", pageSize)
+
+                val requestBody = jsonObject.toString()
+                    .toRequestBody("application/json;charset=UTF-8".toMediaTypeOrNull())
+
+                //调用云函数
+                courseService.getCalligraphyCourseList(queryHashMap, requestBody)
+            }
+            .filter { miniProgramResponseFilter(it) }
+            .concatMap {
+                Logger.i("it.resp_data = " + it.resp_data)
+                Observable.just(it.getData() as BaseModel<List<CourseModel>>)
+            }
+            .map(Mapper())
+            .subscribeOn(Schedulers.io())
+
+    }
 }
