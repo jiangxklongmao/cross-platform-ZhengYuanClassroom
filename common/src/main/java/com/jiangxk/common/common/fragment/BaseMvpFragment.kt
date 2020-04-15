@@ -42,4 +42,9 @@ abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView 
     override fun showError() {
 
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mPresenter.detachView()
+    }
 }

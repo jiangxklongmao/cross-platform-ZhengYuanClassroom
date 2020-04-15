@@ -7,6 +7,7 @@ import com.jiangxk.zhengyuansmallclassroom.constant.Constant.METHOD_GET_TOKEN
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant.PARAMETER_APPID
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant.PARAMETER_GRANT_TYPE
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant.PARAMETER_SECRET
+import com.jiangxk.zhengyuansmallclassroom.model.LearningOrderModel
 import com.jiangxk.zhengyuansmallclassroom.model.TokenModel
 import com.jiangxk.zhengyuansmallclassroom.model.UserModel
 import io.reactivex.Observable
@@ -34,4 +35,11 @@ interface UserService {
     @Headers("Content-type:application/json")
     @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
     fun userLogin(@QueryMap queryHashMap: QueryHashMap, @Body body: RequestBody): Observable<BaseMiniProgramModel<UserModel>>
+
+    /**
+     * 获取学生学习排名
+     */
+    @Headers("Content-type:application/json")
+    @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
+    fun getUserLearningOrderList(@QueryMap queryHashMap: QueryHashMap, @Body body: RequestBody): Observable<BaseMiniProgramModel<LearningOrderModel>>
 }

@@ -15,6 +15,7 @@ import com.jiangxk.zhengyuansmallclassroom.mvp.presenter.my.MyPresenter
 import com.jiangxk.zhengyuansmallclassroom.repository.user.UserRepository
 import com.jiangxk.zhengyuansmallclassroom.repository.user.local.UserLocalApi
 import com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi
+import com.jiangxk.zhengyuansmallclassroom.ui.activity.learning.LearningOrderActivity
 import kotlinx.android.synthetic.main.fragment_my.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 
@@ -45,6 +46,13 @@ class MyFragment : BaseMvpFragment<MyPresenter>(), MyContract.View {
     override fun initView() {
         tv_title.text = "我的"
         iv_back.visibility = View.GONE
+    }
+
+    override fun setListener() {
+        super.setListener()
+        rl_order.setOnClickListener {
+            LearningOrderActivity.start(context)
+        }
     }
 
     override fun initData() {

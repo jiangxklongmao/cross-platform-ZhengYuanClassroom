@@ -1,6 +1,7 @@
 package com.jiangxk.zhengyuansmallclassroom.repository.user
 
 import com.jiangxk.common.singleton.SingletonHolder2
+import com.jiangxk.zhengyuansmallclassroom.model.LearningOrderModel
 import com.jiangxk.zhengyuansmallclassroom.model.UserModel
 import com.jiangxk.zhengyuansmallclassroom.repository.user.local.IUserLocalApi
 import com.jiangxk.zhengyuansmallclassroom.repository.user.remote.IUserRemoteApi
@@ -41,5 +42,11 @@ class UserRepository private constructor(
         return iUserRemoteApi.userLogin(phoneNumber, password)
     }
 
+    override fun getLearningOrderList(
+        page: Int,
+        pageSize: Int
+    ): Observable<List<LearningOrderModel>> {
+        return iUserRemoteApi.getLearningOrderList(page, pageSize)
+    }
 
 }

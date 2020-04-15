@@ -1,5 +1,6 @@
 package com.jiangxk.zhengyuansmallclassroom.repository.user.remote
 
+import com.jiangxk.zhengyuansmallclassroom.model.LearningOrderModel
 import com.jiangxk.zhengyuansmallclassroom.model.UserModel
 import io.reactivex.Observable
 
@@ -21,4 +22,12 @@ interface IUserRemoteApi {
      * 鉴权
      */
     fun authenticationToken(): Observable<String>
+
+    /**
+     * 获取学习排名
+     * @param page Int
+     * @param pageSize Int
+     */
+    fun getLearningOrderList(page: Int, pageSize: Int): Observable<List<LearningOrderModel>>
+
 }
