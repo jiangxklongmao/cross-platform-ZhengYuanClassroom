@@ -22,6 +22,10 @@ import okhttp3.RequestBody.Companion.toRequestBody
  */
 class UserRemoteApi : ApiRepository(), IUserRemoteApi {
 
+    override fun authenticationToken(): Observable<String> {
+        return authentication()
+    }
+
     fun getToken(
         grant_type: String,
         appId: String,

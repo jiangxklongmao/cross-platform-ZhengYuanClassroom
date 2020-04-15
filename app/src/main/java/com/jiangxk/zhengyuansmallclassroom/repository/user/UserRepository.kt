@@ -17,8 +17,14 @@ class UserRepository private constructor(
     private val iUserRemoteApi: IUserRemoteApi
 ) : IUserLocalApi, IUserRemoteApi {
 
+
     companion object :
         SingletonHolder2<UserRepository, IUserLocalApi, IUserRemoteApi>(::UserRepository)
+
+    override fun authenticationToken(): Observable<String> {
+        return iUserRemoteApi.authenticationToken()
+    }
+
 
     override fun saveUser(user: UserModel): Long {
         return iUserLocalApi.saveUser(user)

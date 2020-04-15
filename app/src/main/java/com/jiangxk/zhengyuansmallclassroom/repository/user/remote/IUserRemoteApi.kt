@@ -16,4 +16,9 @@ interface IUserRemoteApi {
      * @return Observable<BaseModel<Array<UserModel>>>
      */
     fun userLogin(phoneNumber: String, password: String): Observable<Array<UserModel>>
+
+    /**
+     * 鉴权
+     */
+    fun authenticationToken(): Observable<String>
 }
