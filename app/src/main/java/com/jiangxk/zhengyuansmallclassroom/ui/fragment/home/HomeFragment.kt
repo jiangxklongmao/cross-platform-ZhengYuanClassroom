@@ -45,7 +45,6 @@ class HomeFragment : BaseMvpFragment<HomePresenter>(), HomeContract.View {
         super.initOperate()
         homeViewModel =
             ViewModelProviders.of(this).get(HomeViewModel::class.java)
-//        val textView: TextView = findViewById(R.id.text_home)
         homeViewModel.text.observe(this, Observer {
         })
     }
@@ -75,7 +74,7 @@ class HomeFragment : BaseMvpFragment<HomePresenter>(), HomeContract.View {
     }
 
     override fun initData() {
-        presenter.getGradeList()
+        mPresenter.getGradeList()
     }
 
     override fun showGradeList(gradeList: List<GradeModel>) {

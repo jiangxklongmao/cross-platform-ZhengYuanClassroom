@@ -11,6 +11,7 @@ import com.jiangxk.common.common.activity.BaseActivity
 import com.jiangxk.common.utils.AppPrefsUtils
 import com.jiangxk.zhengyuansmallclassroom.R
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant
+import com.jiangxk.zhengyuansmallclassroom.ui.activity.login.LoginActivity
 import com.orhanobut.logger.Logger
 
 
@@ -54,6 +55,7 @@ class HomeActivity : BaseActivity() {
             AppPrefsUtils.getInt(Constant.SP_PERSONAL_INFORMATION_USER_ID_KEY) == 0
         ) {
             showMessage("用户信息获取失败，请重新登录")
+            LoginActivity.start(this)
             finish()
         }
     }

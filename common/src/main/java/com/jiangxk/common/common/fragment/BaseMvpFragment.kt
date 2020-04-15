@@ -16,7 +16,7 @@ import javax.inject.Inject
 abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView {
 
     @Inject
-    lateinit var presenter: T
+    lateinit var mPresenter: T
 
     lateinit var mActivityComponent: DaggerActivityComponent
 

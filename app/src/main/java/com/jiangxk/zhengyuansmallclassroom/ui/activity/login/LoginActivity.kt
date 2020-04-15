@@ -1,5 +1,7 @@
 package com.jiangxk.zhengyuansmallclassroom.ui.activity.login
 
+import android.content.Context
+import android.content.Intent
 import com.jiangxk.common.common.activity.BaseMvpActivity
 import com.jiangxk.common.ddatabase.DatabaseOpenHelper
 import com.jiangxk.common.utils.AppPrefsUtils
@@ -21,6 +23,12 @@ import kotlinx.android.synthetic.main.activity_login.*
  * @time 2020-03-25  15:08
  */
 class LoginActivity : BaseMvpActivity<LoginContract.View, LoginPresenter>(), LoginContract.View {
+
+    companion object{
+        fun start(context: Context) {
+            context.startActivity(Intent(context, LoginActivity::class.java))
+        }
+    }
 
     override fun injectComponent() {
         DaggerLoginComponent.builder().activityComponent(mActivityComponent)
