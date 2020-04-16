@@ -42,4 +42,11 @@ interface UserService {
     @Headers("Content-type:application/json")
     @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
     fun getUserLearningOrderList(@QueryMap queryHashMap: QueryHashMap, @Body body: RequestBody): Observable<BaseMiniProgramModel<LearningOrderModel>>
+
+    /**
+     * 获取管理用户列表
+     */
+    @Headers("Content-type:application/json")
+    @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
+    fun getManagerUserList(@QueryMap queryHashMap: QueryHashMap, @Body body: RequestBody): Observable<BaseMiniProgramModel<UserModel>>
 }

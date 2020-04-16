@@ -49,4 +49,9 @@ class UserRepository private constructor(
         return iUserRemoteApi.getLearningOrderList(page, pageSize)
     }
 
+    override fun getManagerUserList(page: Int, pageSize: Int): Observable<List<UserModel>> {
+        return iUserRemoteApi.getManagerUserList(page, pageSize)
+    }
+
+
 }

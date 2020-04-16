@@ -30,4 +30,11 @@ interface IUserRemoteApi {
      */
     fun getLearningOrderList(page: Int, pageSize: Int): Observable<List<LearningOrderModel>>
 
+    /**
+     * 管理用户列表
+     * @param page Int
+     * @param pageSize Int
+     */
+    fun getManagerUserList(page: Int, pageSize: Int): Observable<List<UserModel>>
+
 }

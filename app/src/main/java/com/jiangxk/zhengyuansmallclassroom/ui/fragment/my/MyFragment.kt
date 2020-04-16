@@ -1,6 +1,7 @@
 package com.jiangxk.zhengyuansmallclassroom.ui.fragment.my
 
-import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.jiangxk.common.common.fragment.BaseMvpFragment
@@ -16,6 +17,7 @@ import com.jiangxk.zhengyuansmallclassroom.repository.user.UserRepository
 import com.jiangxk.zhengyuansmallclassroom.repository.user.local.UserLocalApi
 import com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi
 import com.jiangxk.zhengyuansmallclassroom.ui.activity.learning.LearningOrderActivity
+import com.jiangxk.zhengyuansmallclassroom.ui.activity.manager.ManagerUserActivity
 import kotlinx.android.synthetic.main.fragment_my.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 
@@ -45,13 +47,17 @@ class MyFragment : BaseMvpFragment<MyPresenter>(), MyContract.View {
 
     override fun initView() {
         tv_title.text = "我的"
-        iv_back.visibility = View.GONE
+        iv_back.visibility = GONE
     }
 
     override fun setListener() {
         super.setListener()
         rl_order.setOnClickListener {
             LearningOrderActivity.start(context)
+        }
+
+        rl_manager.setOnClickListener {
+            ManagerUserActivity.start(context)
         }
     }
 
@@ -63,6 +69,12 @@ class MyFragment : BaseMvpFragment<MyPresenter>(), MyContract.View {
         tv_userName.text = user.userName
         tv_phoneNumber.text = user.phoneNumber
         GlideImageLoader().displayImage(context, user.avatarUrl, civ_avatar)
+
+        if (user.manager == 1) {
+            rl_manager.visibility = VISIBLE
+        } else {
+            rl_manager.visibility = GONE
+        }
     }
 
 }

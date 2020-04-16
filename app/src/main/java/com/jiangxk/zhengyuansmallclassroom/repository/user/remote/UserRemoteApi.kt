@@ -23,6 +23,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
  */
 class UserRemoteApi : ApiRepository(), IUserRemoteApi {
 
+
     override fun authenticationToken(): Observable<String> {
         return authentication()
     }
@@ -96,6 +97,35 @@ class UserRemoteApi : ApiRepository(), IUserRemoteApi {
                 Logger.i("it.resp_data = " + it.resp_data)
 
                 Observable.just(it.getData() as BaseModel<List<LearningOrderModel>>)
+            }
+            .map(Mapper())
+            .subscribeOn(Schedulers.io())
+    }
+
+    override fun getManagerUserList(page: Int, pageSize: Int): Observable<List<UserModel>> {
+        return authentication()
+            .concatMap {
+                val queryHashMap = QueryHashMap().apply {
+                    put(Constant.PARAMETER_ACCESS_TOKEN, it)
+                    put(Constant.PARAMETER_ENV, Constant.MINI_PROGRAM_CLASSROOM_ENV)
+                    put(Constant.PARAMETER_NAME, "appGetUserList")
+                }
+
+                val jsonObject = JsonObject()
+                jsonObject.addProperty("page", page)
+                jsonObject.addProperty("pageSize", pageSize)
+
+                val requestBody = jsonObject.toString()
+                    .toRequestBody("application/json;charset=UTF-8".toMediaTypeOrNull())
+
+                //调用云函数
+                userService.getManagerUserList(queryHashMap, requestBody)
+            }
+            .filter { miniProgramResponseFilter(it) }
+            .concatMap {
+                Logger.i("it.resp_data = " + it.resp_data)
+
+                Observable.just(it.getData() as BaseModel<List<UserModel>>)
             }
             .map(Mapper())
             .subscribeOn(Schedulers.io())

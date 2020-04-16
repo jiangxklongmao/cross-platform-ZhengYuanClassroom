@@ -138,13 +138,15 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_manager"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_below="@+id/rl_personal_info"
                 android:layout_marginTop="20dp"
                 android:background="@color/colorWhite"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp">
+                android:paddingRight="20dp"
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/iv_manager_icon"
