@@ -1,6 +1,7 @@
 package com.jiangxk.zhengyuansmallclassroom.repository.user.remote
 
 import com.jiangxk.zhengyuansmallclassroom.model.LearningOrderModel
+import com.jiangxk.zhengyuansmallclassroom.model.UpdateResultModel
 import com.jiangxk.zhengyuansmallclassroom.model.UserModel
 import io.reactivex.Observable
 
@@ -36,5 +37,19 @@ interface IUserRemoteApi {
      * @param pageSize Int
      */
     fun getManagerUserList(page: Int, pageSize: Int): Observable<List<UserModel>>
+
+    /**
+     * 修改权限
+     * @param docId String
+     * @param manager Int
+     */
+    fun modifyPermissions(docId: String, manager: Int): Observable<UpdateResultModel>
+
+    /**
+     * 修改状态
+     * @param docId String
+     * @param status Int
+     */
+    fun modifyStatus(docId: String, status: Int): Observable<UpdateResultModel>
 
 }

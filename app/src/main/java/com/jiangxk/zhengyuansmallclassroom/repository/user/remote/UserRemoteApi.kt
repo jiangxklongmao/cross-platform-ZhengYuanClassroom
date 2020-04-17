@@ -7,6 +7,7 @@ import com.jiangxk.common.rxjava.Mapper
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant
 import com.jiangxk.zhengyuansmallclassroom.model.LearningOrderModel
 import com.jiangxk.zhengyuansmallclassroom.model.TokenModel
+import com.jiangxk.zhengyuansmallclassroom.model.UpdateResultModel
 import com.jiangxk.zhengyuansmallclassroom.model.UserModel
 import com.jiangxk.zhengyuansmallclassroom.repository.ApiRepository
 import com.orhanobut.logger.Logger
@@ -22,7 +23,6 @@ import okhttp3.RequestBody.Companion.toRequestBody
  * @time 2020-04-07  16:26
  */
 class UserRemoteApi : ApiRepository(), IUserRemoteApi {
-
 
     override fun authenticationToken(): Observable<String> {
         return authentication()
@@ -126,6 +126,64 @@ class UserRemoteApi : ApiRepository(), IUserRemoteApi {
                 Logger.i("it.resp_data = " + it.resp_data)
 
                 Observable.just(it.getData() as BaseModel<List<UserModel>>)
+            }
+            .map(Mapper())
+            .subscribeOn(Schedulers.io())
+    }
+
+    override fun modifyPermissions(docId: String, manager: Int): Observable<UpdateResultModel> {
+        return authentication()
+            .concatMap {
+                val queryHashMap = QueryHashMap().apply {
+                    put(Constant.PARAMETER_ACCESS_TOKEN, it)
+                    put(Constant.PARAMETER_ENV, Constant.MINI_PROGRAM_CLASSROOM_ENV)
+                    put(Constant.PARAMETER_NAME, "appModifyPermissions")
+                }
+
+                val jsonObject = JsonObject()
+                jsonObject.addProperty("id", docId)
+                jsonObject.addProperty("manager", manager)
+
+                val requestBody = jsonObject.toString()
+                    .toRequestBody("application/json;charset=UTF-8".toMediaTypeOrNull())
+
+                //调用云函数
+                userService.modifyPermissions(queryHashMap, requestBody)
+            }
+            .filter { miniProgramResponseFilter(it) }
+            .concatMap {
+                Logger.i("it.resp_data = " + it.resp_data)
+
+                Observable.just(it.getData() as BaseModel<UpdateResultModel>)
+            }
+            .map(Mapper())
+            .subscribeOn(Schedulers.io())
+    }
+
+    override fun modifyStatus(docId: String, status: Int): Observable<UpdateResultModel> {
+        return authentication()
+            .concatMap {
+                val queryHashMap = QueryHashMap().apply {
+                    put(Constant.PARAMETER_ACCESS_TOKEN, it)
+                    put(Constant.PARAMETER_ENV, Constant.MINI_PROGRAM_CLASSROOM_ENV)
+                    put(Constant.PARAMETER_NAME, "appModifyStatus")
+                }
+
+                val jsonObject = JsonObject()
+                jsonObject.addProperty("id", docId)
+                jsonObject.addProperty("status", status)
+
+                val requestBody = jsonObject.toString()
+                    .toRequestBody("application/json;charset=UTF-8".toMediaTypeOrNull())
+
+                //调用云函数
+                userService.modifyStatus(queryHashMap, requestBody)
+            }
+            .filter { miniProgramResponseFilter(it) }
+            .concatMap {
+                Logger.i("it.resp_data = " + it.resp_data)
+
+                Observable.just(it.getData() as BaseModel<UpdateResultModel>)
             }
             .map(Mapper())
             .subscribeOn(Schedulers.io())

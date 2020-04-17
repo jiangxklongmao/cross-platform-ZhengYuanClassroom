@@ -1,4 +1,4 @@
-package com.jiangxk.common.ddatabase
+package com.jiangxk.common.database
 
 import com.orhanobut.logger.Logger
 

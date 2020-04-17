@@ -2,6 +2,7 @@ package com.jiangxk.zhengyuansmallclassroom.repository.user
 
 import com.jiangxk.common.singleton.SingletonHolder2
 import com.jiangxk.zhengyuansmallclassroom.model.LearningOrderModel
+import com.jiangxk.zhengyuansmallclassroom.model.UpdateResultModel
 import com.jiangxk.zhengyuansmallclassroom.model.UserModel
 import com.jiangxk.zhengyuansmallclassroom.repository.user.local.IUserLocalApi
 import com.jiangxk.zhengyuansmallclassroom.repository.user.remote.IUserRemoteApi
@@ -53,5 +54,12 @@ class UserRepository private constructor(
         return iUserRemoteApi.getManagerUserList(page, pageSize)
     }
 
+    override fun modifyPermissions(docId: String, manager: Int): Observable<UpdateResultModel> {
+        return iUserRemoteApi.modifyPermissions(docId, manager)
+    }
+
+    override fun modifyStatus(docId: String, status: Int): Observable<UpdateResultModel> {
+        return iUserRemoteApi.modifyStatus(docId, status)
+    }
 
 }

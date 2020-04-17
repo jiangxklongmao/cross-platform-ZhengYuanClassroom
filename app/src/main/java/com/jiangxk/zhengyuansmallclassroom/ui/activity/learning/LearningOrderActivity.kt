@@ -8,7 +8,7 @@ import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter
 import com.github.jdsjlzx.view.ArrowRefreshHeader
 import com.github.jdsjlzx.view.LoadingFooter
 import com.jiangxk.common.common.activity.BaseMvpActivity
-import com.jiangxk.common.ddatabase.DatabaseOpenHelper
+import com.jiangxk.common.database.DatabaseOpenHelper
 import com.jiangxk.zhengyuansmallclassroom.R
 import com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerLearningOrderComponent
 import com.jiangxk.zhengyuansmallclassroom.injection.module.LearningOrderModule

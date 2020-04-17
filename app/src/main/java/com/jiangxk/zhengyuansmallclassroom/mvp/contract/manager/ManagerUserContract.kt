@@ -16,6 +16,16 @@ interface ManagerUserContract {
          * @param userList List<UserModel>
          */
         fun showUserList(userList: List<UserModel>)
+
+        /**
+         * 修改权限成功
+         */
+        fun modifyPermissionsSuccessful()
+
+        /**
+         * 修改状态成功
+         */
+        fun modifyStatusSuccessful()
     }
 
     interface Presenter : BasePresenter<View> {
@@ -25,5 +35,19 @@ interface ManagerUserContract {
          * @param pageSize Int
          */
         fun getManagerUserList(page: Int, pageSize: Int)
+
+        /**
+         * 修改权限
+         * @param docId String
+         * @param manager Int
+         */
+        fun modifyPermissions(docId: String, manager: Int)
+
+        /**
+         * 修改状态
+         * @param docId String
+         * @param status Int
+         */
+        fun modifyStatus(docId: String, status: Int)
     }
 }

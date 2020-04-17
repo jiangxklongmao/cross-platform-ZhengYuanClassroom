@@ -1,4 +1,4 @@
-package com.jiangxk.common.ddatabase
+package com.jiangxk.common.database
 
 import android.database.sqlite.SQLiteDatabase
 import com.jiangxk.common.common.BaseApplication.Companion.context

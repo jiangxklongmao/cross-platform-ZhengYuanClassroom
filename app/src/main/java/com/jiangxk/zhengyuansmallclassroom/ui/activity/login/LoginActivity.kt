@@ -3,7 +3,7 @@ package com.jiangxk.zhengyuansmallclassroom.ui.activity.login
 import android.content.Context
 import android.content.Intent
 import com.jiangxk.common.common.activity.BaseMvpActivity
-import com.jiangxk.common.ddatabase.DatabaseOpenHelper
+import com.jiangxk.common.database.DatabaseOpenHelper
 import com.jiangxk.common.utils.AppPrefsUtils
 import com.jiangxk.zhengyuansmallclassroom.R
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant

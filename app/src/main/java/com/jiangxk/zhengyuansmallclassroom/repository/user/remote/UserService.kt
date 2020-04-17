@@ -9,6 +9,7 @@ import com.jiangxk.zhengyuansmallclassroom.constant.Constant.PARAMETER_GRANT_TYP
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant.PARAMETER_SECRET
 import com.jiangxk.zhengyuansmallclassroom.model.LearningOrderModel
 import com.jiangxk.zhengyuansmallclassroom.model.TokenModel
+import com.jiangxk.zhengyuansmallclassroom.model.UpdateResultModel
 import com.jiangxk.zhengyuansmallclassroom.model.UserModel
 import io.reactivex.Observable
 import okhttp3.RequestBody
@@ -49,4 +50,18 @@ interface UserService {
     @Headers("Content-type:application/json")
     @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
     fun getManagerUserList(@QueryMap queryHashMap: QueryHashMap, @Body body: RequestBody): Observable<BaseMiniProgramModel<UserModel>>
+
+    /**
+     * 修改权限
+     */
+    @Headers("Content-type:application/json")
+    @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
+    fun modifyPermissions(@QueryMap queryHashMap: QueryHashMap, @Body body: RequestBody): Observable<BaseMiniProgramModel<UpdateResultModel>>
+
+    /**
+     * 修改状态
+     */
+    @Headers("Content-type:application/json")
+    @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
+    fun modifyStatus(@QueryMap queryHashMap: QueryHashMap, @Body body: RequestBody): Observable<BaseMiniProgramModel<UpdateResultModel>>
 }

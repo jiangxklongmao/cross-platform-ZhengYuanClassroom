@@ -8,7 +8,9 @@ import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter
 import com.github.jdsjlzx.view.ArrowRefreshHeader
 import com.github.jdsjlzx.view.LoadingFooter
 import com.jiangxk.common.common.activity.BaseMvpActivity
-import com.jiangxk.common.ddatabase.DatabaseOpenHelper
+import com.jiangxk.common.database.DatabaseOpenHelper
+import com.jiangxk.common.ui.dialog.CommonDialogFragment
+import com.jiangxk.common.ui.dialog.CommonListDialogFragment
 import com.jiangxk.zhengyuansmallclassroom.R
 import com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerManagerUserComponent
 import com.jiangxk.zhengyuansmallclassroom.injection.module.ManagerUserModule
@@ -29,6 +31,7 @@ import kotlinx.android.synthetic.main.include_toolbar.*
  */
 class ManagerUserActivity : BaseMvpActivity<ManagerUserContract.View, ManagerUserPresenter>(),
     ManagerUserContract.View {
+
 
     private lateinit var userAdapter: ManagerUserAdapter
     private lateinit var lRecyclerViewAdapter: LRecyclerViewAdapter
@@ -91,7 +94,7 @@ class ManagerUserActivity : BaseMvpActivity<ManagerUserContract.View, ManagerUse
         lRecyclerViewAdapter.setOnItemClickListener { _, position ->
             val data = userAdapter.getData()[position]
 
-            showMessage(data.userName)
+            showOperatorDialog(data._id, data.userName, data.manager, data.status)
         }
 
         recyclerView.setOnRefreshListener {
@@ -108,6 +111,90 @@ class ManagerUserActivity : BaseMvpActivity<ManagerUserContract.View, ManagerUse
         mPresenter.getManagerUserList(page, pageSize)
     }
 
+
+    /**
+     * 操作弹窗
+     * @param docId String
+     * @param userName String
+     * @param manager Int
+     * @param status Int
+     */
+    private fun showOperatorDialog(docId: String, userName: String, manager: Int, status: Int) {
+
+        val list = listOf("修改权限", "修改状态", "限制次数")
+        val adapter = CommonListDialogFragment.DefaultItemAdapter(this)
+        adapter.addAll(list)
+        CommonListDialogFragment.Builder()
+            .title("选择下列操作")
+            .onItemClickListener(object : CommonListDialogFragment.OnItemClickListener() {
+                override fun onItemClick(position: Int) {
+                    when (position) {
+                        0 -> modifyPermissions(docId, userName, manager)
+                        1 -> modifyStatus(docId, userName, status)
+                        2 -> limitCount()
+                    }
+                }
+            })
+            .adapter(adapter)
+            .build().show(supportFragmentManager, "")
+    }
+
+    /**
+     *
+     * @param docId String
+     * @param userName String
+     * @param manager Int
+     */
+    private fun modifyPermissions(docId: String, userName: String, manager: Int) {
+        CommonDialogFragment.Builder()
+            .title("权限修改")
+            .content("确定将 ( $userName ) 权限修改成\n${if (manager == 1) "普通用户" else "管理员"} ?")
+            .cancel("取消")
+            .confirm("确定")
+            .confirmColor(R.color.colorPrimary)
+            .onItemClickListener(object : CommonDialogFragment.OnItemClickListener() {
+                override fun onConfirm() {
+                    mPresenter.modifyPermissions(docId, if (manager == 1) 0 else 1)
+                }
+
+                override fun onCancel() {
+                    showMessage("取消修改")
+                }
+            })
+            .build()
+            .show(supportFragmentManager, "")
+    }
+
+    /**
+     *
+     * @param docId String
+     * @param userName String
+     * @param status Int
+     */
+    private fun modifyStatus(docId: String, userName: String, status: Int) {
+        CommonDialogFragment.Builder()
+            .title("状态修改")
+            .content("确定将 ( $userName ) 状态修改成\n${if (status == 1) "未审核" else "正常"} ?")
+            .cancel("取消")
+            .confirm("确定")
+            .confirmColor(R.color.colorPrimary)
+            .onItemClickListener(object : CommonDialogFragment.OnItemClickListener() {
+                override fun onConfirm() {
+                    mPresenter.modifyStatus(docId, if (status == 1) 0 else 1)
+                }
+
+                override fun onCancel() {
+                    showMessage("取消修改")
+                }
+            })
+            .build()
+            .show(supportFragmentManager, "")
+    }
+
+    private fun limitCount() {
+        showMessage("限制次数")
+    }
+
     override fun showUserList(userList: List<UserModel>) {
         if (page == 0) {
             userAdapter.updateData(userList)
@@ -120,4 +207,17 @@ class ManagerUserActivity : BaseMvpActivity<ManagerUserContract.View, ManagerUse
         lRecyclerViewAdapter.notifyDataSetChanged()
         recyclerView.refreshComplete(pageSize)
     }
+
+    override fun modifyPermissionsSuccessful() {
+        showMessage("修改成功")
+        page = 0
+        mPresenter.getManagerUserList(page, pageSize)
+    }
+
+    override fun modifyStatusSuccessful() {
+        showMessage("修改成功")
+        page = 0
+        mPresenter.getManagerUserList(page, pageSize)
+    }
+
 }

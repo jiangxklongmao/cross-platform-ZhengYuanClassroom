@@ -1,8 +1,8 @@
 package com.jiangxk.zhengyuansmallclassroom.repository.user.local
 
 import com.jiangxk.common.constant.Constant.DATABASE_TABLE_USER
-import com.jiangxk.common.ddatabase.ColumnParser
-import com.jiangxk.common.ddatabase.DatabaseOpenHelper
+import com.jiangxk.common.database.ColumnParser
+import com.jiangxk.common.database.DatabaseOpenHelper
 import com.jiangxk.zhengyuansmallclassroom.model.UserModel
 import io.reactivex.Observable
 import org.jetbrains.anko.db.classParser

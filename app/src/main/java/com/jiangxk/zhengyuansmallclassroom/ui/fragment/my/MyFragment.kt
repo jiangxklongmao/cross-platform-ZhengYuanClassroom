@@ -5,7 +5,7 @@ import android.view.View.VISIBLE
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.jiangxk.common.common.fragment.BaseMvpFragment
-import com.jiangxk.common.ddatabase.DatabaseOpenHelper
+import com.jiangxk.common.database.DatabaseOpenHelper
 import com.jiangxk.common.utils.GlideImageLoader
 import com.jiangxk.zhengyuansmallclassroom.R
 import com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerMyComponent

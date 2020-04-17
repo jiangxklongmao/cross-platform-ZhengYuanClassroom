@@ -2,7 +2,7 @@ package com.jiangxk.zhengyuansmallclassroom.ui.activity.splash
 
 import android.os.Handler
 import com.jiangxk.common.common.activity.BaseMvpActivity
-import com.jiangxk.common.ddatabase.DatabaseOpenHelper
+import com.jiangxk.common.database.DatabaseOpenHelper
 import com.jiangxk.zhengyuansmallclassroom.R
 import com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerSplashComponent
 import com.jiangxk.zhengyuansmallclassroom.injection.module.SplashModule

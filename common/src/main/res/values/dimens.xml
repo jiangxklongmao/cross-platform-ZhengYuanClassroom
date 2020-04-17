@@ -425,4 +425,8 @@
     <dimen name="sp_42">42sp</dimen>
     <dimen name="sp_48">48sp</dimen>
 
+
+    <dimen name="percent_70">0.7</dimen>
+
+
 </resources>
