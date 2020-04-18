@@ -281,4 +281,71 @@ object CourseRemoteApi : ApiRepository(), ICourseRemoteApi {
             .subscribeOn(Schedulers.io())
 
     }
+
+    override fun getLimitCourseList(openId: String, userId: Int): Observable<List<NodeLimitModel>> {
+        return authentication()
+            .flatMap {
+                val queryHashMap = QueryHashMap().apply {
+                    put(Constant.PARAMETER_ACCESS_TOKEN, it)
+                    put(Constant.PARAMETER_ENV, Constant.MINI_PROGRAM_CLASSROOM_ENV)
+                    put(Constant.PARAMETER_NAME, "appGetNodeAndLimitCountList")
+                }
+
+                val jsonObject = JsonObject()
+                jsonObject.addProperty("openId", openId)
+                jsonObject.addProperty("userId", userId)
+
+                val requestBody = jsonObject.toString()
+                    .toRequestBody("application/json;charset=UTF-8".toMediaTypeOrNull())
+
+                //调用云函数
+                courseService.getLimitCourseList(queryHashMap, requestBody)
+            }
+            .filter { miniProgramResponseFilter(it) }
+            .concatMap {
+                Logger.i("it.resp_data = " + it.resp_data)
+                Observable.just(it.getData() as BaseModel<List<NodeLimitModel>>)
+            }
+            .map(Mapper())
+            .subscribeOn(Schedulers.io())
+    }
+
+    override fun modifyLimitByUser(
+        openId: String,
+        userId: Int,
+        subjectId: Int,
+        nodeId: Int,
+        limitSize: Int?,
+        totalCount: Int?
+    ): Observable<Boolean> {
+        return authentication()
+            .flatMap {
+                val queryHashMap = QueryHashMap().apply {
+                    put(Constant.PARAMETER_ACCESS_TOKEN, it)
+                    put(Constant.PARAMETER_ENV, Constant.MINI_PROGRAM_CLASSROOM_ENV)
+                    put(Constant.PARAMETER_NAME, "appModifyNodeLimitByUser")
+                }
+
+                val jsonObject = JsonObject()
+                jsonObject.addProperty("openId", openId)
+                jsonObject.addProperty("userId", userId)
+                jsonObject.addProperty("subjectId", subjectId)
+                jsonObject.addProperty("nodeId", nodeId)
+                jsonObject.addProperty("limitSize", limitSize)
+                jsonObject.addProperty("totalCount", totalCount)
+
+                val requestBody = jsonObject.toString()
+                    .toRequestBody("application/json;charset=UTF-8".toMediaTypeOrNull())
+
+                //调用云函数
+                courseService.modifyLimitByUser(queryHashMap, requestBody)
+            }
+            .filter { miniProgramResponseFilter(it) }
+            .concatMap {
+                Logger.i("it.resp_data = " + it.resp_data)
+                Observable.just(it.getData() as BaseModel<Boolean>)
+            }
+            .map(Mapper())
+            .subscribeOn(Schedulers.io())
+    }
 }

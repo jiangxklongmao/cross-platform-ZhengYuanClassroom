@@ -55,7 +55,6 @@ class HomeActivity : BaseActivity() {
         if (AppPrefsUtils.getString(Constant.SP_PERSONAL_INFORMATION_OPEN_ID_KEY).isNullOrEmpty() ||
             AppPrefsUtils.getInt(Constant.SP_PERSONAL_INFORMATION_USER_ID_KEY) == 0
         ) {
-            showMessage("用户信息获取失败，请重新登录")
             LoginActivity.start(this)
             finish()
         }

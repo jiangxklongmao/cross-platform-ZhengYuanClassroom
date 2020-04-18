@@ -94,7 +94,7 @@ class ManagerUserActivity : BaseMvpActivity<ManagerUserContract.View, ManagerUse
         lRecyclerViewAdapter.setOnItemClickListener { _, position ->
             val data = userAdapter.getData()[position]
 
-            showOperatorDialog(data._id, data.userName, data.manager, data.status)
+            showOperatorDialog(data)
         }
 
         recyclerView.setOnRefreshListener {
@@ -114,12 +114,9 @@ class ManagerUserActivity : BaseMvpActivity<ManagerUserContract.View, ManagerUse
 
     /**
      * 操作弹窗
-     * @param docId String
-     * @param userName String
-     * @param manager Int
-     * @param status Int
+     *
      */
-    private fun showOperatorDialog(docId: String, userName: String, manager: Int, status: Int) {
+    private fun showOperatorDialog(user: UserModel) {
 
         val list = listOf("修改权限", "修改状态", "限制次数")
         val adapter = CommonListDialogFragment.DefaultItemAdapter(this)
@@ -129,9 +126,9 @@ class ManagerUserActivity : BaseMvpActivity<ManagerUserContract.View, ManagerUse
             .onItemClickListener(object : CommonListDialogFragment.OnItemClickListener() {
                 override fun onItemClick(position: Int) {
                     when (position) {
-                        0 -> modifyPermissions(docId, userName, manager)
-                        1 -> modifyStatus(docId, userName, status)
-                        2 -> limitCount()
+                        0 -> modifyPermissions(user)
+                        1 -> modifyStatus(user)
+                        2 -> limitCount(user)
                     }
                 }
             })
@@ -140,21 +137,22 @@ class ManagerUserActivity : BaseMvpActivity<ManagerUserContract.View, ManagerUse
     }
 
     /**
-     *
-     * @param docId String
-     * @param userName String
-     * @param manager Int
+     * 修改权限
+     * @param user UserModel
      */
-    private fun modifyPermissions(docId: String, userName: String, manager: Int) {
+    private fun modifyPermissions(user: UserModel) {
         CommonDialogFragment.Builder()
             .title("权限修改")
-            .content("确定将 ( $userName ) 权限修改成\n${if (manager == 1) "普通用户" else "管理员"} ?")
+            .content("确定将 ( ${user.userName} ) 权限修改成\n${if (user.manager == 1) "普通用户" else "管理员"} ?")
             .cancel("取消")
             .confirm("确定")
             .confirmColor(R.color.colorPrimary)
             .onItemClickListener(object : CommonDialogFragment.OnItemClickListener() {
                 override fun onConfirm() {
-                    mPresenter.modifyPermissions(docId, if (manager == 1) 0 else 1)
+                    mPresenter.modifyPermissions(
+                        user._id,
+                        if (user.manager == 1) 0 else 1
+                    )
                 }
 
                 override fun onCancel() {
@@ -166,21 +164,19 @@ class ManagerUserActivity : BaseMvpActivity<ManagerUserContract.View, ManagerUse
     }
 
     /**
-     *
-     * @param docId String
-     * @param userName String
-     * @param status Int
+     * 修改状态
+     * @param user UserModel
      */
-    private fun modifyStatus(docId: String, userName: String, status: Int) {
+    private fun modifyStatus(user: UserModel) {
         CommonDialogFragment.Builder()
             .title("状态修改")
-            .content("确定将 ( $userName ) 状态修改成\n${if (status == 1) "未审核" else "正常"} ?")
+            .content("确定将 ( ${user.userName} ) 状态修改成\n${if (user.status == 1) "未审核" else "正常"} ?")
             .cancel("取消")
             .confirm("确定")
             .confirmColor(R.color.colorPrimary)
             .onItemClickListener(object : CommonDialogFragment.OnItemClickListener() {
                 override fun onConfirm() {
-                    mPresenter.modifyStatus(docId, if (status == 1) 0 else 1)
+                    mPresenter.modifyStatus(user._id, if (user.status == 1) 0 else 1)
                 }
 
                 override fun onCancel() {
@@ -191,8 +187,8 @@ class ManagerUserActivity : BaseMvpActivity<ManagerUserContract.View, ManagerUse
             .show(supportFragmentManager, "")
     }
 
-    private fun limitCount() {
-        showMessage("限制次数")
+    private fun limitCount(user: UserModel) {
+        LimitCoursePageActivity.start(this, user)
     }
 
     override fun showUserList(userList: List<UserModel>) {

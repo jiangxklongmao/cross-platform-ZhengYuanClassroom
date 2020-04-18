@@ -2,6 +2,7 @@ package com.jiangxk.common.ui.dialog
 
 import android.content.Context
 import android.view.View
+import android.widget.TextView
 import androidx.annotation.ColorRes
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jiangxk.common.R
@@ -147,12 +148,35 @@ class CommonListDialogFragment private constructor(builder: Builder) : BaseDialo
         open fun onItemClick(position: Int) {}
     }
 
-    class DefaultItemAdapter(context: Context) : BaseAdapter<String>(context) {
+    class DefaultItemAdapter(private val context: Context) : BaseAdapter<String>(context) {
+        @ColorRes
+        private var itemColor: Int = 0
+
+        open fun itemColor(@ColorRes itemColor: Int): DefaultItemAdapter {
+            this.itemColor = itemColor
+            return this
+        }
+
         override fun getItemLayoutId() = R.layout.item_dialog_common_list
 
         override fun onBindView(holder: BaseViewHolder, position: Int) {
             holder.apply {
                 setText(R.id.tv_option, getData()[position])
+
+                if (itemColor == 0) {
+                    getView<TextView>(R.id.tv_option).setTextColor(
+                        context.resources.getColor(
+                            R.color.common_text_color
+                        )
+                    )
+                } else {
+                    getView<TextView>(R.id.tv_option).setTextColor(
+                        context.resources.getColor(
+                            itemColor
+                        )
+                    )
+                }
+
             }
         }
 

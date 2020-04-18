@@ -85,4 +85,34 @@ interface ICourseRemoteApi {
         page: Int,
         pageSize: Int
     ): Observable<List<CourseModel>>
+
+    /**
+     * 获取 Node 限制课程列表
+     * @param openId String
+     * @param userId Int
+     * @return Observable<List<NodeLimitModel>>
+     */
+    fun getLimitCourseList(
+        openId: String,
+        userId: Int
+    ): Observable<List<NodeLimitModel>>
+
+    /**
+     * 修改用户 观看限制
+     * @param openId String
+     * @param userId Int
+     * @param subjectId Int
+     * @param nodeId Int
+     * @param limitSize Int
+     * @param totalCount Int
+     * @return Observable<Boolean>
+     */
+    fun modifyLimitByUser(
+        openId: String,
+        userId: Int,
+        subjectId: Int,
+        nodeId: Int,
+        limitSize: Int?,
+        totalCount: Int?
+    ): Observable<Boolean>
 }

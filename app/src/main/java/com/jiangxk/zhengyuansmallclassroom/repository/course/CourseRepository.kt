@@ -69,4 +69,27 @@ class CourseRepository private constructor(
     ): Observable<List<CourseModel>> {
         return courseRemoteApi.getCalligraphyCourseList(nodeId, page, pageSize)
     }
+
+    override fun getLimitCourseList(openId: String, userId: Int): Observable<List<NodeLimitModel>> {
+        return courseRemoteApi.getLimitCourseList(openId, userId)
+    }
+
+    override fun modifyLimitByUser(
+        openId: String,
+        userId: Int,
+        subjectId: Int,
+        nodeId: Int,
+        limitSize: Int?,
+        totalCount: Int?
+    ): Observable<Boolean> {
+        return courseRemoteApi.modifyLimitByUser(
+            openId,
+            userId,
+            subjectId,
+            nodeId,
+            limitSize,
+            totalCount
+        )
+    }
+
 }

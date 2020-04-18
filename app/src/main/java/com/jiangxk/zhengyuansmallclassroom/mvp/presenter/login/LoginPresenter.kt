@@ -67,10 +67,6 @@ class LoginPresenter @Inject constructor(private val userRepository: UserReposit
                     it.password
                 )
                 AppPrefsUtils.putString(
-                    Constant.SP_PERSONAL_INFORMATION_OPEN_ID_KEY,
-                    it.openId
-                )
-                AppPrefsUtils.putString(
                     Constant.SP_PERSONAL_INFORMATION_USER_NAME_KEY,
                     it.userName
                 )

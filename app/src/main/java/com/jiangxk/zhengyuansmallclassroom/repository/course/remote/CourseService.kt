@@ -93,4 +93,24 @@ interface CourseService {
     @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
     fun getCalligraphyCourseList(@QueryMap queryHashMap: QueryHashMap, @Body body: RequestBody): Observable<BaseMiniProgramModel<List<CourseModel>>>
 
+    /**
+     * 获取 Node 限制播放次数列表
+     * @param queryHashMap QueryHashMap
+     * @param body RequestBody
+     * @return Observable<BaseMiniProgramModel<List<CourseModel>>>
+     */
+    @Headers("Content-type:application/json")
+    @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
+    fun getLimitCourseList(@QueryMap queryHashMap: QueryHashMap, @Body body: RequestBody): Observable<BaseMiniProgramModel<List<CourseModel>>>
+
+    /**
+     * 修改 用户 观看课程限制
+     * @param queryHashMap QueryHashMap
+     * @param body RequestBody
+     * @return Observable<BaseMiniProgramModel<List<CourseModel>>>
+     */
+    @Headers("Content-type:application/json")
+    @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
+    fun modifyLimitByUser(@QueryMap queryHashMap: QueryHashMap, @Body body: RequestBody): Observable<BaseMiniProgramModel<Boolean>>
+
 }

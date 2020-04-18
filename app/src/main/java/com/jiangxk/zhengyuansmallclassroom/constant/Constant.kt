@@ -61,6 +61,9 @@ object Constant {
     //region 传参 extra arguments
 
     const val EXTRA_PARAMETER = "extra_parameter"
+    const val EXTRA_OPEN_ID = "extra_open_id"
+    const val EXTRA_USER_ID = "extra_user_id"
+    const val EXTRA_USER = "extra_user"
 
     const val EXTRA_PLATFORM = "Android"
     //endreigon

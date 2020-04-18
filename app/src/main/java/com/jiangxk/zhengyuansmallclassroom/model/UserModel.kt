@@ -28,5 +28,29 @@ data class UserModel(
     override fun toString(): String {
         return "UserModel(_id='$_id', avatarUrl='$avatarUrl', city='$city', cloudEnvironment='$cloudEnvironment', cloudSource='$cloudSource', country='$country', gender=$gender, language='$language', manager=$manager, nickName='$nickName', openId='$openId', password='$password', phoneNumber='$phoneNumber', province='$province', registerDate='$registerDate', status=$status, userId=$userId, userName='$userName')"
     }
+
+    fun toParameter(): UserParameter {
+        return UserParameter(
+            _id,
+            avatarUrl,
+            city,
+            cloudEnvironment,
+            cloudSource,
+            country,
+            gender,
+            language,
+            manager,
+            nickName,
+            openId,
+            password,
+            phoneNumber,
+            province,
+            registerDate,
+            status,
+            userId,
+            userName
+        )
+    }
+
 }
 
