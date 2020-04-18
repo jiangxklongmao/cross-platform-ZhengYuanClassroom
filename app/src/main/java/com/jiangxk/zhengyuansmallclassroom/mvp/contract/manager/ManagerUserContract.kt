@@ -26,6 +26,12 @@ interface ManagerUserContract {
          * 修改状态成功
          */
         fun modifyStatusSuccessful()
+
+        /**
+         * 删除用成功
+         * @param position Int
+         */
+        fun showDeleteUserSuccessful(position: Int)
     }
 
     interface Presenter : BasePresenter<View> {
@@ -49,5 +55,11 @@ interface ManagerUserContract {
          * @param status Int
          */
         fun modifyStatus(docId: String, status: Int)
+
+        /**
+         * 删除用户
+         * @param docId String
+         */
+        fun deleteUser(position: Int, docId: String)
     }
 }

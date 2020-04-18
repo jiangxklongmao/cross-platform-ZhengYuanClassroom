@@ -11,7 +11,9 @@ import com.jiangxk.common.common.activity.BaseMvpActivity
 import com.jiangxk.common.database.DatabaseOpenHelper
 import com.jiangxk.common.ui.dialog.CommonDialogFragment
 import com.jiangxk.common.ui.dialog.CommonListDialogFragment
+import com.jiangxk.common.utils.AppPrefsUtils
 import com.jiangxk.zhengyuansmallclassroom.R
+import com.jiangxk.zhengyuansmallclassroom.constant.Constant
 import com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerManagerUserComponent
 import com.jiangxk.zhengyuansmallclassroom.injection.module.ManagerUserModule
 import com.jiangxk.zhengyuansmallclassroom.model.UserModel
@@ -39,6 +41,8 @@ class ManagerUserActivity : BaseMvpActivity<ManagerUserContract.View, ManagerUse
     private lateinit var loadingFooter: LoadingFooter
     private var page: Int = 0
     private val pageSize: Int = 20
+    private var selfOpenId: String? = null
+    private var selfUserId: Int = 0
 
     companion object {
 
@@ -97,6 +101,10 @@ class ManagerUserActivity : BaseMvpActivity<ManagerUserContract.View, ManagerUse
             showOperatorDialog(data)
         }
 
+        lRecyclerViewAdapter.setOnItemLongClickListener { _, position ->
+            showDeleteUserTips(position, userAdapter.getData()[position])
+        }
+
         recyclerView.setOnRefreshListener {
             page = 0
             recyclerView.setLoadMoreEnabled(true)
@@ -108,6 +116,9 @@ class ManagerUserActivity : BaseMvpActivity<ManagerUserContract.View, ManagerUse
     }
 
     override fun initData() {
+        selfOpenId = AppPrefsUtils.getString(Constant.SP_PERSONAL_INFORMATION_OPEN_ID_KEY)
+        selfUserId = AppPrefsUtils.getInt(Constant.SP_PERSONAL_INFORMATION_USER_ID_KEY)
+
         mPresenter.getManagerUserList(page, pageSize)
     }
 
@@ -191,6 +202,39 @@ class ManagerUserActivity : BaseMvpActivity<ManagerUserContract.View, ManagerUse
         LimitCoursePageActivity.start(this, user)
     }
 
+    private fun showDeleteUserTips(position: Int, user: UserModel) {
+        CommonDialogFragment.Builder()
+            .title("危险操作提示")
+            .titleColor(R.color.colorAccent)
+            .content("您确定要删除 ( ${user.userName} ) 同学吗?")
+            .cancel("取消")
+            .confirm("确定")
+            .confirmColor(R.color.colorAccent)
+            .onItemClickListener(object : CommonDialogFragment.OnItemClickListener() {
+                override fun onConfirm() {
+
+                    if (!selfOpenId.isNullOrEmpty() && selfUserId != 0 && selfOpenId == user.openId && selfUserId == user.userId) {
+                        showMessage("不可以删除自己！！！")
+                        return
+                    }
+
+                    if (user.manager == 1) {
+                        showMessage("不可以删除管理员账号！！！")
+                        return
+                    }
+
+                    mPresenter.deleteUser(position, user._id)
+                }
+
+                override fun onCancel() {
+                    showMessage("取消删除")
+                }
+            })
+            .build()
+            .show(supportFragmentManager, "")
+    }
+
+
     override fun showUserList(userList: List<UserModel>) {
         if (page == 0) {
             userAdapter.updateData(userList)
@@ -214,6 +258,11 @@ class ManagerUserActivity : BaseMvpActivity<ManagerUserContract.View, ManagerUse
         showMessage("修改成功")
         page = 0
         mPresenter.getManagerUserList(page, pageSize)
+    }
+
+    override fun showDeleteUserSuccessful(position: Int) {
+        userAdapter.notifyItemRemoved(position)
+        showMessage("删除成功")
     }
 
 }

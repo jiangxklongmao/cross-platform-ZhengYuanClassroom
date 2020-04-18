@@ -52,4 +52,11 @@ interface IUserRemoteApi {
      */
     fun modifyStatus(docId: String, status: Int): Observable<UpdateResultModel>
 
+    /**
+     * 删除用户
+     * @param docId String
+     * @return Observable<Boolean>
+     */
+    fun deleteUser(docId: String): Observable<Boolean>
+
 }

@@ -19,7 +19,6 @@ class UserRepository private constructor(
     private val iUserRemoteApi: IUserRemoteApi
 ) : IUserLocalApi, IUserRemoteApi {
 
-
     companion object :
         SingletonHolder2<UserRepository, IUserLocalApi, IUserRemoteApi>(::UserRepository)
 
@@ -61,5 +60,10 @@ class UserRepository private constructor(
     override fun modifyStatus(docId: String, status: Int): Observable<UpdateResultModel> {
         return iUserRemoteApi.modifyStatus(docId, status)
     }
+
+    override fun deleteUser(docId: String): Observable<Boolean> {
+        return iUserRemoteApi.deleteUser(docId)
+    }
+
 
 }

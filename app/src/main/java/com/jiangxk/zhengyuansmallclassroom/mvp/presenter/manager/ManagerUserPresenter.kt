@@ -68,4 +68,23 @@ class ManagerUserPresenter @Inject constructor(private val userRepository: UserR
                 }
             })
     }
+
+    override fun deleteUser(position: Int, docId: String) {
+        userRepository.deleteUser(docId)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : LoadingObserver<Boolean>(mView) {
+                override fun onDispose(disposable: Disposable) {
+                    addDisposable(disposable)
+                }
+
+                override fun onSuccess(t: Boolean) {
+                    if (t) {
+                        mView.showDeleteUserSuccessful(position)
+                    } else {
+                        mView.showMessage("删除失败")
+                    }
+                }
+
+            })
+    }
 }
