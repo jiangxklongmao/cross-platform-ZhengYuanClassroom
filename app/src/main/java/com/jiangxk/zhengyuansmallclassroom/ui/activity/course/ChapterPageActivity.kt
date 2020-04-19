@@ -42,6 +42,7 @@ class ChapterPageActivity : BaseMvpActivity<ChapterPageContract.View, ChapterPag
     private val pageSize: Int = 20
 
     private var status = 0
+    private var userId = 0
 
     companion object {
 
@@ -105,6 +106,7 @@ class ChapterPageActivity : BaseMvpActivity<ChapterPageContract.View, ChapterPag
     override fun initData() {
         mPresenter.getChapterList(parameterModel.nodeId, page, pageSize)
 
+        userId = AppPrefsUtils.getInt(Constant.SP_PERSONAL_INFORMATION_USER_ID_KEY)
         status = AppPrefsUtils.getInt(Constant.SP_PERSONAL_INFORMATION_STATUS_KEY)
     }
 
@@ -124,9 +126,8 @@ class ChapterPageActivity : BaseMvpActivity<ChapterPageContract.View, ChapterPag
 
             parameterModel.chapterId = data.chapterId
             parameterModel.chapterName = data.chapterName
-            CourseListPageActivity.start(
-                this, parameterModel
-            )
+
+            mPresenter.getLimitCountByUser(userId, parameterModel.subjectId, parameterModel.nodeId)
         }
 
         recyclerView.setOnRefreshListener {
@@ -150,6 +151,16 @@ class ChapterPageActivity : BaseMvpActivity<ChapterPageContract.View, ChapterPag
         }
         lRecyclerViewAdapter.notifyDataSetChanged()
         recyclerView.refreshComplete(pageSize)
+    }
+
+    override fun showLimitCount(limitCount: Int) {
+        if (limitCount == 0) {
+            showMessage("今天学习太久啦，请明天再来学习吧")
+        } else {
+            CourseListPageActivity.start(
+                this, parameterModel
+            )
+        }
     }
 
 }

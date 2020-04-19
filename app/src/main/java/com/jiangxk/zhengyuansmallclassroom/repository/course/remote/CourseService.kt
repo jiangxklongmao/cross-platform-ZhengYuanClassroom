@@ -113,4 +113,8 @@ interface CourseService {
     @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
     fun modifyLimitByUser(@QueryMap queryHashMap: QueryHashMap, @Body body: RequestBody): Observable<BaseMiniProgramModel<Boolean>>
 
+    @Headers("Content-type:application/json")
+    @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
+    fun getAndUpdateLimitCountByUser(@QueryMap queryHashMap: QueryHashMap, @Body body: RequestBody): Observable<BaseMiniProgramModel<Int>>
+
 }

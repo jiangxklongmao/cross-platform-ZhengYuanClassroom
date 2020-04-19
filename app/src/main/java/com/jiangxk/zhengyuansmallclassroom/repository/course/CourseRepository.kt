@@ -92,4 +92,12 @@ class CourseRepository private constructor(
         )
     }
 
+    override fun getAndUpdateLimitCountByUser(
+        userId: Int,
+        subjectId: Int,
+        nodeId: Int
+    ): Observable<Int> {
+        return courseRemoteApi.getAndUpdateLimitCountByUser(userId, subjectId, nodeId)
+    }
+
 }

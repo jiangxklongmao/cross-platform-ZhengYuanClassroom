@@ -43,6 +43,7 @@ class CalligraphyCourseListActivity :
     private lateinit var parameterModel: ParameterModel
 
     private var status = 0
+    private var userId = 0
 
     override fun injectComponent() {
         DaggerCalligraphyCourseListComponent.builder().activityComponent(mActivityComponent)
@@ -104,6 +105,7 @@ class CalligraphyCourseListActivity :
     override fun initData() {
 
         status = AppPrefsUtils.getInt(Constant.SP_PERSONAL_INFORMATION_STATUS_KEY)
+        userId = AppPrefsUtils.getInt(Constant.SP_PERSONAL_INFORMATION_USER_ID_KEY)
 
         mPresenter.getCourseList(parameterModel.nodeId, page, pageSize)
     }
@@ -125,10 +127,8 @@ class CalligraphyCourseListActivity :
             parameterModel.courseId = data.courseId
             parameterModel.courseName = data.courseName
             parameterModel.videoUrl = data.videoUrl
-            CourseVideoPlayerActivity.start(
-                this,
-                parameterModel
-            )
+
+            mPresenter.getLimitCountByUser(userId, parameterModel.subjectId, parameterModel.nodeId)
         }
 
         recyclerView.setOnRefreshListener {
@@ -160,5 +160,16 @@ class CalligraphyCourseListActivity :
             recyclerView.setLoadMoreEnabled(false)
         }
         recyclerView.refreshComplete(pageSize)
+    }
+
+    override fun showLimitCount(limitCount: Int) {
+        if (limitCount == 0) {
+            showMessage("今天学习太久啦，请明天再来学习吧")
+        } else {
+            CourseVideoPlayerActivity.start(
+                this,
+                parameterModel
+            )
+        }
     }
 }

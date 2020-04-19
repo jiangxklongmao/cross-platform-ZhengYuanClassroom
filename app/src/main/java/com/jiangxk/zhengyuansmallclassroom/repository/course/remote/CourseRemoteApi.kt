@@ -348,4 +348,37 @@ object CourseRemoteApi : ApiRepository(), ICourseRemoteApi {
             .map(Mapper())
             .subscribeOn(Schedulers.io())
     }
+
+    override fun getAndUpdateLimitCountByUser(
+        userId: Int,
+        subjectId: Int,
+        nodeId: Int
+    ): Observable<Int> {
+        return authentication()
+            .flatMap {
+                val queryHashMap = QueryHashMap().apply {
+                    put(Constant.PARAMETER_ACCESS_TOKEN, it)
+                    put(Constant.PARAMETER_ENV, Constant.MINI_PROGRAM_CLASSROOM_ENV)
+                    put(Constant.PARAMETER_NAME, "appGetAndUpdateLimitCountByUser")
+                }
+
+                val jsonObject = JsonObject()
+                jsonObject.addProperty("userId", userId)
+                jsonObject.addProperty("subjectId", subjectId)
+                jsonObject.addProperty("nodeId", nodeId)
+
+                val requestBody = jsonObject.toString()
+                    .toRequestBody("application/json;charset=UTF-8".toMediaTypeOrNull())
+
+                //调用云函数
+                courseService.getAndUpdateLimitCountByUser(queryHashMap, requestBody)
+            }
+            .filter { miniProgramResponseFilter(it) }
+            .concatMap {
+                Logger.i("it.resp_data = " + it.resp_data)
+                Observable.just(it.getData() as BaseModel<Int>)
+            }
+            .map(Mapper())
+            .subscribeOn(Schedulers.io())
+    }
 }

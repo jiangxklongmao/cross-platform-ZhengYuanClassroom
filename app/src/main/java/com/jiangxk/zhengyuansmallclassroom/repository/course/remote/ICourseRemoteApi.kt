@@ -115,4 +115,16 @@ interface ICourseRemoteApi {
         limitSize: Int?,
         totalCount: Int?
     ): Observable<Boolean>
+
+    /**
+     * 获取并更新 限制次数
+     * @param userId Int
+     * @param subjectId Int
+     * @param nodeId Int
+     */
+    fun getAndUpdateLimitCountByUser(
+        userId: Int,
+        subjectId: Int,
+        nodeId: Int
+    ): Observable<Int>
 }

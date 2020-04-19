@@ -34,4 +34,19 @@ class CalligraphyCourseListPresenter @Inject constructor(private val courseRepos
             })
     }
 
+    override fun getLimitCountByUser(userId: Int, subjectId: Int, nodeId: Int) {
+        courseRepository.getAndUpdateLimitCountByUser(userId, subjectId, nodeId)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : LoadingObserver<Int>(mView) {
+                override fun onDispose(disposable: Disposable) {
+                    addDisposable(disposable)
+                }
+
+                override fun onSuccess(t: Int) {
+                    mView.showLimitCount(t)
+                }
+            })
+
+    }
+
 }

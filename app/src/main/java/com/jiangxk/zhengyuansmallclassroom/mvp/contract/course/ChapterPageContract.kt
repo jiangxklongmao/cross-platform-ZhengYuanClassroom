@@ -16,6 +16,12 @@ interface ChapterPageContract {
          * @param nodeList List<ChapterModel>
          */
         fun showChapterList(nodeList: List<ChapterModel>)
+
+        /**
+         * 显示 限制次数
+         * @param limitCount Int
+         */
+        fun showLimitCount(limitCount: Int)
     }
 
     interface Presenter : BasePresenter<View> {
@@ -26,5 +32,13 @@ interface ChapterPageContract {
          * @param pageSize Int
          */
         fun getChapterList(nodeId: Int, page: Int, pageSize: Int)
+
+        /**
+         * 查询限制次数
+         * @param userId Int
+         * @param subjectId Int
+         * @param nodeId Int
+         */
+        fun getLimitCountByUser(userId: Int, subjectId: Int, nodeId: Int)
     }
 }
