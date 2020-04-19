@@ -24,7 +24,7 @@ import kotlinx.android.synthetic.main.activity_login.*
  */
 class LoginActivity : BaseMvpActivity<LoginContract.View, LoginPresenter>(), LoginContract.View {
 
-    companion object{
+    companion object {
         fun start(context: Context) {
             context.startActivity(Intent(context, LoginActivity::class.java))
         }

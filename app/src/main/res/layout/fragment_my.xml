@@ -67,6 +67,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_learning"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_below="@+id/rl_personal_info"

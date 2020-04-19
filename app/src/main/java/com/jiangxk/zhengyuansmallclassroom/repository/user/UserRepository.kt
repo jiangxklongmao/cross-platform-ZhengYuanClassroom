@@ -31,6 +31,10 @@ class UserRepository private constructor(
         return iUserLocalApi.saveUser(user)
     }
 
+    override fun getUserById(docId: String): Observable<UserModel> {
+        return iUserRemoteApi.getUserById(docId)
+    }
+
     override fun queryUserById(userId: Int): Observable<UserModel> {
         return iUserLocalApi.queryUserById(userId)
     }
@@ -64,6 +68,5 @@ class UserRepository private constructor(
     override fun deleteUser(docId: String): Observable<Boolean> {
         return iUserRemoteApi.deleteUser(docId)
     }
-
 
 }

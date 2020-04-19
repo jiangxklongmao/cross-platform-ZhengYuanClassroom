@@ -8,6 +8,7 @@ import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter
 import com.github.jdsjlzx.view.ArrowRefreshHeader
 import com.github.jdsjlzx.view.LoadingFooter
 import com.jiangxk.common.common.activity.BaseMvpActivity
+import com.jiangxk.common.utils.AppPrefsUtils
 import com.jiangxk.zhengyuansmallclassroom.R
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant
 import com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerCalligraphyCourseListComponent
@@ -40,6 +41,8 @@ class CalligraphyCourseListActivity :
     private var page: Int = 0
     private val pageSize: Int = 20
     private lateinit var parameterModel: ParameterModel
+
+    private var status = 0
 
     override fun injectComponent() {
         DaggerCalligraphyCourseListComponent.builder().activityComponent(mActivityComponent)
@@ -99,6 +102,9 @@ class CalligraphyCourseListActivity :
     }
 
     override fun initData() {
+
+        status = AppPrefsUtils.getInt(Constant.SP_PERSONAL_INFORMATION_STATUS_KEY)
+
         mPresenter.getCourseList(parameterModel.nodeId, page, pageSize)
     }
 
@@ -109,6 +115,12 @@ class CalligraphyCourseListActivity :
         }
 
         lRecyclerViewAdapter.setOnItemClickListener { _, position ->
+
+            if (status != 1) {
+                showMessage("账号未审核，请联系客服审核后再使用！")
+                return@setOnItemClickListener
+            }
+
             val data = coursePageAdapter.getData()[position]
             parameterModel.courseId = data.courseId
             parameterModel.courseName = data.courseName

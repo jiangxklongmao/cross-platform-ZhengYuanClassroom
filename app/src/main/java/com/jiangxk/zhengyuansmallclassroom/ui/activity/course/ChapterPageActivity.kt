@@ -8,6 +8,7 @@ import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter
 import com.github.jdsjlzx.view.ArrowRefreshHeader
 import com.github.jdsjlzx.view.LoadingFooter
 import com.jiangxk.common.common.activity.BaseMvpActivity
+import com.jiangxk.common.utils.AppPrefsUtils
 import com.jiangxk.zhengyuansmallclassroom.R
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant
 import com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerChapterPageComponent
@@ -39,6 +40,8 @@ class ChapterPageActivity : BaseMvpActivity<ChapterPageContract.View, ChapterPag
 
     private var page: Int = 0
     private val pageSize: Int = 20
+
+    private var status = 0
 
     companion object {
 
@@ -101,6 +104,8 @@ class ChapterPageActivity : BaseMvpActivity<ChapterPageContract.View, ChapterPag
 
     override fun initData() {
         mPresenter.getChapterList(parameterModel.nodeId, page, pageSize)
+
+        status = AppPrefsUtils.getInt(Constant.SP_PERSONAL_INFORMATION_STATUS_KEY)
     }
 
     override fun setListener() {
@@ -111,6 +116,11 @@ class ChapterPageActivity : BaseMvpActivity<ChapterPageContract.View, ChapterPag
 
         lRecyclerViewAdapter.setOnItemClickListener { _, position ->
             val data = chapterAdapter.getData()[position]
+
+            if (status != 1) {
+                showMessage("账号未审核，请联系客服审核后再使用！")
+                return@setOnItemClickListener
+            }
 
             parameterModel.chapterId = data.chapterId
             parameterModel.chapterName = data.chapterName

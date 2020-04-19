@@ -19,6 +19,8 @@ interface IUserRemoteApi {
      */
     fun userLogin(phoneNumber: String, password: String): Observable<Array<UserModel>>
 
+    fun getUserById(docId: String): Observable<UserModel>
+
     /**
      * 鉴权
      */

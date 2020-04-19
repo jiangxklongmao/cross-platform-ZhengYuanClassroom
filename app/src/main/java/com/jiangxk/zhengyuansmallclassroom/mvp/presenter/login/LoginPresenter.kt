@@ -51,6 +51,10 @@ class LoginPresenter @Inject constructor(private val userRepository: UserReposit
                 userRepository.saveUser(it)
 
                 AppPrefsUtils.putString(
+                    Constant.SP_PERSONAL_INFORMATION_DOCUMENT_ID_KEY,
+                    it._id
+                )
+                AppPrefsUtils.putString(
                     Constant.SP_PERSONAL_INFORMATION_OPEN_ID_KEY,
                     it.openId
                 )
@@ -77,6 +81,14 @@ class LoginPresenter @Inject constructor(private val userRepository: UserReposit
                 AppPrefsUtils.putLong(
                     Constant.SP_PERSONAL_INFORMATION_LOGIN_TIMESTAMP_KEY,
                     System.currentTimeMillis()
+                )
+                AppPrefsUtils.putInt(
+                    Constant.SP_PERSONAL_INFORMATION_MANAGER_KEY,
+                    it.manager
+                )
+                AppPrefsUtils.putInt(
+                    Constant.SP_PERSONAL_INFORMATION_STATUS_KEY,
+                    it.status
                 )
 
             }

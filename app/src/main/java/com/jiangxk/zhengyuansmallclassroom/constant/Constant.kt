@@ -49,6 +49,7 @@ object Constant {
 
     //region 个人信息相关
 
+    const val SP_PERSONAL_INFORMATION_DOCUMENT_ID_KEY = "sp_personal_information_document_id_key"
     const val SP_PERSONAL_INFORMATION_USER_ID_KEY = "sp_personal_information_user_id_key"
     const val SP_PERSONAL_INFORMATION_OPEN_ID_KEY = "sp_personal_information_open_id_key"
     const val SP_PERSONAL_INFORMATION_PHONE_NUMBER_KEY = "sp_personal_information_phone_number_key"
@@ -57,6 +58,8 @@ object Constant {
     const val SP_PERSONAL_INFORMATION_AVATAR_URL_KEY = "sp_personal_information_avatar_url_key"
     const val SP_PERSONAL_INFORMATION_LOGIN_TIMESTAMP_KEY =
         "sp_personal_information_login_timestamp_key"
+    const val SP_PERSONAL_INFORMATION_MANAGER_KEY = "sp_personal_information_manager_key"
+    const val SP_PERSONAL_INFORMATION_STATUS_KEY = "sp_personal_information_status_key"
 
     //endregion
 

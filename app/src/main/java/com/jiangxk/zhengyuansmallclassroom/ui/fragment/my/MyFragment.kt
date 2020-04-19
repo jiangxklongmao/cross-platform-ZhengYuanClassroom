@@ -25,6 +25,9 @@ class MyFragment : BaseMvpFragment<MyPresenter>(), MyContract.View {
 
     private lateinit var myViewModel: MyViewModel
 
+    private var manager: Int = 0
+    private var status: Int = 0
+
     override fun injectComponent() {
         DaggerMyComponent.builder().activityComponent(mActivityComponent)
             .myModule(
@@ -52,11 +55,26 @@ class MyFragment : BaseMvpFragment<MyPresenter>(), MyContract.View {
 
     override fun setListener() {
         super.setListener()
+        rl_learning.setOnClickListener {
+            if (status != 1) {
+                showMessage("账号未审核，请联系客服审核后再使用！")
+                return@setOnClickListener
+            }
+        }
+
         rl_order.setOnClickListener {
+            if (status != 1) {
+                showMessage("账号未审核，请联系客服审核后再使用！")
+                return@setOnClickListener
+            }
             LearningOrderActivity.start(context)
         }
 
         rl_manager.setOnClickListener {
+            if (status != 1) {
+                showMessage("账号未审核，请联系客服审核后再使用！")
+                return@setOnClickListener
+            }
             ManagerUserActivity.start(context)
         }
     }
@@ -69,7 +87,8 @@ class MyFragment : BaseMvpFragment<MyPresenter>(), MyContract.View {
         tv_userName.text = user.userName
         tv_phoneNumber.text = user.phoneNumber
         GlideImageLoader().displayImage(context, user.avatarUrl, civ_avatar)
-
+        manager = user.manager
+        status = user.status
         if (user.manager == 1) {
             rl_manager.visibility = VISIBLE
         } else {
