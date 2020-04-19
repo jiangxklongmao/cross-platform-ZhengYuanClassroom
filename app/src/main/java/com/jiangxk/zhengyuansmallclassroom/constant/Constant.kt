@@ -55,6 +55,8 @@ object Constant {
     const val SP_PERSONAL_INFORMATION_PASSWORD_KEY = "sp_personal_information_password_key"
     const val SP_PERSONAL_INFORMATION_USER_NAME_KEY = "sp_personal_information_user_name_key"
     const val SP_PERSONAL_INFORMATION_AVATAR_URL_KEY = "sp_personal_information_avatar_url_key"
+    const val SP_PERSONAL_INFORMATION_LOGIN_TIMESTAMP_KEY =
+        "sp_personal_information_login_timestamp_key"
 
     //endregion
 

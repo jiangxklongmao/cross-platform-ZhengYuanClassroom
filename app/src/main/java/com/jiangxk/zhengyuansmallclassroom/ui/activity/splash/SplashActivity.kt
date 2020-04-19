@@ -3,7 +3,9 @@ package com.jiangxk.zhengyuansmallclassroom.ui.activity.splash
 import android.os.Handler
 import com.jiangxk.common.common.activity.BaseMvpActivity
 import com.jiangxk.common.database.DatabaseOpenHelper
+import com.jiangxk.common.utils.AppPrefsUtils
 import com.jiangxk.zhengyuansmallclassroom.R
+import com.jiangxk.zhengyuansmallclassroom.constant.Constant
 import com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerSplashComponent
 import com.jiangxk.zhengyuansmallclassroom.injection.module.SplashModule
 import com.jiangxk.zhengyuansmallclassroom.mvp.contract.splash.SplashContract
@@ -12,6 +14,7 @@ import com.jiangxk.zhengyuansmallclassroom.repository.user.UserRepository
 import com.jiangxk.zhengyuansmallclassroom.repository.user.local.UserLocalApi
 import com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi
 import com.jiangxk.zhengyuansmallclassroom.ui.activity.home.HomeActivity
+import com.jiangxk.zhengyuansmallclassroom.ui.activity.login.LoginActivity
 
 /**
  * @description com.jiangxk.zhengyuansmallclassroom.ui.activity.splash
@@ -21,6 +24,12 @@ import com.jiangxk.zhengyuansmallclassroom.ui.activity.home.HomeActivity
 class SplashActivity : BaseMvpActivity<SplashContract.View, SplashPresenter>(),
     SplashContract.View {
 
+    companion object {
+        /**
+         * 登录超时时间 7天
+         */
+        const val TIMEOUT = 7 * 24 * 60 * 60 * 1000
+    }
 
     override fun injectComponent() {
         DaggerSplashComponent.builder()
@@ -45,10 +54,19 @@ class SplashActivity : BaseMvpActivity<SplashContract.View, SplashPresenter>(),
     }
 
     override fun authenticationComplete() {
+        val loginTimestamp =
+            AppPrefsUtils.getLong(Constant.SP_PERSONAL_INFORMATION_LOGIN_TIMESTAMP_KEY)
+
         Handler().postDelayed({
-            HomeActivity.start(this)
+            if (loginTimestamp > 0 && (System.currentTimeMillis() - loginTimestamp) > TIMEOUT) {
+                LoginActivity.start(this)
+                showMessage("登录超时，请重新登录")
+            } else {
+                HomeActivity.start(this)
+            }
             finish()
         }, 2000)
+
     }
 
 }

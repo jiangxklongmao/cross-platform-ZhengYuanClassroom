@@ -74,6 +74,10 @@ class LoginPresenter @Inject constructor(private val userRepository: UserReposit
                     Constant.SP_PERSONAL_INFORMATION_AVATAR_URL_KEY,
                     it.avatarUrl
                 )
+                AppPrefsUtils.putLong(
+                    Constant.SP_PERSONAL_INFORMATION_LOGIN_TIMESTAMP_KEY,
+                    System.currentTimeMillis()
+                )
 
             }
             .observeOn(AndroidSchedulers.mainThread())
