@@ -28,6 +28,7 @@ open class BaseApplication : Application() {
 
         initBugly()
         initARouter()
+        initDomob()
     }
 
     private fun initInjection() {
@@ -61,6 +62,9 @@ open class BaseApplication : Application() {
             ARouter.openDebug()
         }
         ARouter.init(this)
+    }
+
+    private fun initDomob(){
     }
 
     companion object {
