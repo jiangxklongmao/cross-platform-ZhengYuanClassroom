@@ -91,8 +91,7 @@ class LearningOrderActivity : BaseMvpActivity<LearningOrderContract.View, Learni
 
         lRecyclerViewAdapter.setOnItemClickListener { _, position ->
             val data = learningOrderAdapter.getData()[position]
-
-            showMessage(data.userName)
+            StatisticalLearningActivity.start(context, data.openId, data.userId)
         }
 
         recyclerView.setOnRefreshListener {

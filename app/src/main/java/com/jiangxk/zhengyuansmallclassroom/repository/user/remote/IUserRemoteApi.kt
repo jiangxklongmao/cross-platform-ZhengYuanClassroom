@@ -1,8 +1,6 @@
 package com.jiangxk.zhengyuansmallclassroom.repository.user.remote
 
-import com.jiangxk.zhengyuansmallclassroom.model.LearningOrderModel
-import com.jiangxk.zhengyuansmallclassroom.model.UpdateResultModel
-import com.jiangxk.zhengyuansmallclassroom.model.UserModel
+import com.jiangxk.zhengyuansmallclassroom.model.*
 import io.reactivex.Observable
 
 /**
@@ -20,6 +18,14 @@ interface IUserRemoteApi {
     fun userLogin(phoneNumber: String, password: String): Observable<Array<UserModel>>
 
     fun getUserById(docId: String): Observable<UserModel>
+
+    /**
+     * 获取用户信息
+     * @param openId String
+     * @param userId Int
+     * @return Observable<UserModel>
+     */
+    fun getUserByOpenIdAndUserId(openId: String, userId: Int): Observable<List<UserModel>>
 
     /**
      * 鉴权
@@ -61,4 +67,25 @@ interface IUserRemoteApi {
      */
     fun deleteUser(docId: String): Observable<Boolean>
 
+    /**
+     * 获取指定用户的 学习总时长
+     * @param openId String
+     * @param userId Int
+     * @return Observable<List<LearningTotalDurationModel>>
+     */
+    fun getLearningTotalDurationList(
+        openId: String,
+        userId: Int
+    ): Observable<List<LearningTotalDurationModel>>
+
+    /**
+     * 获取近期 学习日志列表
+     * @param openId String
+     * @param userId Int
+     * @return Observable<List<LearningLogModel>>
+     */
+    fun getRecentLearningLogList(
+        openId: String,
+        userId: Int
+    ): Observable<List<LearningLogModel>>
 }

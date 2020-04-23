@@ -5,10 +5,7 @@ import com.jiangxk.common.common.model.BaseModel
 import com.jiangxk.common.repository.QueryHashMap
 import com.jiangxk.common.rxjava.Mapper
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant
-import com.jiangxk.zhengyuansmallclassroom.model.LearningOrderModel
-import com.jiangxk.zhengyuansmallclassroom.model.TokenModel
-import com.jiangxk.zhengyuansmallclassroom.model.UpdateResultModel
-import com.jiangxk.zhengyuansmallclassroom.model.UserModel
+import com.jiangxk.zhengyuansmallclassroom.model.*
 import com.jiangxk.zhengyuansmallclassroom.repository.ApiRepository
 import com.orhanobut.logger.Logger
 import io.reactivex.Observable
@@ -93,6 +90,38 @@ class UserRemoteApi : ApiRepository(), IUserRemoteApi {
                 Logger.i("it.resp_data = " + it.resp_data)
 
                 Observable.just(it.getData() as BaseModel<UserModel>)
+            }
+            .map(Mapper())
+            .subscribeOn(Schedulers.io())
+    }
+
+    override fun getUserByOpenIdAndUserId(
+        openId: String,
+        userId: Int
+    ): Observable<List<UserModel>> {
+        return authentication()
+            .concatMap {
+                val queryHashMap = QueryHashMap().apply {
+                    put(Constant.PARAMETER_ACCESS_TOKEN, it)
+                    put(Constant.PARAMETER_ENV, Constant.MINI_PROGRAM_CLASSROOM_ENV)
+                    put(Constant.PARAMETER_NAME, "appGetUserByOpenIdAndUserId")
+                }
+
+                val jsonObject = JsonObject()
+                jsonObject.addProperty("openId", openId)
+                jsonObject.addProperty("userId", userId)
+
+                val requestBody = jsonObject.toString()
+                    .toRequestBody("application/json;charset=UTF-8".toMediaTypeOrNull())
+
+                //调用云函数
+                userService.getUserByOpenIdAndUserId(queryHashMap, requestBody)
+            }
+            .filter { miniProgramResponseFilter(it) }
+            .concatMap {
+                Logger.i("it.resp_data = " + it.resp_data)
+
+                Observable.just(it.getData() as BaseModel<List<UserModel>>)
             }
             .map(Mapper())
             .subscribeOn(Schedulers.io())
@@ -240,6 +269,70 @@ class UserRemoteApi : ApiRepository(), IUserRemoteApi {
                 Logger.i("it.resp_data = " + it.resp_data)
 
                 Observable.just(it.getData() as BaseModel<Boolean>)
+            }
+            .map(Mapper())
+            .subscribeOn(Schedulers.io())
+    }
+
+    override fun getLearningTotalDurationList(
+        openId: String,
+        userId: Int
+    ): Observable<List<LearningTotalDurationModel>> {
+        return authentication()
+            .concatMap {
+                val queryHashMap = QueryHashMap().apply {
+                    put(Constant.PARAMETER_ACCESS_TOKEN, it)
+                    put(Constant.PARAMETER_ENV, Constant.MINI_PROGRAM_CLASSROOM_ENV)
+                    put(Constant.PARAMETER_NAME, "appGetLearningTotalDuration")
+                }
+
+                val jsonObject = JsonObject()
+                jsonObject.addProperty("openId", openId)
+                jsonObject.addProperty("userId", userId)
+
+                val requestBody = jsonObject.toString()
+                    .toRequestBody("application/json;charset=UTF-8".toMediaTypeOrNull())
+
+                //调用云函数
+                userService.getLearningTotalDurationList(queryHashMap, requestBody)
+            }
+            .filter { miniProgramResponseFilter(it) }
+            .concatMap {
+                Logger.i("it.resp_data = " + it.resp_data)
+
+                Observable.just(it.getData() as BaseModel<List<LearningTotalDurationModel>>)
+            }
+            .map(Mapper())
+            .subscribeOn(Schedulers.io())
+    }
+
+    override fun getRecentLearningLogList(
+        openId: String,
+        userId: Int
+    ): Observable<List<LearningLogModel>> {
+        return authentication()
+            .concatMap {
+                val queryHashMap = QueryHashMap().apply {
+                    put(Constant.PARAMETER_ACCESS_TOKEN, it)
+                    put(Constant.PARAMETER_ENV, Constant.MINI_PROGRAM_CLASSROOM_ENV)
+                    put(Constant.PARAMETER_NAME, "appGetRecentLearningList")
+                }
+
+                val jsonObject = JsonObject()
+                jsonObject.addProperty("openId", openId)
+                jsonObject.addProperty("userId", userId)
+
+                val requestBody = jsonObject.toString()
+                    .toRequestBody("application/json;charset=UTF-8".toMediaTypeOrNull())
+
+                //调用云函数
+                userService.getRecentLearningLogList(queryHashMap, requestBody)
+            }
+            .filter { miniProgramResponseFilter(it) }
+            .concatMap {
+                Logger.i("it.resp_data = " + it.resp_data)
+
+                Observable.just(it.getData() as BaseModel<List<LearningLogModel>>)
             }
             .map(Mapper())
             .subscribeOn(Schedulers.io())

@@ -1,9 +1,7 @@
 package com.jiangxk.zhengyuansmallclassroom.repository.user
 
 import com.jiangxk.common.singleton.SingletonHolder2
-import com.jiangxk.zhengyuansmallclassroom.model.LearningOrderModel
-import com.jiangxk.zhengyuansmallclassroom.model.UpdateResultModel
-import com.jiangxk.zhengyuansmallclassroom.model.UserModel
+import com.jiangxk.zhengyuansmallclassroom.model.*
 import com.jiangxk.zhengyuansmallclassroom.repository.user.local.IUserLocalApi
 import com.jiangxk.zhengyuansmallclassroom.repository.user.remote.IUserRemoteApi
 import io.reactivex.Observable
@@ -39,6 +37,10 @@ class UserRepository private constructor(
         return iUserLocalApi.queryUserById(userId)
     }
 
+    override fun getUserByOpenIdAndUserId(openId: String, userId: Int): Observable<List<UserModel>> {
+        return iUserRemoteApi.getUserByOpenIdAndUserId(openId, userId)
+    }
+
     override fun userLogin(
         phoneNumber: String,
         password: String
@@ -68,5 +70,20 @@ class UserRepository private constructor(
     override fun deleteUser(docId: String): Observable<Boolean> {
         return iUserRemoteApi.deleteUser(docId)
     }
+
+    override fun getLearningTotalDurationList(
+        openId: String,
+        userId: Int
+    ): Observable<List<LearningTotalDurationModel>> {
+        return iUserRemoteApi.getLearningTotalDurationList(openId, userId)
+    }
+
+    override fun getRecentLearningLogList(
+        openId: String,
+        userId: Int
+    ): Observable<List<LearningLogModel>> {
+        return iUserRemoteApi.getRecentLearningLogList(openId, userId)
+    }
+
 
 }

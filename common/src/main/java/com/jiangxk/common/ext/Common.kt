@@ -1,5 +1,6 @@
 package com.jiangxk.common.ext
 
+import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import com.jiangxk.common.utils.GlideImageLoader
@@ -46,4 +47,14 @@ fun Banner.player(titles: List<String>?, bannerImages: List<String>?) {
 inline fun <reified T> Gson.fromJson2(json: String, typeOfT: Type): T {
     val reader = StringReader(json)
     return fromJson(reader, typeOfT)
+}
+
+fun Context.dp2px(dip: Int): Int {
+    val scale = this.resources.displayMetrics.density
+    return (dip * scale + 0.5 * (if (dip >= 0) 1 else -1)).toInt()
+}
+
+fun Context.sp2px(dip: Int): Int {
+    val scale = this.resources.displayMetrics.density
+    return (dip * scale + 0.5 * (if (dip >= 0) 1 else -1)).toInt()
 }

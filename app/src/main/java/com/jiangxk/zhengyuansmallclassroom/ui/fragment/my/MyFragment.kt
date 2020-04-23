@@ -17,6 +17,7 @@ import com.jiangxk.zhengyuansmallclassroom.repository.user.UserRepository
 import com.jiangxk.zhengyuansmallclassroom.repository.user.local.UserLocalApi
 import com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi
 import com.jiangxk.zhengyuansmallclassroom.ui.activity.learning.LearningOrderActivity
+import com.jiangxk.zhengyuansmallclassroom.ui.activity.learning.StatisticalLearningActivity
 import com.jiangxk.zhengyuansmallclassroom.ui.activity.manager.ManagerUserActivity
 import kotlinx.android.synthetic.main.fragment_my.*
 import kotlinx.android.synthetic.main.include_toolbar.*
@@ -27,6 +28,7 @@ class MyFragment : BaseMvpFragment<MyPresenter>(), MyContract.View {
 
     private var manager: Int = 0
     private var status: Int = 0
+    private var user: UserModel? = null
 
     override fun injectComponent() {
         DaggerMyComponent.builder().activityComponent(mActivityComponent)
@@ -60,6 +62,10 @@ class MyFragment : BaseMvpFragment<MyPresenter>(), MyContract.View {
                 showMessage("账号未审核，请联系客服审核后再使用！")
                 return@setOnClickListener
             }
+
+            user?.let {
+                StatisticalLearningActivity.start(context, it)
+            }
         }
 
         rl_order.setOnClickListener {
@@ -84,6 +90,7 @@ class MyFragment : BaseMvpFragment<MyPresenter>(), MyContract.View {
     }
 
     override fun showUser(user: UserModel) {
+        this.user = user
         tv_userName.text = user.userName
         tv_phoneNumber.text = user.phoneNumber
         GlideImageLoader().displayImage(context, user.avatarUrl, civ_avatar)

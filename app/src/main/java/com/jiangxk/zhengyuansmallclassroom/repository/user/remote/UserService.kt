@@ -7,10 +7,7 @@ import com.jiangxk.zhengyuansmallclassroom.constant.Constant.METHOD_GET_TOKEN
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant.PARAMETER_APPID
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant.PARAMETER_GRANT_TYPE
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant.PARAMETER_SECRET
-import com.jiangxk.zhengyuansmallclassroom.model.LearningOrderModel
-import com.jiangxk.zhengyuansmallclassroom.model.TokenModel
-import com.jiangxk.zhengyuansmallclassroom.model.UpdateResultModel
-import com.jiangxk.zhengyuansmallclassroom.model.UserModel
+import com.jiangxk.zhengyuansmallclassroom.model.*
 import io.reactivex.Observable
 import okhttp3.RequestBody
 import retrofit2.http.*
@@ -71,5 +68,17 @@ interface UserService {
 
     @Headers("Content-type:application/json")
     @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
+    fun getUserByOpenIdAndUserId(@QueryMap queryHashMap: QueryHashMap, @Body body: RequestBody): Observable<BaseMiniProgramModel<List<UserModel>>>
+
+    @Headers("Content-type:application/json")
+    @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
     fun deleteUser(@QueryMap queryHashMap: QueryHashMap, @Body body: RequestBody): Observable<BaseMiniProgramModel<Boolean>>
+
+    @Headers("Content-type:application/json")
+    @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
+    fun getLearningTotalDurationList(@QueryMap queryHashMap: QueryHashMap, @Body body: RequestBody): Observable<BaseMiniProgramModel<LearningTotalDurationModel>>
+
+    @Headers("Content-type:application/json")
+    @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
+    fun getRecentLearningLogList(@QueryMap queryHashMap: QueryHashMap, @Body body: RequestBody): Observable<BaseMiniProgramModel<LearningLogModel>>
 }

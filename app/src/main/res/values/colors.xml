@@ -13,6 +13,9 @@
 
     <color name="color_999999">#999999</color>
 
+    <color name="transparent_70_colorPrimary">#b34caf50</color>
+    <color name="transparent_10_colorPrimary">#1a4caf50</color>
+
 
     <!--  ============== color ============== -->
 

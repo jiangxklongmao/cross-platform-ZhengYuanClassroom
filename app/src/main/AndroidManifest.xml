@@ -80,6 +80,10 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".ui.activity.learning.StatisticalLearningActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name="com.dm.sdk.ads.DMAdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
     </application>

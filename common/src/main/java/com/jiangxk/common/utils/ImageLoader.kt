@@ -19,9 +19,11 @@ object ImageLoader {
      * @param url String
      * @param imageView ImageView
      */
-    fun loadUrlImage(context: Context, url: String, imageView: ImageView) {
-        Glide.with(context).load(url).placeholder(R.drawable.icon_default)
-            .error(R.drawable.icon_default).into(imageView)
+    fun loadUrlImage(context: Context, url: String?, imageView: ImageView) {
+        url?.let {
+            Glide.with(context).load(url).placeholder(R.drawable.icon_default)
+                .error(R.drawable.icon_default).into(imageView)
+        }
     }
 
     /**
@@ -30,8 +32,10 @@ object ImageLoader {
      * @param url String
      * @param imageView ImageView
      */
-    fun loadUrlImage(activity: Activity, url: String, imageView: ImageView) {
-        Glide.with(activity).load(url).placeholder(R.drawable.icon_default)
-            .error(R.drawable.icon_default).into(imageView)
+    fun loadUrlImage(activity: Activity, url: String?, imageView: ImageView) {
+        url.let {
+            Glide.with(activity).load(url).placeholder(R.drawable.icon_default)
+                .error(R.drawable.icon_default).into(imageView)
+        }
     }
 }
