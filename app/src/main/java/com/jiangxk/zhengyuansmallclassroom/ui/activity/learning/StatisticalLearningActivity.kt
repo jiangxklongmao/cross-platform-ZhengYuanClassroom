@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import com.jiangxk.common.common.activity.BaseMvpActivity
 import com.jiangxk.common.database.DatabaseOpenHelper
-import com.jiangxk.common.utils.ImageLoader
+import com.jiangxk.common.utils.GlideImageLoader
 import com.jiangxk.zhengyuansmallclassroom.R
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant
 import com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerStatisticalLearningComponent
@@ -89,7 +89,7 @@ class StatisticalLearningActivity :
 
         user?.apply {
             tv_userName.text = userName
-            ImageLoader.loadUrlImage(this@StatisticalLearningActivity, avatarUrl, civ_avatar)
+            GlideImageLoader().displayImage(this@StatisticalLearningActivity, avatarUrl, civ_avatar)
         }
     }
 
@@ -110,7 +110,7 @@ class StatisticalLearningActivity :
 
     override fun showUser(userModel: UserModel) {
         tv_userName.text = userModel.userName
-        ImageLoader.loadUrlImage(this, userModel.avatarUrl, civ_avatar)
+        GlideImageLoader().displayImage(this, userModel.avatarUrl, civ_avatar)
     }
 
     override fun showTotalDuration(duration: Long) {
