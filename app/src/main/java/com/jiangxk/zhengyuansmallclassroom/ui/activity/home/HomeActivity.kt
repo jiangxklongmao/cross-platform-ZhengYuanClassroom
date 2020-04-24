@@ -138,8 +138,7 @@ class HomeActivity : BaseMvpActivity<HomeActivityContract.View, HomeActivityPres
      */
     override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
         if (requestCode == PERMISSION_STORAGE_CODE) {
-            showMessage("没有存储权限，无法使用")
-            finish()
+            showMessage(PERMISSION_STORAGE_MSG)
         }
     }
 

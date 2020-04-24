@@ -4,9 +4,11 @@ import com.jiangxk.common.mvp.presenter.BaseMvpPresenter
 import com.jiangxk.common.rxjava.LoadingObserver
 import com.jiangxk.common.utils.AppPrefsUtils
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant
+import com.jiangxk.zhengyuansmallclassroom.model.UpdateModel
 import com.jiangxk.zhengyuansmallclassroom.model.UserModel
 import com.jiangxk.zhengyuansmallclassroom.mvp.contract.my.MyContract
 import com.jiangxk.zhengyuansmallclassroom.repository.user.UserRepository
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -21,19 +23,6 @@ class MyPresenter @Inject constructor(private val userRepository: UserRepository
     BaseMvpPresenter<MyContract.View>(), MyContract.Presenter {
 
     override fun queryUserInfo() {
-//        userRepository.queryUserById(AppPrefsUtils.getInt(Constant.SP_PERSONAL_INFORMATION_USER_ID_KEY))
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribe(object : LoadingObserver<UserModel>(mView) {
-//                override fun onDispose(disposable: Disposable) {
-//                    addDisposable(disposable)
-//                }
-//
-//                override fun onSuccess(t: UserModel) {
-//                    mView.showUser(t)
-//                }
-//
-//            })
 
         val docId = AppPrefsUtils.getString(Constant.SP_PERSONAL_INFORMATION_DOCUMENT_ID_KEY)
             ?: return
@@ -91,6 +80,32 @@ class MyPresenter @Inject constructor(private val userRepository: UserRepository
                     mView.showUser(t)
                 }
             })
-
     }
+
+
+    override fun checkForUpdates(versionCode: Int) {
+        userRepository.checkForUpdates(versionCode)
+            .flatMap {
+                Observable.just(it.first())
+            }
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : LoadingObserver<UpdateModel>(mView) {
+                override fun onDispose(disposable: Disposable) {
+                    addDisposable(disposable)
+                }
+
+                override fun onSuccess(t: UpdateModel) {
+                    if (t.versionCode > versionCode) {
+                        mView.showUpdateDialog(
+                            t.downloadUrl,
+                            t.description,
+                            "force" == t.updateType
+                        )
+                    } else {
+                        mView.showMessage("当前已是最新版本哦~")
+                    }
+                }
+            })
+    }
+
 }

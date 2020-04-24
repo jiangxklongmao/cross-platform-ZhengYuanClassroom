@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.jiangxk.common.common.fragment.BaseMvpFragment
 import com.jiangxk.common.database.DatabaseOpenHelper
 import com.jiangxk.common.utils.GlideImageLoader
+import com.jiangxk.zhengyuansmallclassroom.BuildConfig
 import com.jiangxk.zhengyuansmallclassroom.R
 import com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerMyComponent
 import com.jiangxk.zhengyuansmallclassroom.injection.module.MyModule
@@ -19,6 +20,7 @@ import com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi
 import com.jiangxk.zhengyuansmallclassroom.ui.activity.learning.LearningOrderActivity
 import com.jiangxk.zhengyuansmallclassroom.ui.activity.learning.StatisticalLearningActivity
 import com.jiangxk.zhengyuansmallclassroom.ui.activity.manager.ManagerUserActivity
+import com.jiangxk.zhengyuansmallclassroom.ui.dialog.CheckForUpdatesDialog
 import kotlinx.android.synthetic.main.fragment_my.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 
@@ -53,6 +55,8 @@ class MyFragment : BaseMvpFragment<MyPresenter>(), MyContract.View {
     override fun initView() {
         tv_title.text = "我的"
         iv_back.visibility = GONE
+
+        tv_version.text = BuildConfig.VERSION_NAME
     }
 
     override fun setListener() {
@@ -83,6 +87,10 @@ class MyFragment : BaseMvpFragment<MyPresenter>(), MyContract.View {
             }
             ManagerUserActivity.start(context)
         }
+
+        rl_update.setOnClickListener {
+            mPresenter.checkForUpdates(BuildConfig.VERSION_CODE)
+        }
     }
 
     override fun initData() {
@@ -101,6 +109,14 @@ class MyFragment : BaseMvpFragment<MyPresenter>(), MyContract.View {
         } else {
             rl_manager.visibility = GONE
         }
+    }
+
+    override fun showUpdateDialog(apkUrl: String, updateInfo: String, isForce: Boolean) {
+        CheckForUpdatesDialog.Builder()
+            .apkUrl(apkUrl)
+            .updateInfo(updateInfo)
+            .isForce(isForce)
+            .build().show(childFragmentManager, "CheckForUpdatesDialog")
     }
 
 }

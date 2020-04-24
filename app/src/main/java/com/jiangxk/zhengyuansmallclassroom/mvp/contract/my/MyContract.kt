@@ -16,6 +16,8 @@ interface MyContract {
          * @param user UserModel
          */
         fun showUser(user: UserModel)
+
+        fun showUpdateDialog(apkUrl: String, updateInfo: String, isForce: Boolean)
     }
 
     interface Presenter : BasePresenter<View> {
@@ -23,5 +25,11 @@ interface MyContract {
          * 查询自己的信息
          */
         fun queryUserInfo()
+
+        /**
+         * 检查更新
+         * @param versionCode Int
+         */
+        fun checkForUpdates(versionCode: Int)
     }
 }
