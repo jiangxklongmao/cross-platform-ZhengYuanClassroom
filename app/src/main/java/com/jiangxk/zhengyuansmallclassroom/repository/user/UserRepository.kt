@@ -37,7 +37,10 @@ class UserRepository private constructor(
         return iUserLocalApi.queryUserById(userId)
     }
 
-    override fun getUserByOpenIdAndUserId(openId: String, userId: Int): Observable<List<UserModel>> {
+    override fun getUserByOpenIdAndUserId(
+        openId: String,
+        userId: Int
+    ): Observable<List<UserModel>> {
         return iUserRemoteApi.getUserByOpenIdAndUserId(openId, userId)
     }
 
@@ -85,5 +88,8 @@ class UserRepository private constructor(
         return iUserRemoteApi.getRecentLearningLogList(openId, userId)
     }
 
+    override fun checkForUpdates(versionCode: Int): Observable<List<UpdateModel>> {
+        return iUserRemoteApi.checkForUpdates(versionCode)
+    }
 
 }

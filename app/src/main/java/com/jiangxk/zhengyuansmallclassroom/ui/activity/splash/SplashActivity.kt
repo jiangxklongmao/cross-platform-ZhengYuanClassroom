@@ -98,19 +98,6 @@ class SplashActivity : BaseMvpActivity<SplashContract.View, SplashPresenter>(),
     }
 
     override fun authenticationComplete() {
-//        val loginTimestamp =
-//            AppPrefsUtils.getLong(Constant.SP_PERSONAL_INFORMATION_LOGIN_TIMESTAMP_KEY)
-//
-//        Handler().postDelayed({
-//            if (loginTimestamp > 0 && (System.currentTimeMillis() - loginTimestamp) > TIMEOUT) {
-//                LoginActivity.start(this)
-//                showMessage("登录超时，请重新登录")
-//            } else {
-//                HomeActivity.start(this)
-//            }
-//            finish()
-//        }, 2000)
-
     }
 
     override fun onAdClicked() {

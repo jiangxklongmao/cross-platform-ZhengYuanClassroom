@@ -5,6 +5,7 @@ import com.jiangxk.common.common.model.BaseModel
 import com.jiangxk.common.repository.QueryHashMap
 import com.jiangxk.common.rxjava.Mapper
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant
+import com.jiangxk.zhengyuansmallclassroom.constant.Constant.EXTRA_PLATFORM
 import com.jiangxk.zhengyuansmallclassroom.model.*
 import com.jiangxk.zhengyuansmallclassroom.repository.ApiRepository
 import com.orhanobut.logger.Logger
@@ -333,6 +334,35 @@ class UserRemoteApi : ApiRepository(), IUserRemoteApi {
                 Logger.i("it.resp_data = " + it.resp_data)
 
                 Observable.just(it.getData() as BaseModel<List<LearningLogModel>>)
+            }
+            .map(Mapper())
+            .subscribeOn(Schedulers.io())
+    }
+
+    override fun checkForUpdates(versionCode: Int): Observable<List<UpdateModel>> {
+        return authentication()
+            .concatMap {
+                val queryHashMap = QueryHashMap().apply {
+                    put(Constant.PARAMETER_ACCESS_TOKEN, it)
+                    put(Constant.PARAMETER_ENV, Constant.MINI_PROGRAM_CLASSROOM_ENV)
+                    put(Constant.PARAMETER_NAME, "appCheckForUpdates")
+                }
+
+                val jsonObject = JsonObject()
+                jsonObject.addProperty("versionCode", versionCode)
+                jsonObject.addProperty("client", EXTRA_PLATFORM)
+
+                val requestBody = jsonObject.toString()
+                    .toRequestBody("application/json;charset=UTF-8".toMediaTypeOrNull())
+
+                //调用云函数
+                userService.getRecentLearningLogList(queryHashMap, requestBody)
+            }
+            .filter { miniProgramResponseFilter(it) }
+            .concatMap {
+                Logger.i("it.resp_data = " + it.resp_data)
+
+                Observable.just(it.getData() as BaseModel<List<UpdateModel>>)
             }
             .map(Mapper())
             .subscribeOn(Schedulers.io())

@@ -43,8 +43,6 @@ dependencies {
     api dependence.libBottomBar
     api dependence.libStatusBar
     api dependence.libLRecyclerView
-    api dependence.libLJsoup
-    api dependence.libOkgo
     api dependence.libBanner
     api dependence.libArouter
     api dependence.libFlexbox
@@ -57,4 +55,9 @@ dependencies {
     api dependence.libRhinoAndroid
     api files('libs/tbs_sdk_thirdapp_v4.3.0.jar')
     kapt "com.alibaba:arouter-compiler:$arouter_compiler_version"
+
+    //Android使用
+    api dependence.libFuel
+
+    api dependence.libEasypermissions
 }

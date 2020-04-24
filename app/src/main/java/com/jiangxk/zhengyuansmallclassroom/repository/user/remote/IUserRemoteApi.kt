@@ -88,4 +88,13 @@ interface IUserRemoteApi {
         openId: String,
         userId: Int
     ): Observable<List<LearningLogModel>>
+
+    /**
+     * 检查更新
+     * @param versionCode Int
+     * @return Observable<List<LearningLogModel>>
+     */
+    fun checkForUpdates(
+        versionCode: Int
+    ): Observable<List<UpdateModel>>
 }

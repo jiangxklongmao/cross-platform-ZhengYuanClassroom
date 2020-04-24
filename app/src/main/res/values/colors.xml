@@ -13,6 +13,8 @@
 
     <color name="color_999999">#999999</color>
 
+    <color name="transparent_70">#b3000000</color>
+    <color name="transparent_10">#1a000000</color>
     <color name="transparent_70_colorPrimary">#b34caf50</color>
     <color name="transparent_10_colorPrimary">#1a4caf50</color>
 
@@ -24,6 +26,7 @@
     <color name="textSecondColor">#666666</color>
     <color name="textColor">#2b2b2b</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorGray">#aaa</color>
 
 
 </resources>

@@ -135,5 +135,9 @@ abstract class BaseDialogFragment : DialogFragment() {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 
+    open fun showLongMessage(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+    }
+
 
 }
