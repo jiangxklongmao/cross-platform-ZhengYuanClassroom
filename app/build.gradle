@@ -7,8 +7,6 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply from: rootProject.file('releaseinfo.gradle')
 apply from: rootProject.file('libbase.gradle')
-//配置protobuf插件
-apply plugin: 'com.google.protobuf'
 
 kapt {
     arguments {
@@ -63,11 +61,6 @@ android {
         }
     }
 
-    repositories {
-        flatDir {
-            dirs 'libs'
-        }
-    }
 
 //    //规定资源命名前缀为app_
 //    resourcePrefix "app_"
@@ -85,27 +78,6 @@ android {
     }
 }
 
-//配置protobuf
-protobuf {
-    protoc {
-        artifact = 'com.google.protobuf:protoc:3.0.0'
-    }
-    plugins {
-        javalite {
-            artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0'
-        }
-    }
-    generateProtoTasks {
-        all().each { task ->
-            task.builtins {
-                remove java
-            }
-            task.plugins {
-                javalite {}
-            }
-        }
-    }
-}
 
 dependencies {
     implementation project(':provider')
@@ -114,10 +86,4 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     kapt "com.alibaba:arouter-compiler:$arouter_compiler_version"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
-
-    //配置protobuf依赖
-    implementation 'com.google.protobuf:protobuf-lite:3.0.1'
-    implementation(name: 'domob-ads-2.2.5', ext: 'aar')
-//    implementation(name: 'miit_mdid_1.0.10', ext: 'aar')
-    implementation files('libs/miit_mdid_1.0.10.aar')
 }

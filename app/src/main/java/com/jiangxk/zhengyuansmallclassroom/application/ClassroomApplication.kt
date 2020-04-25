@@ -1,6 +1,5 @@
 package com.jiangxk.zhengyuansmallclassroom.application
 
-import com.bun.miitmdid.core.JLibrary
 import com.jiangxk.common.common.BaseApplication
 
 /**
@@ -11,13 +10,6 @@ import com.jiangxk.common.common.BaseApplication
 class ClassroomApplication : BaseApplication() {
     override fun onCreate() {
         super.onCreate()
-
-        initDomob()
-    }
-
-    fun initDomob() {
-        //初始化移动安全联盟MSA
-        JLibrary.InitEntry(this)
     }
 
 }
