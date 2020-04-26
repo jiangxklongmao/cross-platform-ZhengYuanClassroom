@@ -8,6 +8,7 @@ import com.jiangxk.zhengyuansmallclassroom.constant.Constant
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant.EXTRA_PLATFORM
 import com.jiangxk.zhengyuansmallclassroom.model.*
 import com.jiangxk.zhengyuansmallclassroom.repository.ApiRepository
+import com.orhanobut.logger.BuildConfig
 import com.orhanobut.logger.Logger
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -363,6 +364,35 @@ class UserRemoteApi : ApiRepository(), IUserRemoteApi {
                 Logger.i("it.resp_data = " + it.resp_data)
 
                 Observable.just(it.getData() as BaseModel<List<UpdateModel>>)
+            }
+            .map(Mapper())
+            .subscribeOn(Schedulers.io())
+    }
+
+    override fun getRegisterMethod(): Observable<String> {
+        return authentication()
+            .concatMap {
+                val queryHashMap = QueryHashMap().apply {
+                    put(Constant.PARAMETER_ACCESS_TOKEN, it)
+                    put(Constant.PARAMETER_ENV, Constant.MINI_PROGRAM_CLASSROOM_ENV)
+                    put(Constant.PARAMETER_NAME, "appGetRegisterMethod")
+                }
+
+                val jsonObject = JsonObject()
+                jsonObject.addProperty("versionCode", BuildConfig.VERSION_CODE)
+                jsonObject.addProperty("client", EXTRA_PLATFORM)
+
+                val requestBody = jsonObject.toString()
+                    .toRequestBody("application/json;charset=UTF-8".toMediaTypeOrNull())
+
+                //调用云函数
+                userService.getRegisterMethod(queryHashMap, requestBody)
+            }
+            .filter { miniProgramResponseFilter(it) }
+            .concatMap {
+                Logger.i("it.resp_data = " + it.resp_data)
+
+                Observable.just(it.getData() as BaseModel<String>)
             }
             .map(Mapper())
             .subscribeOn(Schedulers.io())

@@ -97,4 +97,9 @@ interface IUserRemoteApi {
     fun checkForUpdates(
         versionCode: Int
     ): Observable<List<UpdateModel>>
+
+    /**
+     * 获取注册方式
+     */
+    fun getRegisterMethod(): Observable<String>
 }

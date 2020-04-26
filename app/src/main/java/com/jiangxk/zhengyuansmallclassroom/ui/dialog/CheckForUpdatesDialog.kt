@@ -51,7 +51,7 @@ class CheckForUpdatesDialog(private val builder: Builder) : BaseDialogFragment()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             tv_content.text = Html.fromHtml(updateInfo, FROM_HTML_MODE_LEGACY)
         } else {
-            tv_content.text = updateInfo
+            tv_content.text = Html.fromHtml(updateInfo)
         }
         isForce?.let {
             if (it) {

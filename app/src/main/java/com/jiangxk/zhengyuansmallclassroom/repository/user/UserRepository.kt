@@ -92,4 +92,8 @@ class UserRepository private constructor(
         return iUserRemoteApi.checkForUpdates(versionCode)
     }
 
+    override fun getRegisterMethod(): Observable<String> {
+        return iUserRemoteApi.getRegisterMethod()
+    }
+
 }

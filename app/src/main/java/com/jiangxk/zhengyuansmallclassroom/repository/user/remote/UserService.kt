@@ -62,27 +62,71 @@ interface UserService {
     @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
     fun modifyStatus(@QueryMap queryHashMap: QueryHashMap, @Body body: RequestBody): Observable<BaseMiniProgramModel<UpdateResultModel>>
 
+    /**
+     * 获取指定用户信息
+     * @param queryHashMap QueryHashMap
+     * @param body RequestBody
+     * @return Observable<BaseMiniProgramModel<UserModel>>
+     */
     @Headers("Content-type:application/json")
     @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
     fun getUserById(@QueryMap queryHashMap: QueryHashMap, @Body body: RequestBody): Observable<BaseMiniProgramModel<UserModel>>
 
+    /**
+     * 查询指定用户信息
+     * @param queryHashMap QueryHashMap
+     * @param body RequestBody
+     * @return Observable<BaseMiniProgramModel<List<UserModel>>>
+     */
     @Headers("Content-type:application/json")
     @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
     fun getUserByOpenIdAndUserId(@QueryMap queryHashMap: QueryHashMap, @Body body: RequestBody): Observable<BaseMiniProgramModel<List<UserModel>>>
 
+    /**
+     * 删除用户
+     * @param queryHashMap QueryHashMap
+     * @param body RequestBody
+     * @return Observable<BaseMiniProgramModel<Boolean>>
+     */
     @Headers("Content-type:application/json")
     @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
     fun deleteUser(@QueryMap queryHashMap: QueryHashMap, @Body body: RequestBody): Observable<BaseMiniProgramModel<Boolean>>
 
+    /**
+     * 获取学习时长
+     * @param queryHashMap QueryHashMap
+     * @param body RequestBody
+     * @return Observable<BaseMiniProgramModel<LearningTotalDurationModel>>
+     */
     @Headers("Content-type:application/json")
     @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
     fun getLearningTotalDurationList(@QueryMap queryHashMap: QueryHashMap, @Body body: RequestBody): Observable<BaseMiniProgramModel<LearningTotalDurationModel>>
 
+    /**
+     * 获取近期学习记录
+     * @param queryHashMap QueryHashMap
+     * @param body RequestBody
+     * @return Observable<BaseMiniProgramModel<LearningLogModel>>
+     */
     @Headers("Content-type:application/json")
     @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
     fun getRecentLearningLogList(@QueryMap queryHashMap: QueryHashMap, @Body body: RequestBody): Observable<BaseMiniProgramModel<LearningLogModel>>
 
+    /**
+     * 检查更新
+     * @param queryHashMap QueryHashMap
+     * @param body RequestBody
+     * @return Observable<BaseMiniProgramModel<UpdateModel>>
+     */
     @Headers("Content-type:application/json")
     @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
     fun checkForUpdates(@QueryMap queryHashMap: QueryHashMap, @Body body: RequestBody): Observable<BaseMiniProgramModel<UpdateModel>>
+
+    /**
+     * 获取注册方式
+     * @return Observable<BaseMiniProgramModel<String>>
+     */
+    @Headers("Content-type:application/json")
+    @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
+    fun getRegisterMethod(@QueryMap queryHashMap: QueryHashMap, @Body body: RequestBody): Observable<BaseMiniProgramModel<String>>
 }

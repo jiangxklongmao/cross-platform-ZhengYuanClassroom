@@ -60,7 +60,12 @@ abstract class BaseActivity : AppCompatActivity() {
 
     /** 配置多状态布局*/
     private fun setStatusLayout() {
-        statusView = StateView.inject(find(R.id.content_id))
+        try {
+            statusView = StateView.inject(find(R.id.content_id))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            showMessage("请给根布局添加Id")
+        }
     }
 
     /**

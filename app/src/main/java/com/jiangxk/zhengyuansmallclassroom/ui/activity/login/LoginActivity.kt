@@ -49,6 +49,9 @@ class LoginActivity : BaseMvpActivity<LoginContract.View, LoginPresenter>(), Log
         btn_login.setOnClickListener {
             mPresenter.login(edt_phoneNumber.text.toString(), edt_password.text.toString())
         }
+        tv_register.setOnClickListener {
+            RegisterActivity.start(this)
+        }
     }
 
     override fun initData() {
