@@ -30,6 +30,7 @@ dependencies {
     api dependence.libDesign
     api dependence.libRecyclerview
     api dependence.libGlide
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0'
     api dependence.libRetrofit
     api dependence.libRetrofitConvert
     api dependence.libRetrofitAdapter

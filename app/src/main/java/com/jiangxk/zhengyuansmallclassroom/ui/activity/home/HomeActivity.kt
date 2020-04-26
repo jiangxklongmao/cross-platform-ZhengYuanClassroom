@@ -23,6 +23,7 @@ import com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi
 import com.jiangxk.zhengyuansmallclassroom.ui.activity.login.LoginActivity
 import com.jiangxk.zhengyuansmallclassroom.ui.dialog.CheckForUpdatesDialog
 import com.orhanobut.logger.Logger
+import com.tencent.bugly.crashreport.CrashReport
 import pub.devrel.easypermissions.EasyPermissions
 
 
@@ -88,6 +89,21 @@ class HomeActivity : BaseMvpActivity<HomeActivityContract.View, HomeActivityPres
             LoginActivity.start(this)
             finish()
         }
+
+        CrashReport.putUserData(
+            context,
+            "userId",
+            AppPrefsUtils.getInt(
+                Constant.SP_PERSONAL_INFORMATION_USER_ID_KEY
+            ).toString()
+        )
+        CrashReport.putUserData(
+            context,
+            "openId",
+            AppPrefsUtils.getString(
+                Constant.SP_PERSONAL_INFORMATION_OPEN_ID_KEY
+            )
+        )
 
         requestPermissions()
     }

@@ -67,18 +67,9 @@
     public static <fields>;
 }
 
-
-#多盟广告模块混淆
- -keep class com.dm.sdk.ads.splash.**{
- public <methods>;
- }
- -keep class com.dm.sdk.common.util.AdError{
- public <methods>;
- }
- -keep class com.dm.sdk.ads.DMAdActivity{
- public <methods>;
- }
-
+#bugly 混淆
+-dontwarn com.tencent.bugly.**
+-keep public class com.tencent.bugly.**{*;}
 
 
  #混淆时是否记录日志
