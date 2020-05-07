@@ -1,7 +1,7 @@
 # compiler: R8
 # compiler_version: 1.5.69
 # min_api: 21
-# pg_map_id: 01660d8
+# pg_map_id: 6beea00
 $r8$java8methods$utility$Boolean$hashCode$IZ -> a:
     int hashCode(boolean) -> a
 $r8$java8methods$utility$Integer$hashCode$II -> b:
@@ -468,8 +468,8 @@ androidx.activity.ComponentActivity -> androidx.activity.ComponentActivity:
     androidx.activity.OnBackPressedDispatcher getOnBackPressedDispatcher() -> e
     androidx.savedstate.SavedStateRegistry getSavedStateRegistry() -> f
     androidx.lifecycle.ViewModelStore getViewModelStore() -> g
-    androidx.lifecycle.ViewModelProvider$Factory getDefaultViewModelProviderFactory() -> h
-    java.lang.Object onRetainCustomNonConfigurationInstance() -> n
+    androidx.lifecycle.ViewModelProvider$Factory getDefaultViewModelProviderFactory() -> i
+    java.lang.Object onRetainCustomNonConfigurationInstance() -> o
 androidx.activity.ComponentActivity$1 -> androidx.activity.ComponentActivity$a:
     androidx.activity.ComponentActivity this$0 -> f
 androidx.activity.ComponentActivity$2 -> androidx.activity.ComponentActivity$2:
@@ -750,13 +750,13 @@ androidx.appcompat.app.AppCompatActivity -> androidx.appcompat.app.AppCompatActi
     void onSupportActionModeFinished(androidx.appcompat.view.ActionMode) -> b
     boolean supportShouldUpRecreateTask(android.content.Intent) -> b
     void onNightModeChanged(int) -> g
-    android.content.Intent getSupportParentActivityIntent() -> m
-    void supportInvalidateOptionsMenu() -> r
-    androidx.appcompat.app.AppCompatDelegate getDelegate() -> s
-    androidx.appcompat.app.ActionBarDrawerToggle$Delegate getDrawerToggleDelegate() -> t
-    androidx.appcompat.app.ActionBar getSupportActionBar() -> u
-    void onSupportContentChanged() -> v
-    boolean onSupportNavigateUp() -> w
+    android.content.Intent getSupportParentActivityIntent() -> n
+    void supportInvalidateOptionsMenu() -> s
+    androidx.appcompat.app.AppCompatDelegate getDelegate() -> t
+    androidx.appcompat.app.ActionBarDrawerToggle$Delegate getDrawerToggleDelegate() -> u
+    androidx.appcompat.app.ActionBar getSupportActionBar() -> v
+    void onSupportContentChanged() -> w
+    boolean onSupportNavigateUp() -> x
 androidx.appcompat.app.AppCompatCallback -> f.b.k.c:
     void onSupportActionModeStarted(androidx.appcompat.view.ActionMode) -> a
     androidx.appcompat.view.ActionMode onWindowStartingSupportActionMode(androidx.appcompat.view.ActionMode$Callback) -> a
@@ -5331,7 +5331,7 @@ androidx.core.app.TaskStackBuilder -> f.h.d.h:
     androidx.core.app.TaskStackBuilder addNextIntentWithParentStack(android.content.Intent) -> b
     void startActivities() -> c
 androidx.core.app.TaskStackBuilder$SupportParentable -> f.h.d.h$a:
-    android.content.Intent getSupportParentActivityIntent() -> m
+    android.content.Intent getSupportParentActivityIntent() -> n
 androidx.core.content.ContentResolverCompat -> f.h.e.a:
     android.database.Cursor query(android.content.ContentResolver,android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String,androidx.core.os.CancellationSignal) -> a
 androidx.core.content.ContextCompat -> f.h.e.b:
@@ -7071,25 +7071,25 @@ androidx.fragment.app.DialogFragment -> androidx.fragment.app.DialogFragment:
     boolean mDismissed -> n0
     boolean mCancelable -> i0
     boolean mShowsDialog -> j0
-    android.app.Dialog requireDialog() -> A0
+    int getTheme() -> A0
+    android.app.Dialog requireDialog() -> B0
     void dismissInternal(boolean,boolean) -> a
     void onAttach(android.content.Context) -> a
     void setupDialog(android.app.Dialog,int) -> a
     void show(androidx.fragment.app.FragmentManager,java.lang.String) -> a
     void onActivityCreated(android.os.Bundle) -> b
     void onCreate(android.os.Bundle) -> c
-    void onDestroyView() -> c0
     android.view.LayoutInflater onGetLayoutInflater(android.os.Bundle) -> d
-    void onDetach() -> d0
+    void onDestroyView() -> d0
     void onSaveInstanceState(android.os.Bundle) -> e
-    void onStart() -> g0
+    void onDetach() -> e0
     void setCancelable(boolean) -> h
-    void onStop() -> h0
+    void onStart() -> h0
+    void onStop() -> i0
     android.app.Dialog onCreateDialog(android.os.Bundle) -> n
-    void dismiss() -> w0
-    void dismissAllowingStateLoss() -> x0
-    android.app.Dialog getDialog() -> y0
-    int getTheme() -> z0
+    void dismiss() -> x0
+    void dismissAllowingStateLoss() -> y0
+    android.app.Dialog getDialog() -> z0
 androidx.fragment.app.DialogFragment$1 -> androidx.fragment.app.DialogFragment$a:
     androidx.fragment.app.DialogFragment this$0 -> f
 androidx.fragment.app.DialogFragment$2 -> androidx.fragment.app.DialogFragment$b:
@@ -7146,32 +7146,32 @@ androidx.fragment.app.Fragment -> androidx.fragment.app.Fragment:
     androidx.fragment.app.FragmentManager mFragmentManager -> w
     boolean mRetainInstance -> F
     androidx.savedstate.SavedStateRegistryController mSavedStateRegistryController -> Z
-    java.lang.Object getHost() -> A
-    int getId() -> B
-    int getNextAnim() -> C
-    int getNextTransition() -> D
-    androidx.fragment.app.Fragment getParentFragment() -> E
-    androidx.fragment.app.FragmentManager getParentFragmentManager() -> F
-    java.lang.Object getReenterTransition() -> G
-    android.content.res.Resources getResources() -> H
-    boolean getRetainInstance() -> I
-    java.lang.Object getReturnTransition() -> J
-    java.lang.Object getSharedElementEnterTransition() -> K
-    java.lang.Object getSharedElementReturnTransition() -> L
-    int getStateAfterAnimating() -> M
-    androidx.fragment.app.Fragment getTargetFragment() -> N
-    boolean getUserVisibleHint() -> O
-    android.view.View getView() -> P
-    void initLifecycle() -> Q
-    void initState() -> R
-    boolean isDetached() -> S
-    boolean isHideReplaced() -> T
-    boolean isInBackStack() -> U
-    boolean isPostponed() -> V
-    boolean isRemoving() -> W
-    boolean isRemovingParent() -> X
-    boolean isStateSaved() -> Y
-    void noteStateNotSaved() -> Z
+    androidx.core.app.SharedElementCallback getExitTransitionCallback() -> A
+    java.lang.Object getHost() -> B
+    int getId() -> C
+    int getNextAnim() -> D
+    int getNextTransition() -> E
+    androidx.fragment.app.Fragment getParentFragment() -> F
+    androidx.fragment.app.FragmentManager getParentFragmentManager() -> G
+    java.lang.Object getReenterTransition() -> H
+    android.content.res.Resources getResources() -> I
+    boolean getRetainInstance() -> J
+    java.lang.Object getReturnTransition() -> K
+    java.lang.Object getSharedElementEnterTransition() -> L
+    java.lang.Object getSharedElementReturnTransition() -> M
+    int getStateAfterAnimating() -> N
+    androidx.fragment.app.Fragment getTargetFragment() -> O
+    boolean getUserVisibleHint() -> P
+    android.view.View getView() -> Q
+    void initLifecycle() -> R
+    void initState() -> S
+    boolean isDetached() -> T
+    boolean isHideReplaced() -> U
+    boolean isInBackStack() -> V
+    boolean isPostponed() -> W
+    boolean isRemoving() -> X
+    boolean isRemovingParent() -> Y
+    boolean isStateSaved() -> Z
     void dump(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[]) -> a
     android.view.LayoutInflater getLayoutInflater(android.os.Bundle) -> a
     androidx.fragment.app.Fragment instantiate(android.content.Context,java.lang.String,android.os.Bundle) -> a
@@ -7195,7 +7195,7 @@ androidx.fragment.app.Fragment -> androidx.fragment.app.Fragment:
     void setOnStartEnterTransitionListener(androidx.fragment.app.Fragment$OnStartEnterTransitionListener) -> a
     void startActivity(android.content.Intent) -> a
     void startActivity(android.content.Intent,android.os.Bundle) -> a
-    void onDestroy() -> a0
+    void noteStateNotSaved() -> a0
     void onActivityCreated(android.os.Bundle) -> b
     android.animation.Animator onCreateAnimator(int,boolean,int) -> b
     void onMultiWindowModeChanged(boolean) -> b
@@ -7203,71 +7203,71 @@ androidx.fragment.app.Fragment -> androidx.fragment.app.Fragment:
     void onPrepareOptionsMenu(android.view.Menu) -> b
     boolean performCreateOptionsMenu(android.view.Menu,android.view.MenuInflater) -> b
     void performCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> b
-    void onDestroyOptionsMenu() -> b0
-    androidx.fragment.app.Fragment findFragmentByWho(java.lang.String) -> c
+    void onDestroy() -> b0
     void onCreate(android.os.Bundle) -> c
     void onPictureInPictureModeChanged(boolean) -> c
     boolean performContextItemSelected(android.view.MenuItem) -> c
     void performOptionsMenuClosed(android.view.Menu) -> c
-    void onDestroyView() -> c0
+    void onDestroyOptionsMenu() -> c0
+    androidx.fragment.app.Fragment findFragmentByWho(java.lang.String) -> d
     androidx.lifecycle.Lifecycle getLifecycle() -> d
     android.view.LayoutInflater onGetLayoutInflater(android.os.Bundle) -> d
     void onPrimaryNavigationFragmentChanged(boolean) -> d
     boolean performOptionsItemSelected(android.view.MenuItem) -> d
     boolean performPrepareOptionsMenu(android.view.Menu) -> d
-    boolean shouldShowRequestPermissionRationale(java.lang.String) -> d
-    void onDetach() -> d0
+    void onDestroyView() -> d0
     java.lang.String getString(int) -> e
     void onSaveInstanceState(android.os.Bundle) -> e
     void performMultiWindowModeChanged(boolean) -> e
-    void onPause() -> e0
+    boolean shouldShowRequestPermissionRationale(java.lang.String) -> e
+    void onDetach() -> e0
     androidx.savedstate.SavedStateRegistry getSavedStateRegistry() -> f
     void onViewStateRestored(android.os.Bundle) -> f
     void performPictureInPictureModeChanged(boolean) -> f
     void setNextAnim(int) -> f
-    void onResume() -> f0
+    void onPause() -> f0
     androidx.lifecycle.ViewModelStore getViewModelStore() -> g
     void performActivityCreated(android.os.Bundle) -> g
     void setHideReplaced(boolean) -> g
     void setNextTransition(int) -> g
-    void onStart() -> g0
-    androidx.lifecycle.ViewModelProvider$Factory getDefaultViewModelProviderFactory() -> h
+    void onResume() -> g0
     void performCreate(android.os.Bundle) -> h
     void setStateAfterAnimating(int) -> h
-    void onStop() -> h0
+    void onStart() -> h0
+    androidx.lifecycle.ViewModelProvider$Factory getDefaultViewModelProviderFactory() -> i
     android.view.LayoutInflater performGetLayoutInflater(android.os.Bundle) -> i
-    void performAttach() -> i0
+    void onStop() -> i0
     void performSaveInstanceState(android.os.Bundle) -> j
-    void performDestroy() -> j0
+    void performAttach() -> j0
     void restoreChildFragmentState(android.os.Bundle) -> k
-    void performDestroyView() -> k0
+    void performDestroy() -> k0
     void restoreViewState(android.os.Bundle) -> l
-    void performDetach() -> l0
-    void callStartTransitionListener() -> m
+    void performDestroyView() -> l0
     void setArguments(android.os.Bundle) -> m
-    void performLowMemory() -> m0
-    androidx.fragment.app.Fragment$AnimationInfo ensureAnimationInfo() -> n
-    void performPause() -> n0
-    androidx.fragment.app.FragmentActivity getActivity() -> o
-    void performPrimaryNavigationFragmentChanged() -> o0
-    boolean getAllowEnterTransitionOverlap() -> p
-    void performResume() -> p0
-    boolean getAllowReturnTransitionOverlap() -> q
-    void performStart() -> q0
-    android.view.View getAnimatingAway() -> r
-    void performStop() -> r0
-    android.animation.Animator getAnimator() -> s
-    androidx.fragment.app.FragmentActivity requireActivity() -> s0
-    android.os.Bundle getArguments() -> t
-    android.content.Context requireContext() -> t0
-    androidx.fragment.app.FragmentManager getChildFragmentManager() -> u
-    android.view.View requireView() -> u0
-    android.content.Context getContext() -> v
-    void startPostponedEnterTransition() -> v0
-    java.lang.Object getEnterTransition() -> w
-    androidx.core.app.SharedElementCallback getEnterTransitionCallback() -> x
-    java.lang.Object getExitTransition() -> y
-    androidx.core.app.SharedElementCallback getExitTransitionCallback() -> z
+    void performDetach() -> m0
+    void callStartTransitionListener() -> n
+    void performLowMemory() -> n0
+    androidx.fragment.app.Fragment$AnimationInfo ensureAnimationInfo() -> o
+    void performPause() -> o0
+    androidx.fragment.app.FragmentActivity getActivity() -> p
+    void performPrimaryNavigationFragmentChanged() -> p0
+    boolean getAllowEnterTransitionOverlap() -> q
+    void performResume() -> q0
+    boolean getAllowReturnTransitionOverlap() -> r
+    void performStart() -> r0
+    android.view.View getAnimatingAway() -> s
+    void performStop() -> s0
+    android.animation.Animator getAnimator() -> t
+    androidx.fragment.app.FragmentActivity requireActivity() -> t0
+    android.os.Bundle getArguments() -> u
+    android.content.Context requireContext() -> u0
+    androidx.fragment.app.FragmentManager getChildFragmentManager() -> v
+    android.view.View requireView() -> v0
+    android.content.Context getContext() -> w
+    void startPostponedEnterTransition() -> w0
+    java.lang.Object getEnterTransition() -> x
+    androidx.core.app.SharedElementCallback getEnterTransitionCallback() -> y
+    java.lang.Object getExitTransition() -> z
 androidx.fragment.app.Fragment$1 -> androidx.fragment.app.Fragment$a:
     androidx.fragment.app.Fragment this$0 -> f
 androidx.fragment.app.Fragment$2 -> androidx.fragment.app.Fragment$2:
@@ -7322,10 +7322,10 @@ androidx.fragment.app.FragmentActivity -> androidx.fragment.app.FragmentActivity
     void onAttachFragment(androidx.fragment.app.Fragment) -> b
     void validateRequestPermissionsRequestCode(int) -> e
     void checkForValidRequestCode(int) -> f
-    androidx.fragment.app.FragmentManager getSupportFragmentManager() -> o
-    void markFragmentsCreated() -> p
-    void onResumeFragments() -> q
-    void supportInvalidateOptionsMenu() -> r
+    androidx.fragment.app.FragmentManager getSupportFragmentManager() -> p
+    void markFragmentsCreated() -> q
+    void onResumeFragments() -> r
+    void supportInvalidateOptionsMenu() -> s
 androidx.fragment.app.FragmentActivity$HostCallbacks -> androidx.fragment.app.FragmentActivity$a:
     androidx.fragment.app.FragmentActivity this$0 -> j
     void onAttachFragment(androidx.fragment.app.Fragment) -> a
@@ -7985,8 +7985,8 @@ androidx.fragment.app.ListFragment -> androidx.fragment.app.ListFragment:
     void onViewCreated(android.view.View,android.os.Bundle) -> a
     void setListAdapter(android.widget.ListAdapter) -> a
     void setListShown(boolean,boolean) -> a
-    void onDestroyView() -> c0
-    void ensureList() -> w0
+    void onDestroyView() -> d0
+    void ensureList() -> x0
 androidx.fragment.app.ListFragment$1 -> androidx.fragment.app.ListFragment$a:
     androidx.fragment.app.ListFragment this$0 -> f
 androidx.fragment.app.ListFragment$2 -> androidx.fragment.app.ListFragment$b:
@@ -8046,7 +8046,7 @@ androidx.lifecycle.GeneratedAdapter -> f.m.f:
     void callMethods(androidx.lifecycle.LifecycleOwner,androidx.lifecycle.Lifecycle$Event,boolean,androidx.lifecycle.MethodCallsLogger) -> a
 androidx.lifecycle.GenericLifecycleObserver -> f.m.g:
 androidx.lifecycle.HasDefaultViewModelProviderFactory -> f.m.h:
-    androidx.lifecycle.ViewModelProvider$Factory getDefaultViewModelProviderFactory() -> h
+    androidx.lifecycle.ViewModelProvider$Factory getDefaultViewModelProviderFactory() -> i
 androidx.lifecycle.Lifecycle -> f.m.i:
     void addObserver(androidx.lifecycle.LifecycleObserver) -> a
     androidx.lifecycle.Lifecycle$State getCurrentState() -> a
@@ -8889,8 +8889,8 @@ androidx.navigation.NavBackStackEntry -> f.q.e:
     androidx.lifecycle.Lifecycle getLifecycle() -> d
     androidx.savedstate.SavedStateRegistry getSavedStateRegistry() -> f
     androidx.lifecycle.ViewModelStore getViewModelStore() -> g
-    androidx.lifecycle.ViewModelProvider$Factory getDefaultViewModelProviderFactory() -> h
-    void updateState() -> i
+    void updateState() -> h
+    androidx.lifecycle.ViewModelProvider$Factory getDefaultViewModelProviderFactory() -> i
 androidx.navigation.NavBackStackEntry$1 -> f.q.e$a:
     int[] $SwitchMap$androidx$lifecycle$Lifecycle$Event -> a
 androidx.navigation.NavBackStackEntryState -> f.q.f:
@@ -9323,9 +9323,9 @@ androidx.navigation.fragment.NavHostFragment -> androidx.navigation.fragment.Nav
     void onCreate(android.os.Bundle) -> c
     void onPrimaryNavigationFragmentChanged(boolean) -> d
     void onSaveInstanceState(android.os.Bundle) -> e
-    androidx.navigation.Navigator createFragmentNavigator() -> w0
-    int getContainerId() -> x0
-    androidx.navigation.NavController getNavController() -> y0
+    androidx.navigation.Navigator createFragmentNavigator() -> x0
+    int getContainerId() -> y0
+    androidx.navigation.NavController getNavController() -> z0
 androidx.navigation.fragment.R$id -> f.q.v.b:
 androidx.navigation.fragment.R$styleable -> f.q.v.c:
 androidx.navigation.ui.AbstractAppBarOnDestinationChangedListener -> f.q.w.a:
@@ -15408,21 +15408,21 @@ com.bumptech.glide.manager.SupportRequestManagerFragment -> com.bumptech.glide.m
     java.util.Set childRequestManagerFragments -> e0
     com.bumptech.glide.RequestManager requestManager -> g0
     androidx.fragment.app.Fragment parentFragmentHint -> h0
-    void unregisterFragmentWithRoot() -> A0
+    com.bumptech.glide.manager.RequestManagerTreeNode getRequestManagerTreeNode() -> A0
+    void unregisterFragmentWithRoot() -> B0
     void addChildRequestManagerFragment(com.bumptech.glide.manager.SupportRequestManagerFragment) -> a
     void onAttach(android.content.Context) -> a
     void registerFragmentWithRoot(androidx.fragment.app.FragmentActivity) -> a
     void setRequestManager(com.bumptech.glide.RequestManager) -> a
-    void onDestroy() -> a0
     void removeChildRequestManagerFragment(com.bumptech.glide.manager.SupportRequestManagerFragment) -> b
     void setParentFragmentHint(androidx.fragment.app.Fragment) -> b
-    void onDetach() -> d0
-    void onStart() -> g0
-    void onStop() -> h0
-    com.bumptech.glide.manager.ActivityFragmentLifecycle getGlideLifecycle() -> w0
-    androidx.fragment.app.Fragment getParentFragmentUsingHint() -> x0
-    com.bumptech.glide.RequestManager getRequestManager() -> y0
-    com.bumptech.glide.manager.RequestManagerTreeNode getRequestManagerTreeNode() -> z0
+    void onDestroy() -> b0
+    void onDetach() -> e0
+    void onStart() -> h0
+    void onStop() -> i0
+    com.bumptech.glide.manager.ActivityFragmentLifecycle getGlideLifecycle() -> x0
+    androidx.fragment.app.Fragment getParentFragmentUsingHint() -> y0
+    com.bumptech.glide.RequestManager getRequestManager() -> z0
 com.bumptech.glide.manager.SupportRequestManagerFragment$SupportFragmentRequestManagerTreeNode -> com.bumptech.glide.manager.SupportRequestManagerFragment$a:
     com.bumptech.glide.manager.SupportRequestManagerFragment this$0 -> a
 com.bumptech.glide.manager.TargetTracker -> g.b.a.p.n:
@@ -28428,12 +28428,12 @@ com.google.android.material.bottomsheet.BottomSheetDialog$4 -> com.google.androi
     void onStateChanged(android.view.View,int) -> a
 com.google.android.material.bottomsheet.BottomSheetDialogFragment -> com.google.android.material.bottomsheet.BottomSheetDialogFragment:
     boolean waitingForDismissAllowingStateLoss -> p0
-    void dismissAfterAnimation() -> B0
+    void dismissAfterAnimation() -> C0
     void access$100(com.google.android.material.bottomsheet.BottomSheetDialogFragment) -> a
     void dismissWithAnimation(com.google.android.material.bottomsheet.BottomSheetBehavior,boolean) -> a
     boolean tryDismissWithAnimation(boolean) -> i
     android.app.Dialog onCreateDialog(android.os.Bundle) -> n
-    void dismiss() -> w0
+    void dismiss() -> x0
 com.google.android.material.bottomsheet.BottomSheetDialogFragment$1 -> com.google.android.material.bottomsheet.BottomSheetDialogFragment$a:
 com.google.android.material.bottomsheet.BottomSheetDialogFragment$BottomSheetDismissCallback -> com.google.android.material.bottomsheet.BottomSheetDialogFragment$b:
     com.google.android.material.bottomsheet.BottomSheetDialogFragment this$0 -> a
@@ -29146,10 +29146,11 @@ com.google.android.material.datepicker.MaterialCalendar -> com.google.android.ma
     android.view.View dayFrame -> m0
     android.view.View yearFrame -> l0
     java.lang.Object SELECTOR_TOGGLE_TAG -> q0
-    com.google.android.material.datepicker.Month getCurrentMonth() -> A0
-    com.google.android.material.datepicker.DateSelector getDateSelector() -> B0
-    androidx.recyclerview.widget.LinearLayoutManager getLayoutManager() -> C0
-    void toggleVisibleSelector() -> D0
+    com.google.android.material.datepicker.CalendarStyle getCalendarStyle() -> A0
+    com.google.android.material.datepicker.Month getCurrentMonth() -> B0
+    com.google.android.material.datepicker.DateSelector getDateSelector() -> C0
+    androidx.recyclerview.widget.LinearLayoutManager getLayoutManager() -> D0
+    void toggleVisibleSelector() -> E0
     androidx.recyclerview.widget.RecyclerView access$000(com.google.android.material.datepicker.MaterialCalendar) -> a
     com.google.android.material.datepicker.Month access$602(com.google.android.material.datepicker.MaterialCalendar,com.google.android.material.datepicker.Month) -> a
     void addActionsToMonthNavigation(android.view.View,com.google.android.material.datepicker.MonthsPagerAdapter) -> a
@@ -29166,9 +29167,8 @@ com.google.android.material.datepicker.MaterialCalendar -> com.google.android.ma
     void onSaveInstanceState(android.os.Bundle) -> e
     android.view.View access$500(com.google.android.material.datepicker.MaterialCalendar) -> f
     void postSmoothRecyclerViewScroll(int) -> i
-    androidx.recyclerview.widget.RecyclerView$ItemDecoration createItemDecoration() -> x0
-    com.google.android.material.datepicker.CalendarConstraints getCalendarConstraints() -> y0
-    com.google.android.material.datepicker.CalendarStyle getCalendarStyle() -> z0
+    androidx.recyclerview.widget.RecyclerView$ItemDecoration createItemDecoration() -> y0
+    com.google.android.material.datepicker.CalendarConstraints getCalendarConstraints() -> z0
 com.google.android.material.datepicker.MaterialCalendar$1 -> com.google.android.material.datepicker.MaterialCalendar$b:
     void onInitializeAccessibilityNodeInfo(android.view.View,androidx.core.view.accessibility.AccessibilityNodeInfoCompat) -> a
 com.google.android.material.datepicker.MaterialCalendar$10 -> com.google.android.material.datepicker.MaterialCalendar$a:
@@ -29236,11 +29236,11 @@ com.google.android.material.datepicker.MaterialDatePicker -> com.google.android.
     int titleTextResId -> y0
     java.util.LinkedHashSet onPositiveButtonClickListeners -> p0
     com.google.android.material.datepicker.CalendarConstraints calendarConstraints -> w0
-    java.lang.String getHeaderText() -> B0
-    java.lang.Object getSelection() -> C0
-    void startPickerFragment() -> D0
-    void updateHeader() -> E0
-    long thisMonthInUtcMilliseconds() -> F0
+    java.lang.String getHeaderText() -> C0
+    java.lang.Object getSelection() -> D0
+    void startPickerFragment() -> E0
+    void updateHeader() -> F0
+    long thisMonthInUtcMilliseconds() -> G0
     java.util.LinkedHashSet access$000(com.google.android.material.datepicker.MaterialDatePicker) -> a
     void access$600(com.google.android.material.datepicker.MaterialDatePicker,com.google.android.material.internal.CheckableImageButton) -> a
     android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
@@ -29259,8 +29259,8 @@ com.google.android.material.datepicker.MaterialDatePicker -> com.google.android.
     int getPaddedPickerWidth(android.content.Context) -> f
     void access$700(com.google.android.material.datepicker.MaterialDatePicker) -> g
     boolean isFullscreen(android.content.Context) -> g
-    void onStart() -> g0
-    void onStop() -> h0
+    void onStart() -> h0
+    void onStop() -> i0
     android.app.Dialog onCreateDialog(android.os.Bundle) -> n
 com.google.android.material.datepicker.MaterialDatePicker$1 -> com.google.android.material.datepicker.MaterialDatePicker$a:
     com.google.android.material.datepicker.MaterialDatePicker this$0 -> f
@@ -29346,7 +29346,7 @@ com.google.android.material.datepicker.OnSelectionChangedListener -> g.e.a.c.x.l
 com.google.android.material.datepicker.PickerFragment -> g.e.a.c.x.m:
     java.util.LinkedHashSet onSelectionChangedListeners -> c0
     boolean addOnSelectionChangedListener(com.google.android.material.datepicker.OnSelectionChangedListener) -> a
-    void clearOnSelectionChangedListeners() -> w0
+    void clearOnSelectionChangedListeners() -> x0
 com.google.android.material.datepicker.SmoothCalendarLayoutManager -> g.e.a.c.x.n:
     void smoothScrollToPosition(androidx.recyclerview.widget.RecyclerView,androidx.recyclerview.widget.RecyclerView$State,int) -> a
 com.google.android.material.datepicker.SmoothCalendarLayoutManager$1 -> g.e.a.c.x.n$a:
@@ -32562,9 +32562,9 @@ com.gyf.immersionbar.RequestManagerRetriever$Holder -> g.f.a.s$b:
 com.gyf.immersionbar.SupportRequestManagerFragment -> com.gyf.immersionbar.SupportRequestManagerFragment:
     com.gyf.immersionbar.ImmersionDelegate mDelegate -> c0
     com.gyf.immersionbar.ImmersionBar get(java.lang.Object) -> a
-    void onDestroy() -> a0
     void onActivityCreated(android.os.Bundle) -> b
-    void onResume() -> f0
+    void onDestroy() -> b0
+    void onResume() -> g0
 com.jiangxk.common.R$color -> g.g.a.a:
 com.jiangxk.common.R$drawable -> g.g.a.b:
 com.jiangxk.common.R$id -> g.g.a.c:
@@ -32592,52 +32592,52 @@ com.jiangxk.common.common.BaseApplication$initLogger$1 -> com.jiangxk.common.com
 com.jiangxk.common.common.activity.BaseActivity -> com.jiangxk.common.common.activity.BaseActivity:
     android.content.Context context -> z
     com.jiangxk.common.widget.StateView statusView -> y
-    void initOperate() -> A
-    void initView() -> B
-    boolean isHideActionBar() -> C
-    boolean isSetPaddingTop() -> D
-    boolean isSetStateBar() -> E
-    boolean isSetStateView() -> F
-    void setListener() -> G
-    void setStatusBar() -> H
-    void setStatusLayout() -> I
+    void initData() -> A
+    void initOperate() -> B
+    void initView() -> C
+    boolean isHideActionBar() -> D
+    boolean isSetPaddingTop() -> E
+    boolean isSetStateBar() -> F
+    boolean isSetStateView() -> G
+    void setListener() -> H
+    void setStatusBar() -> I
+    void setStatusLayout() -> J
     void showMessage(java.lang.String) -> a
     void showLoading() -> b
     void showContent() -> c
-    android.content.Context getContext() -> x
-    int getLayoutId() -> y
-    void initData() -> z
+    android.content.Context getContext() -> y
+    int getLayoutId() -> z
 com.jiangxk.common.common.activity.BaseMvpActivity -> com.jiangxk.common.common.activity.BaseMvpActivity:
     com.jiangxk.common.injection.component.DaggerActivityComponent mActivityComponent -> B
     com.jiangxk.common.mvp.presenter.BaseMvpPresenter mPresenter -> A
-    void initOperate() -> A
-    com.jiangxk.common.injection.component.DaggerActivityComponent getMActivityComponent() -> J
-    com.jiangxk.common.mvp.presenter.BaseMvpPresenter getMPresenter() -> K
-    void initActivityInjection() -> L
-    void injectComponent() -> M
+    void initOperate() -> B
+    com.jiangxk.common.injection.component.DaggerActivityComponent getMActivityComponent() -> K
+    com.jiangxk.common.mvp.presenter.BaseMvpPresenter getMPresenter() -> L
+    void initActivityInjection() -> M
+    void injectComponent() -> N
     void showError() -> a
 com.jiangxk.common.common.activity.BaseMvpActivity_MembersInjector -> g.g.a.e.b.a:
     void injectMPresenter(com.jiangxk.common.common.activity.BaseMvpActivity,com.jiangxk.common.mvp.presenter.BaseMvpPresenter) -> a
 com.jiangxk.common.common.dialog.BaseDialogFragment -> com.jiangxk.common.common.dialog.BaseDialogFragment:
     java.util.HashMap _$_findViewCache -> p0
-    void _$_clearFindViewByIdCache() -> B0
-    boolean canCanceledOnTouchOutSide() -> C0
-    boolean cancelable() -> D0
-    int dialogGravity() -> E0
-    float getBackgroundDimAmount() -> F0
-    int getLayoutId() -> G0
-    void initData() -> H0
-    boolean initExtra() -> I0
-    void initLayout() -> J0
-    void initView() -> K0
-    boolean isBackgroundTransparent() -> L0
-    boolean isHideStatusBar() -> M0
-    void setListener() -> N0
-    int windowAnimations() -> O0
+    void _$_clearFindViewByIdCache() -> C0
+    boolean canCanceledOnTouchOutSide() -> D0
+    boolean cancelable() -> E0
+    int dialogGravity() -> F0
+    float getBackgroundDimAmount() -> G0
+    int getLayoutId() -> H0
+    void initData() -> I0
+    boolean initExtra() -> J0
+    void initLayout() -> K0
+    void initView() -> L0
+    boolean isBackgroundTransparent() -> M0
+    boolean isHideStatusBar() -> N0
+    void setListener() -> O0
+    int windowAnimations() -> P0
     android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
     void onActivityCreated(android.os.Bundle) -> b
-    void onDestroyView() -> c0
-    void showLongMessage(java.lang.String) -> e
+    void onDestroyView() -> d0
+    void showLongMessage(java.lang.String) -> f
 com.jiangxk.common.common.dialog.BaseDialogFragment$initLayout$$inlined$apply$lambda$1 -> com.jiangxk.common.common.dialog.BaseDialogFragment$a:
     com.jiangxk.common.common.dialog.BaseDialogFragment this$0 -> f
 com.jiangxk.common.common.fragment.BaseFragment -> com.jiangxk.common.common.fragment.BaseFragment:
@@ -32645,37 +32645,37 @@ com.jiangxk.common.common.fragment.BaseFragment -> com.jiangxk.common.common.fra
     android.view.View rootView -> d0
     boolean isFirstResume -> c0
     com.jiangxk.common.widget.StateView statusView -> e0
-    void initOperate() -> A0
-    void initView() -> B0
-    boolean isSetStateView() -> C0
-    void onFirstUserInvisible() -> D0
-    void onUserVisible() -> E0
-    void setListener() -> F0
-    void setStatusLayout() -> G0
+    void initData() -> A0
+    void initOperate() -> B0
+    void initView() -> C0
+    boolean isSetStateView() -> D0
+    void onFirstUserInvisible() -> E0
+    void onUserVisible() -> F0
+    void setListener() -> G0
+    void setStatusLayout() -> H0
     android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
     void onViewCreated(android.view.View,android.os.Bundle) -> a
     void showMessage(java.lang.String) -> a
     void showLoading() -> b
     void showContent() -> c
-    void onDestroyView() -> c0
-    void onPause() -> e0
-    void onResume() -> f0
-    void _$_clearFindViewByIdCache() -> w0
-    void applyPermission() -> x0
-    int getLayoutId() -> y0
-    void initData() -> z0
+    void onDestroyView() -> d0
+    void onPause() -> f0
+    void onResume() -> g0
+    void _$_clearFindViewByIdCache() -> x0
+    void applyPermission() -> y0
+    int getLayoutId() -> z0
 com.jiangxk.common.common.fragment.BaseMvpFragment -> com.jiangxk.common.common.fragment.BaseMvpFragment:
     com.jiangxk.common.mvp.presenter.BasePresenter mPresenter -> g0
     java.util.HashMap _$_findViewCache -> i0
     com.jiangxk.common.injection.component.DaggerActivityComponent mActivityComponent -> h0
-    void initOperate() -> A0
-    com.jiangxk.common.injection.component.DaggerActivityComponent getMActivityComponent() -> H0
-    com.jiangxk.common.mvp.presenter.BasePresenter getMPresenter() -> I0
-    void initActivityInjection() -> J0
-    void injectComponent() -> K0
+    void initOperate() -> B0
+    com.jiangxk.common.injection.component.DaggerActivityComponent getMActivityComponent() -> I0
+    com.jiangxk.common.mvp.presenter.BasePresenter getMPresenter() -> J0
+    void initActivityInjection() -> K0
+    void injectComponent() -> L0
     void showError() -> a
-    void onDestroyView() -> c0
-    void _$_clearFindViewByIdCache() -> w0
+    void onDestroyView() -> d0
+    void _$_clearFindViewByIdCache() -> x0
 com.jiangxk.common.common.fragment.BaseMvpFragment_MembersInjector -> g.g.a.e.c.a:
     void injectMPresenter(com.jiangxk.common.common.fragment.BaseMvpFragment,com.jiangxk.common.mvp.presenter.BasePresenter) -> a
 com.jiangxk.common.database.ColumnParser -> g.g.a.f.a:
@@ -32833,14 +32833,14 @@ com.jiangxk.common.ui.dialog.CommonDialogFragment -> com.jiangxk.common.ui.dialo
     java.lang.CharSequence title -> q0
     java.util.HashMap _$_findViewCache -> z0
     java.lang.CharSequence content -> s0
-    void _$_clearFindViewByIdCache() -> B0
-    boolean cancelable() -> D0
-    int getLayoutId() -> G0
-    void initData() -> H0
-    void initView() -> K0
-    void setListener() -> N0
+    void _$_clearFindViewByIdCache() -> C0
+    boolean cancelable() -> E0
+    int getLayoutId() -> H0
+    void initData() -> I0
+    void initView() -> L0
+    void setListener() -> O0
     com.jiangxk.common.ui.dialog.CommonDialogFragment$OnItemClickListener access$getListener$p(com.jiangxk.common.ui.dialog.CommonDialogFragment) -> a
-    void onDestroyView() -> c0
+    void onDestroyView() -> d0
     android.view.View _$_findCachedViewById(int) -> i
 com.jiangxk.common.ui.dialog.CommonDialogFragment$Builder -> com.jiangxk.common.ui.dialog.CommonDialogFragment$a:
     java.lang.CharSequence title -> a
@@ -32884,14 +32884,14 @@ com.jiangxk.common.ui.dialog.CommonListDialogFragment -> com.jiangxk.common.ui.d
     com.jiangxk.common.ui.adapter.BaseAdapter adapter -> v0
     java.lang.CharSequence title -> q0
     java.lang.CharSequence cancel -> s0
-    void _$_clearFindViewByIdCache() -> B0
-    boolean cancelable() -> D0
-    int getLayoutId() -> G0
-    void initData() -> H0
-    void initView() -> K0
-    void setListener() -> N0
+    void _$_clearFindViewByIdCache() -> C0
+    boolean cancelable() -> E0
+    int getLayoutId() -> H0
+    void initData() -> I0
+    void initView() -> L0
+    void setListener() -> O0
     com.jiangxk.common.ui.dialog.CommonListDialogFragment$OnItemClickListener access$getListener$p(com.jiangxk.common.ui.dialog.CommonListDialogFragment) -> a
-    void onDestroyView() -> c0
+    void onDestroyView() -> d0
     android.view.View _$_findCachedViewById(int) -> i
 com.jiangxk.common.ui.dialog.CommonListDialogFragment$Builder -> com.jiangxk.common.ui.dialog.CommonListDialogFragment$a:
     com.jiangxk.common.ui.adapter.BaseAdapter adapter -> f
@@ -33172,7 +33172,23 @@ com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerNodePageComponent$
     com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerNodePageComponent$Builder activityComponent(com.jiangxk.common.injection.component.ActivityComponent) -> a
     com.jiangxk.zhengyuansmallclassroom.injection.component.NodePageComponent build() -> a
     com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerNodePageComponent$Builder nodePageModule(com.jiangxk.zhengyuansmallclassroom.injection.module.NodePageModule) -> a
-com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerSplashComponent -> g.g.d.b.a.q:
+com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerRegisterComponent -> g.g.d.b.a.q:
+    com.jiangxk.zhengyuansmallclassroom.injection.module.RegisterModule registerModule -> a
+    com.jiangxk.zhengyuansmallclassroom.mvp.presenter.login.RegisterPresenter getRegisterPresenter() -> a
+    void initialize(com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerRegisterComponent$Builder) -> a
+    void inject(com.jiangxk.zhengyuansmallclassroom.ui.activity.login.RegisterActivity) -> a
+    com.jiangxk.zhengyuansmallclassroom.mvp.presenter.login.RegisterPresenter injectRegisterPresenter(com.jiangxk.zhengyuansmallclassroom.mvp.presenter.login.RegisterPresenter) -> a
+    com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerRegisterComponent$Builder builder() -> b
+    com.jiangxk.zhengyuansmallclassroom.ui.activity.login.RegisterActivity injectRegisterActivity(com.jiangxk.zhengyuansmallclassroom.ui.activity.login.RegisterActivity) -> b
+com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerRegisterComponent$1 -> g.g.d.b.a.q$a:
+com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerRegisterComponent$Builder -> g.g.d.b.a.q$b:
+    com.jiangxk.zhengyuansmallclassroom.injection.module.RegisterModule registerModule -> a
+    com.jiangxk.common.injection.component.ActivityComponent activityComponent -> b
+    com.jiangxk.zhengyuansmallclassroom.injection.module.RegisterModule access$100(com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerRegisterComponent$Builder) -> a
+    com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerRegisterComponent$Builder activityComponent(com.jiangxk.common.injection.component.ActivityComponent) -> a
+    com.jiangxk.zhengyuansmallclassroom.injection.component.RegisterComponent build() -> a
+    com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerRegisterComponent$Builder registerModule(com.jiangxk.zhengyuansmallclassroom.injection.module.RegisterModule) -> a
+com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerSplashComponent -> g.g.d.b.a.r:
     com.jiangxk.zhengyuansmallclassroom.injection.module.SplashModule splashModule -> a
     com.jiangxk.zhengyuansmallclassroom.mvp.presenter.splash.SplashPresenter getSplashPresenter() -> a
     void initialize(com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerSplashComponent$Builder) -> a
@@ -33180,15 +33196,15 @@ com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerSplashComponent ->
     com.jiangxk.zhengyuansmallclassroom.mvp.presenter.splash.SplashPresenter injectSplashPresenter(com.jiangxk.zhengyuansmallclassroom.mvp.presenter.splash.SplashPresenter) -> a
     com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerSplashComponent$Builder builder() -> b
     com.jiangxk.zhengyuansmallclassroom.ui.activity.splash.SplashActivity injectSplashActivity(com.jiangxk.zhengyuansmallclassroom.ui.activity.splash.SplashActivity) -> b
-com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerSplashComponent$1 -> g.g.d.b.a.q$a:
-com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerSplashComponent$Builder -> g.g.d.b.a.q$b:
+com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerSplashComponent$1 -> g.g.d.b.a.r$a:
+com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerSplashComponent$Builder -> g.g.d.b.a.r$b:
     com.jiangxk.zhengyuansmallclassroom.injection.module.SplashModule splashModule -> a
     com.jiangxk.common.injection.component.ActivityComponent activityComponent -> b
     com.jiangxk.zhengyuansmallclassroom.injection.module.SplashModule access$100(com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerSplashComponent$Builder) -> a
     com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerSplashComponent$Builder activityComponent(com.jiangxk.common.injection.component.ActivityComponent) -> a
     com.jiangxk.zhengyuansmallclassroom.injection.component.SplashComponent build() -> a
     com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerSplashComponent$Builder splashModule(com.jiangxk.zhengyuansmallclassroom.injection.module.SplashModule) -> a
-com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerStatisticalLearningComponent -> g.g.d.b.a.r:
+com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerStatisticalLearningComponent -> g.g.d.b.a.s:
     com.jiangxk.zhengyuansmallclassroom.injection.module.StatisticalLearningModule statisticalLearningModule -> a
     com.jiangxk.zhengyuansmallclassroom.mvp.presenter.learning.StatisticalLearningPresenter getStatisticalLearningPresenter() -> a
     void initialize(com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerStatisticalLearningComponent$Builder) -> a
@@ -33196,15 +33212,15 @@ com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerStatisticalLearnin
     com.jiangxk.zhengyuansmallclassroom.mvp.presenter.learning.StatisticalLearningPresenter injectStatisticalLearningPresenter(com.jiangxk.zhengyuansmallclassroom.mvp.presenter.learning.StatisticalLearningPresenter) -> a
     com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerStatisticalLearningComponent$Builder builder() -> b
     com.jiangxk.zhengyuansmallclassroom.ui.activity.learning.StatisticalLearningActivity injectStatisticalLearningActivity(com.jiangxk.zhengyuansmallclassroom.ui.activity.learning.StatisticalLearningActivity) -> b
-com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerStatisticalLearningComponent$1 -> g.g.d.b.a.r$a:
-com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerStatisticalLearningComponent$Builder -> g.g.d.b.a.r$b:
+com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerStatisticalLearningComponent$1 -> g.g.d.b.a.s$a:
+com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerStatisticalLearningComponent$Builder -> g.g.d.b.a.s$b:
     com.jiangxk.zhengyuansmallclassroom.injection.module.StatisticalLearningModule statisticalLearningModule -> a
     com.jiangxk.common.injection.component.ActivityComponent activityComponent -> b
     com.jiangxk.zhengyuansmallclassroom.injection.module.StatisticalLearningModule access$100(com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerStatisticalLearningComponent$Builder) -> a
     com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerStatisticalLearningComponent$Builder activityComponent(com.jiangxk.common.injection.component.ActivityComponent) -> a
     com.jiangxk.zhengyuansmallclassroom.injection.component.StatisticalLearningComponent build() -> a
     com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerStatisticalLearningComponent$Builder statisticalLearningModule(com.jiangxk.zhengyuansmallclassroom.injection.module.StatisticalLearningModule) -> a
-com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerSubjectPageComponent -> g.g.d.b.a.s:
+com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerSubjectPageComponent -> g.g.d.b.a.t:
     com.jiangxk.zhengyuansmallclassroom.injection.module.SubjectPageModule subjectPageModule -> a
     com.jiangxk.zhengyuansmallclassroom.mvp.presenter.course.SubjectPagePresenter getSubjectPagePresenter() -> a
     void initialize(com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerSubjectPageComponent$Builder) -> a
@@ -33212,35 +33228,37 @@ com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerSubjectPageCompone
     com.jiangxk.zhengyuansmallclassroom.mvp.presenter.course.SubjectPagePresenter injectSubjectPagePresenter(com.jiangxk.zhengyuansmallclassroom.mvp.presenter.course.SubjectPagePresenter) -> a
     com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerSubjectPageComponent$Builder builder() -> b
     com.jiangxk.zhengyuansmallclassroom.ui.activity.course.SubjectPageActivity injectSubjectPageActivity(com.jiangxk.zhengyuansmallclassroom.ui.activity.course.SubjectPageActivity) -> b
-com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerSubjectPageComponent$1 -> g.g.d.b.a.s$a:
-com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerSubjectPageComponent$Builder -> g.g.d.b.a.s$b:
+com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerSubjectPageComponent$1 -> g.g.d.b.a.t$a:
+com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerSubjectPageComponent$Builder -> g.g.d.b.a.t$b:
     com.jiangxk.zhengyuansmallclassroom.injection.module.SubjectPageModule subjectPageModule -> a
     com.jiangxk.common.injection.component.ActivityComponent activityComponent -> b
     com.jiangxk.zhengyuansmallclassroom.injection.module.SubjectPageModule access$100(com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerSubjectPageComponent$Builder) -> a
     com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerSubjectPageComponent$Builder activityComponent(com.jiangxk.common.injection.component.ActivityComponent) -> a
     com.jiangxk.zhengyuansmallclassroom.injection.component.SubjectPageComponent build() -> a
     com.jiangxk.zhengyuansmallclassroom.injection.component.DaggerSubjectPageComponent$Builder subjectPageModule(com.jiangxk.zhengyuansmallclassroom.injection.module.SubjectPageModule) -> a
-com.jiangxk.zhengyuansmallclassroom.injection.component.HomeActivityComponent -> g.g.d.b.a.t:
+com.jiangxk.zhengyuansmallclassroom.injection.component.HomeActivityComponent -> g.g.d.b.a.u:
     void inject(com.jiangxk.zhengyuansmallclassroom.ui.activity.home.HomeActivity) -> a
-com.jiangxk.zhengyuansmallclassroom.injection.component.HomeComponent -> g.g.d.b.a.u:
+com.jiangxk.zhengyuansmallclassroom.injection.component.HomeComponent -> g.g.d.b.a.v:
     void inject(com.jiangxk.zhengyuansmallclassroom.ui.fragment.home.HomeFragment) -> a
-com.jiangxk.zhengyuansmallclassroom.injection.component.LearningOrderComponent -> g.g.d.b.a.v:
+com.jiangxk.zhengyuansmallclassroom.injection.component.LearningOrderComponent -> g.g.d.b.a.w:
     void inject(com.jiangxk.zhengyuansmallclassroom.ui.activity.learning.LearningOrderActivity) -> a
-com.jiangxk.zhengyuansmallclassroom.injection.component.LimitCoursePageComponent -> g.g.d.b.a.w:
+com.jiangxk.zhengyuansmallclassroom.injection.component.LimitCoursePageComponent -> g.g.d.b.a.x:
     void inject(com.jiangxk.zhengyuansmallclassroom.ui.activity.manager.LimitCoursePageActivity) -> a
-com.jiangxk.zhengyuansmallclassroom.injection.component.LoginComponent -> g.g.d.b.a.x:
+com.jiangxk.zhengyuansmallclassroom.injection.component.LoginComponent -> g.g.d.b.a.y:
     void inject(com.jiangxk.zhengyuansmallclassroom.ui.activity.login.LoginActivity) -> a
-com.jiangxk.zhengyuansmallclassroom.injection.component.ManagerUserComponent -> g.g.d.b.a.y:
+com.jiangxk.zhengyuansmallclassroom.injection.component.ManagerUserComponent -> g.g.d.b.a.z:
     void inject(com.jiangxk.zhengyuansmallclassroom.ui.activity.manager.ManagerUserActivity) -> a
-com.jiangxk.zhengyuansmallclassroom.injection.component.MyComponent -> g.g.d.b.a.z:
+com.jiangxk.zhengyuansmallclassroom.injection.component.MyComponent -> g.g.d.b.a.a0:
     void inject(com.jiangxk.zhengyuansmallclassroom.ui.fragment.my.MyFragment) -> a
-com.jiangxk.zhengyuansmallclassroom.injection.component.NodePageComponent -> g.g.d.b.a.a0:
+com.jiangxk.zhengyuansmallclassroom.injection.component.NodePageComponent -> g.g.d.b.a.b0:
     void inject(com.jiangxk.zhengyuansmallclassroom.ui.activity.course.NodePageActivity) -> a
-com.jiangxk.zhengyuansmallclassroom.injection.component.SplashComponent -> g.g.d.b.a.b0:
+com.jiangxk.zhengyuansmallclassroom.injection.component.RegisterComponent -> g.g.d.b.a.c0:
+    void inject(com.jiangxk.zhengyuansmallclassroom.ui.activity.login.RegisterActivity) -> a
+com.jiangxk.zhengyuansmallclassroom.injection.component.SplashComponent -> g.g.d.b.a.d0:
     void inject(com.jiangxk.zhengyuansmallclassroom.ui.activity.splash.SplashActivity) -> a
-com.jiangxk.zhengyuansmallclassroom.injection.component.StatisticalLearningComponent -> g.g.d.b.a.c0:
+com.jiangxk.zhengyuansmallclassroom.injection.component.StatisticalLearningComponent -> g.g.d.b.a.e0:
     void inject(com.jiangxk.zhengyuansmallclassroom.ui.activity.learning.StatisticalLearningActivity) -> a
-com.jiangxk.zhengyuansmallclassroom.injection.component.SubjectPageComponent -> g.g.d.b.a.d0:
+com.jiangxk.zhengyuansmallclassroom.injection.component.SubjectPageComponent -> g.g.d.b.a.f0:
     void inject(com.jiangxk.zhengyuansmallclassroom.ui.activity.course.SubjectPageActivity) -> a
 com.jiangxk.zhengyuansmallclassroom.injection.module.CalligraphyCourseListModule -> g.g.d.b.b.a:
     com.jiangxk.zhengyuansmallclassroom.mvp.contract.course.CalligraphyCourseListContract$View view -> a
@@ -33354,32 +33372,41 @@ com.jiangxk.zhengyuansmallclassroom.injection.module.NodePageModule_ProvideCours
     com.jiangxk.zhengyuansmallclassroom.repository.course.CourseRepository proxyProvideCourseRepository(com.jiangxk.zhengyuansmallclassroom.injection.module.NodePageModule) -> a
 com.jiangxk.zhengyuansmallclassroom.injection.module.NodePageModule_ProvideViewFactory -> g.g.d.b.b.k0:
     com.jiangxk.zhengyuansmallclassroom.mvp.contract.course.NodePageContract$View proxyProvideView(com.jiangxk.zhengyuansmallclassroom.injection.module.NodePageModule) -> a
-com.jiangxk.zhengyuansmallclassroom.injection.module.SplashModule -> g.g.d.b.b.l0:
+com.jiangxk.zhengyuansmallclassroom.injection.module.RegisterModule -> g.g.d.b.b.l0:
+    com.jiangxk.zhengyuansmallclassroom.repository.user.UserRepository userRepository -> b
+    com.jiangxk.zhengyuansmallclassroom.mvp.contract.login.RegisterContract$View view -> a
+    com.jiangxk.zhengyuansmallclassroom.repository.user.UserRepository provideUserRepository() -> a
+    com.jiangxk.zhengyuansmallclassroom.mvp.contract.login.RegisterContract$View provideView() -> b
+com.jiangxk.zhengyuansmallclassroom.injection.module.RegisterModule_ProvideUserRepositoryFactory -> g.g.d.b.b.m0:
+    com.jiangxk.zhengyuansmallclassroom.repository.user.UserRepository proxyProvideUserRepository(com.jiangxk.zhengyuansmallclassroom.injection.module.RegisterModule) -> a
+com.jiangxk.zhengyuansmallclassroom.injection.module.RegisterModule_ProvideViewFactory -> g.g.d.b.b.n0:
+    com.jiangxk.zhengyuansmallclassroom.mvp.contract.login.RegisterContract$View proxyProvideView(com.jiangxk.zhengyuansmallclassroom.injection.module.RegisterModule) -> a
+com.jiangxk.zhengyuansmallclassroom.injection.module.SplashModule -> g.g.d.b.b.o0:
     com.jiangxk.zhengyuansmallclassroom.repository.user.UserRepository userRepository -> b
     com.jiangxk.zhengyuansmallclassroom.mvp.contract.splash.SplashContract$View view -> a
     com.jiangxk.zhengyuansmallclassroom.repository.user.UserRepository provideUserRepository() -> a
     com.jiangxk.zhengyuansmallclassroom.mvp.contract.splash.SplashContract$View provideView() -> b
-com.jiangxk.zhengyuansmallclassroom.injection.module.SplashModule_ProvideUserRepositoryFactory -> g.g.d.b.b.m0:
+com.jiangxk.zhengyuansmallclassroom.injection.module.SplashModule_ProvideUserRepositoryFactory -> g.g.d.b.b.p0:
     com.jiangxk.zhengyuansmallclassroom.repository.user.UserRepository proxyProvideUserRepository(com.jiangxk.zhengyuansmallclassroom.injection.module.SplashModule) -> a
-com.jiangxk.zhengyuansmallclassroom.injection.module.SplashModule_ProvideViewFactory -> g.g.d.b.b.n0:
+com.jiangxk.zhengyuansmallclassroom.injection.module.SplashModule_ProvideViewFactory -> g.g.d.b.b.q0:
     com.jiangxk.zhengyuansmallclassroom.mvp.contract.splash.SplashContract$View proxyProvideView(com.jiangxk.zhengyuansmallclassroom.injection.module.SplashModule) -> a
-com.jiangxk.zhengyuansmallclassroom.injection.module.StatisticalLearningModule -> g.g.d.b.b.o0:
+com.jiangxk.zhengyuansmallclassroom.injection.module.StatisticalLearningModule -> g.g.d.b.b.r0:
     com.jiangxk.zhengyuansmallclassroom.repository.user.UserRepository userRepository -> b
     com.jiangxk.zhengyuansmallclassroom.mvp.contract.learning.StatisticalLearningContract$View view -> a
     com.jiangxk.zhengyuansmallclassroom.repository.user.UserRepository provideUserRespository() -> a
     com.jiangxk.zhengyuansmallclassroom.mvp.contract.learning.StatisticalLearningContract$View provideView() -> b
-com.jiangxk.zhengyuansmallclassroom.injection.module.StatisticalLearningModule_ProvideUserRespositoryFactory -> g.g.d.b.b.p0:
+com.jiangxk.zhengyuansmallclassroom.injection.module.StatisticalLearningModule_ProvideUserRespositoryFactory -> g.g.d.b.b.s0:
     com.jiangxk.zhengyuansmallclassroom.repository.user.UserRepository proxyProvideUserRespository(com.jiangxk.zhengyuansmallclassroom.injection.module.StatisticalLearningModule) -> a
-com.jiangxk.zhengyuansmallclassroom.injection.module.StatisticalLearningModule_ProvideViewFactory -> g.g.d.b.b.q0:
+com.jiangxk.zhengyuansmallclassroom.injection.module.StatisticalLearningModule_ProvideViewFactory -> g.g.d.b.b.t0:
     com.jiangxk.zhengyuansmallclassroom.mvp.contract.learning.StatisticalLearningContract$View proxyProvideView(com.jiangxk.zhengyuansmallclassroom.injection.module.StatisticalLearningModule) -> a
-com.jiangxk.zhengyuansmallclassroom.injection.module.SubjectPageModule -> g.g.d.b.b.r0:
+com.jiangxk.zhengyuansmallclassroom.injection.module.SubjectPageModule -> g.g.d.b.b.u0:
     com.jiangxk.zhengyuansmallclassroom.mvp.contract.course.SubjectPageContract$View view -> a
     com.jiangxk.zhengyuansmallclassroom.repository.course.CourseRepository courseRepository -> b
     com.jiangxk.zhengyuansmallclassroom.repository.course.CourseRepository provideCourseRepository() -> a
     com.jiangxk.zhengyuansmallclassroom.mvp.contract.course.SubjectPageContract$View provideView() -> b
-com.jiangxk.zhengyuansmallclassroom.injection.module.SubjectPageModule_ProvideCourseRepositoryFactory -> g.g.d.b.b.s0:
+com.jiangxk.zhengyuansmallclassroom.injection.module.SubjectPageModule_ProvideCourseRepositoryFactory -> g.g.d.b.b.v0:
     com.jiangxk.zhengyuansmallclassroom.repository.course.CourseRepository proxyProvideCourseRepository(com.jiangxk.zhengyuansmallclassroom.injection.module.SubjectPageModule) -> a
-com.jiangxk.zhengyuansmallclassroom.injection.module.SubjectPageModule_ProvideViewFactory -> g.g.d.b.b.t0:
+com.jiangxk.zhengyuansmallclassroom.injection.module.SubjectPageModule_ProvideViewFactory -> g.g.d.b.b.w0:
     com.jiangxk.zhengyuansmallclassroom.mvp.contract.course.SubjectPageContract$View proxyProvideView(com.jiangxk.zhengyuansmallclassroom.injection.module.SubjectPageModule) -> a
 com.jiangxk.zhengyuansmallclassroom.mvp.contract.course.CalligraphyCourseListContract$Presenter -> g.g.d.c.a.a.a:
 com.jiangxk.zhengyuansmallclassroom.mvp.contract.course.CalligraphyCourseListContract$View -> g.g.d.c.a.a.b:
@@ -33394,7 +33421,7 @@ com.jiangxk.zhengyuansmallclassroom.mvp.contract.course.CourseListPageContract$V
     void showCourseList(java.util.List) -> a
 com.jiangxk.zhengyuansmallclassroom.mvp.contract.course.CourseVideoPlayerContract$Presenter -> g.g.d.c.a.a.g:
 com.jiangxk.zhengyuansmallclassroom.mvp.contract.course.CourseVideoPlayerContract$View -> g.g.d.c.a.a.h:
-    void uploadSuccess(java.lang.String) -> b
+    void uploadSuccess(java.lang.String) -> c
 com.jiangxk.zhengyuansmallclassroom.mvp.contract.course.NodePageContract$Presenter -> g.g.d.c.a.a.i:
 com.jiangxk.zhengyuansmallclassroom.mvp.contract.course.NodePageContract$View -> g.g.d.c.a.a.j:
     void showNodeList(java.util.List) -> c
@@ -33417,25 +33444,29 @@ com.jiangxk.zhengyuansmallclassroom.mvp.contract.learning.StatisticalLearningCon
     void showLearningList(java.util.List) -> g
 com.jiangxk.zhengyuansmallclassroom.mvp.contract.login.LoginContract$Presenter -> g.g.d.c.a.d.a:
 com.jiangxk.zhengyuansmallclassroom.mvp.contract.login.LoginContract$View -> g.g.d.c.a.d.b:
-    void loginSuccess() -> i
+    void loginSuccess() -> j
+com.jiangxk.zhengyuansmallclassroom.mvp.contract.login.RegisterContract$Presenter -> g.g.d.c.a.d.c:
+com.jiangxk.zhengyuansmallclassroom.mvp.contract.login.RegisterContract$View -> g.g.d.c.a.d.d:
+    void showRegisterMethod(java.lang.String) -> b
+    void showDefaultMethod() -> h
 com.jiangxk.zhengyuansmallclassroom.mvp.contract.manager.LimitCoursePageContract$Presenter -> g.g.d.c.a.e.a:
 com.jiangxk.zhengyuansmallclassroom.mvp.contract.manager.LimitCoursePageContract$View -> g.g.d.c.a.e.b:
     void showLimitCourseList(java.util.List) -> b
     void showModifySuccessful(int) -> b
     void showSurplus(int) -> d
-    java.util.List getLimitCourseList() -> k
+    java.util.List getLimitCourseList() -> l
 com.jiangxk.zhengyuansmallclassroom.mvp.contract.manager.ManagerUserContract$Presenter -> g.g.d.c.a.e.c:
 com.jiangxk.zhengyuansmallclassroom.mvp.contract.manager.ManagerUserContract$View -> g.g.d.c.a.e.d:
     void showDeleteUserSuccessful(int) -> c
     void showUserList(java.util.List) -> h
-    void modifyPermissionsSuccessful() -> j
+    void modifyPermissionsSuccessful() -> k
 com.jiangxk.zhengyuansmallclassroom.mvp.contract.my.MyContract$Presenter -> g.g.d.c.a.f.a:
 com.jiangxk.zhengyuansmallclassroom.mvp.contract.my.MyContract$View -> g.g.d.c.a.f.b:
     void showUpdateDialog(java.lang.String,java.lang.String,boolean) -> a
     void showUser(com.jiangxk.zhengyuansmallclassroom.model.UserModel) -> a
 com.jiangxk.zhengyuansmallclassroom.mvp.contract.splash.SplashContract$Presenter -> g.g.d.c.a.g.a:
 com.jiangxk.zhengyuansmallclassroom.mvp.contract.splash.SplashContract$View -> g.g.d.c.a.g.b:
-    void authenticationComplete() -> l
+    void authenticationComplete() -> m
 com.jiangxk.zhengyuansmallclassroom.mvp.presenter.course.CalligraphyCourseListPresenter -> g.g.d.c.b.a.a:
     com.jiangxk.zhengyuansmallclassroom.repository.course.CourseRepository courseRepository -> c
     void access$addDisposable(com.jiangxk.zhengyuansmallclassroom.mvp.presenter.course.CalligraphyCourseListPresenter,io.reactivex.disposables.Disposable) -> a
@@ -33608,6 +33639,18 @@ com.jiangxk.zhengyuansmallclassroom.mvp.presenter.login.LoginPresenter$login$3 -
     void onSuccess(java.lang.Object) -> b
 com.jiangxk.zhengyuansmallclassroom.mvp.presenter.login.LoginPresenter_Factory -> g.g.d.c.b.d.b:
     com.jiangxk.zhengyuansmallclassroom.mvp.presenter.login.LoginPresenter newLoginPresenter(com.jiangxk.zhengyuansmallclassroom.repository.user.UserRepository) -> a
+com.jiangxk.zhengyuansmallclassroom.mvp.presenter.login.RegisterPresenter -> g.g.d.c.b.d.c:
+    com.jiangxk.zhengyuansmallclassroom.repository.user.UserRepository userRepository -> c
+    void access$addDisposable(com.jiangxk.zhengyuansmallclassroom.mvp.presenter.login.RegisterPresenter,io.reactivex.disposables.Disposable) -> a
+    void getRegisterMethod() -> d
+com.jiangxk.zhengyuansmallclassroom.mvp.presenter.login.RegisterPresenter$getRegisterMethod$1 -> g.g.d.c.b.d.c$a:
+    com.jiangxk.zhengyuansmallclassroom.mvp.presenter.login.RegisterPresenter this$0 -> g
+    void onError(java.lang.Throwable) -> a
+    void onSuccess(java.lang.String) -> a
+    void onDispose(io.reactivex.disposables.Disposable) -> b
+    void onSuccess(java.lang.Object) -> b
+com.jiangxk.zhengyuansmallclassroom.mvp.presenter.login.RegisterPresenter_Factory -> g.g.d.c.b.d.d:
+    com.jiangxk.zhengyuansmallclassroom.mvp.presenter.login.RegisterPresenter newRegisterPresenter(com.jiangxk.zhengyuansmallclassroom.repository.user.UserRepository) -> a
 com.jiangxk.zhengyuansmallclassroom.mvp.presenter.manager.LimitCoursePagePresenter -> g.g.d.c.b.e.a:
     com.jiangxk.zhengyuansmallclassroom.repository.course.CourseRepository courseRepository -> c
     void access$addDisposable(com.jiangxk.zhengyuansmallclassroom.mvp.presenter.manager.LimitCoursePagePresenter,io.reactivex.disposables.Disposable) -> a
@@ -33709,12 +33752,12 @@ com.jiangxk.zhengyuansmallclassroom.repository.ApiRepository -> g.g.d.d.a:
     com.jiangxk.zhengyuansmallclassroom.repository.AuthenticationService access$getAuthenticationService$p(com.jiangxk.zhengyuansmallclassroom.repository.ApiRepository) -> a
     boolean miniProgramResponseFilter(com.jiangxk.common.common.model.BaseMiniProgramModel) -> a
     com.jiangxk.common.http.RetrofitFactory access$getRetrofitFactory$p(com.jiangxk.zhengyuansmallclassroom.repository.ApiRepository) -> b
-    io.reactivex.Observable authentication() -> c
-    com.jiangxk.zhengyuansmallclassroom.repository.AuthenticationService getAuthenticationService() -> d
-    com.jiangxk.zhengyuansmallclassroom.repository.course.remote.CourseService getCourseService() -> e
-    io.reactivex.Observable getNewAccessTokenFromRemote() -> f
-    com.jiangxk.common.http.RetrofitFactory getRetrofitFactory() -> g
-    com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserService getUserService() -> h
+    io.reactivex.Observable authentication() -> d
+    com.jiangxk.zhengyuansmallclassroom.repository.AuthenticationService getAuthenticationService() -> e
+    com.jiangxk.zhengyuansmallclassroom.repository.course.remote.CourseService getCourseService() -> f
+    io.reactivex.Observable getNewAccessTokenFromRemote() -> g
+    com.jiangxk.common.http.RetrofitFactory getRetrofitFactory() -> h
+    com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserService getUserService() -> i
 com.jiangxk.zhengyuansmallclassroom.repository.ApiRepository$apiService$2 -> g.g.d.d.a$a:
     com.jiangxk.zhengyuansmallclassroom.repository.ApiRepository this$0 -> f
 com.jiangxk.zhengyuansmallclassroom.repository.ApiRepository$authenticationService$2 -> g.g.d.d.a$b:
@@ -33980,6 +34023,7 @@ com.jiangxk.zhengyuansmallclassroom.repository.user.UserRepository -> g.g.d.d.e.
     io.reactivex.Observable deleteUser(java.lang.String) -> b
     io.reactivex.Observable getManagerUserList(int,int) -> b
     io.reactivex.Observable modifyStatus(java.lang.String,int) -> b
+    io.reactivex.Observable getRegisterMethod() -> c
     io.reactivex.Observable modifyPermissions(java.lang.String,int) -> c
     io.reactivex.Observable getUserByOpenIdAndUserId(java.lang.String,int) -> d
     io.reactivex.Observable getRecentLearningLogList(java.lang.String,int) -> f
@@ -34010,6 +34054,7 @@ com.jiangxk.zhengyuansmallclassroom.repository.user.remote.IUserRemoteApi -> g.g
     io.reactivex.Observable deleteUser(java.lang.String) -> b
     io.reactivex.Observable getManagerUserList(int,int) -> b
     io.reactivex.Observable modifyStatus(java.lang.String,int) -> b
+    io.reactivex.Observable getRegisterMethod() -> c
     io.reactivex.Observable modifyPermissions(java.lang.String,int) -> c
     io.reactivex.Observable getUserByOpenIdAndUserId(java.lang.String,int) -> d
     io.reactivex.Observable getRecentLearningLogList(java.lang.String,int) -> f
@@ -34025,6 +34070,7 @@ com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi -> g.g.
     io.reactivex.Observable deleteUser(java.lang.String) -> b
     io.reactivex.Observable getManagerUserList(int,int) -> b
     io.reactivex.Observable modifyStatus(java.lang.String,int) -> b
+    io.reactivex.Observable getRegisterMethod() -> c
     io.reactivex.Observable modifyPermissions(java.lang.String,int) -> c
     io.reactivex.Observable getUserByOpenIdAndUserId(java.lang.String,int) -> d
     io.reactivex.Observable getRecentLearningLogList(java.lang.String,int) -> f
@@ -34116,91 +34162,105 @@ com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$getRece
     io.reactivex.Observable apply(com.jiangxk.common.common.model.BaseMiniProgramModel) -> a
     java.lang.Object apply(java.lang.Object) -> a
 com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$getRecentLearningLogList$3$$special$$inlined$getData$1 -> g.g.d.d.e.c.b$r$a:
-com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$getUserById$1 -> g.g.d.d.e.c.b$s:
+com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$getRegisterMethod$1 -> g.g.d.d.e.c.b$s:
+    com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi this$0 -> a
+    io.reactivex.Observable apply(java.lang.String) -> a
+    java.lang.Object apply(java.lang.Object) -> a
+com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$getRegisterMethod$2 -> g.g.d.d.e.c.b$t:
+    com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi this$0 -> a
+    boolean test(com.jiangxk.common.common.model.BaseMiniProgramModel) -> a
+    boolean test(java.lang.Object) -> a
+com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$getRegisterMethod$3 -> g.g.d.d.e.c.b$u:
+    com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$getRegisterMethod$3 INSTANCE -> a
+    io.reactivex.Observable apply(com.jiangxk.common.common.model.BaseMiniProgramModel) -> a
+    java.lang.Object apply(java.lang.Object) -> a
+com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$getRegisterMethod$3$$special$$inlined$getData$1 -> g.g.d.d.e.c.b$u$a:
+com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$getUserById$1 -> g.g.d.d.e.c.b$v:
     com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi this$0 -> a
     java.lang.String $docId -> b
     io.reactivex.Observable apply(java.lang.String) -> a
     java.lang.Object apply(java.lang.Object) -> a
-com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$getUserById$2 -> g.g.d.d.e.c.b$t:
+com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$getUserById$2 -> g.g.d.d.e.c.b$w:
     com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi this$0 -> a
     boolean test(com.jiangxk.common.common.model.BaseMiniProgramModel) -> a
     boolean test(java.lang.Object) -> a
-com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$getUserById$3 -> g.g.d.d.e.c.b$u:
+com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$getUserById$3 -> g.g.d.d.e.c.b$x:
     com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$getUserById$3 INSTANCE -> a
     io.reactivex.Observable apply(com.jiangxk.common.common.model.BaseMiniProgramModel) -> a
     java.lang.Object apply(java.lang.Object) -> a
-com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$getUserById$3$$special$$inlined$getData$1 -> g.g.d.d.e.c.b$u$a:
-com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$getUserByOpenIdAndUserId$1 -> g.g.d.d.e.c.b$v:
+com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$getUserById$3$$special$$inlined$getData$1 -> g.g.d.d.e.c.b$x$a:
+com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$getUserByOpenIdAndUserId$1 -> g.g.d.d.e.c.b$y:
     com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi this$0 -> a
     java.lang.String $openId -> b
     int $userId -> c
     io.reactivex.Observable apply(java.lang.String) -> a
     java.lang.Object apply(java.lang.Object) -> a
-com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$getUserByOpenIdAndUserId$2 -> g.g.d.d.e.c.b$w:
+com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$getUserByOpenIdAndUserId$2 -> g.g.d.d.e.c.b$z:
     com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi this$0 -> a
     boolean test(com.jiangxk.common.common.model.BaseMiniProgramModel) -> a
     boolean test(java.lang.Object) -> a
-com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$getUserByOpenIdAndUserId$3 -> g.g.d.d.e.c.b$x:
+com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$getUserByOpenIdAndUserId$3 -> g.g.d.d.e.c.b$a0:
     com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$getUserByOpenIdAndUserId$3 INSTANCE -> a
     io.reactivex.Observable apply(com.jiangxk.common.common.model.BaseMiniProgramModel) -> a
     java.lang.Object apply(java.lang.Object) -> a
-com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$getUserByOpenIdAndUserId$3$$special$$inlined$getData$1 -> g.g.d.d.e.c.b$x$a:
-com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$modifyPermissions$1 -> g.g.d.d.e.c.b$y:
+com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$getUserByOpenIdAndUserId$3$$special$$inlined$getData$1 -> g.g.d.d.e.c.b$a0$a:
+com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$modifyPermissions$1 -> g.g.d.d.e.c.b$b0:
     com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi this$0 -> a
     java.lang.String $docId -> b
     int $manager -> c
     io.reactivex.Observable apply(java.lang.String) -> a
     java.lang.Object apply(java.lang.Object) -> a
-com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$modifyPermissions$2 -> g.g.d.d.e.c.b$z:
+com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$modifyPermissions$2 -> g.g.d.d.e.c.b$c0:
     com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi this$0 -> a
     boolean test(com.jiangxk.common.common.model.BaseMiniProgramModel) -> a
     boolean test(java.lang.Object) -> a
-com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$modifyPermissions$3 -> g.g.d.d.e.c.b$a0:
+com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$modifyPermissions$3 -> g.g.d.d.e.c.b$d0:
     com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$modifyPermissions$3 INSTANCE -> a
     io.reactivex.Observable apply(com.jiangxk.common.common.model.BaseMiniProgramModel) -> a
     java.lang.Object apply(java.lang.Object) -> a
-com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$modifyPermissions$3$$special$$inlined$getData$1 -> g.g.d.d.e.c.b$a0$a:
-com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$modifyStatus$1 -> g.g.d.d.e.c.b$b0:
+com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$modifyPermissions$3$$special$$inlined$getData$1 -> g.g.d.d.e.c.b$d0$a:
+com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$modifyStatus$1 -> g.g.d.d.e.c.b$e0:
     com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi this$0 -> a
     java.lang.String $docId -> b
     int $status -> c
     io.reactivex.Observable apply(java.lang.String) -> a
     java.lang.Object apply(java.lang.Object) -> a
-com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$modifyStatus$2 -> g.g.d.d.e.c.b$c0:
+com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$modifyStatus$2 -> g.g.d.d.e.c.b$f0:
     com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi this$0 -> a
     boolean test(com.jiangxk.common.common.model.BaseMiniProgramModel) -> a
     boolean test(java.lang.Object) -> a
-com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$modifyStatus$3 -> g.g.d.d.e.c.b$d0:
+com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$modifyStatus$3 -> g.g.d.d.e.c.b$g0:
     com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$modifyStatus$3 INSTANCE -> a
     io.reactivex.Observable apply(com.jiangxk.common.common.model.BaseMiniProgramModel) -> a
     java.lang.Object apply(java.lang.Object) -> a
-com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$modifyStatus$3$$special$$inlined$getData$1 -> g.g.d.d.e.c.b$d0$a:
-com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$userLogin$1 -> g.g.d.d.e.c.b$e0:
+com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$modifyStatus$3$$special$$inlined$getData$1 -> g.g.d.d.e.c.b$g0$a:
+com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$userLogin$1 -> g.g.d.d.e.c.b$h0:
     com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi this$0 -> a
     java.lang.String $password -> c
     java.lang.String $phoneNumber -> b
     io.reactivex.Observable apply(java.lang.String) -> a
     java.lang.Object apply(java.lang.Object) -> a
-com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$userLogin$2 -> g.g.d.d.e.c.b$f0:
+com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$userLogin$2 -> g.g.d.d.e.c.b$i0:
     com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi this$0 -> a
     boolean test(com.jiangxk.common.common.model.BaseMiniProgramModel) -> a
     boolean test(java.lang.Object) -> a
-com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$userLogin$3 -> g.g.d.d.e.c.b$g0:
+com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$userLogin$3 -> g.g.d.d.e.c.b$j0:
     com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$userLogin$3 INSTANCE -> a
     io.reactivex.Observable apply(com.jiangxk.common.common.model.BaseMiniProgramModel) -> a
     java.lang.Object apply(java.lang.Object) -> a
-com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$userLogin$3$$special$$inlined$getData$1 -> g.g.d.d.e.c.b$g0$a:
+com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi$userLogin$3$$special$$inlined$getData$1 -> g.g.d.d.e.c.b$j0$a:
 com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserService -> g.g.d.d.e.c.c:
     io.reactivex.Observable getUserByOpenIdAndUserId(com.jiangxk.common.repository.QueryHashMap,okhttp3.RequestBody) -> a
-    io.reactivex.Observable getRecentLearningLogList(com.jiangxk.common.repository.QueryHashMap,okhttp3.RequestBody) -> b
-    io.reactivex.Observable deleteUser(com.jiangxk.common.repository.QueryHashMap,okhttp3.RequestBody) -> c
-    io.reactivex.Observable getUserById(com.jiangxk.common.repository.QueryHashMap,okhttp3.RequestBody) -> d
-    io.reactivex.Observable modifyStatus(com.jiangxk.common.repository.QueryHashMap,okhttp3.RequestBody) -> e
-    io.reactivex.Observable getManagerUserList(com.jiangxk.common.repository.QueryHashMap,okhttp3.RequestBody) -> f
-    io.reactivex.Observable userLogin(com.jiangxk.common.repository.QueryHashMap,okhttp3.RequestBody) -> g
-    io.reactivex.Observable modifyPermissions(com.jiangxk.common.repository.QueryHashMap,okhttp3.RequestBody) -> h
-    io.reactivex.Observable getLearningTotalDurationList(com.jiangxk.common.repository.QueryHashMap,okhttp3.RequestBody) -> i
-    io.reactivex.Observable getUserLearningOrderList(com.jiangxk.common.repository.QueryHashMap,okhttp3.RequestBody) -> j
+    io.reactivex.Observable getRegisterMethod(com.jiangxk.common.repository.QueryHashMap,okhttp3.RequestBody) -> b
+    io.reactivex.Observable getRecentLearningLogList(com.jiangxk.common.repository.QueryHashMap,okhttp3.RequestBody) -> c
+    io.reactivex.Observable deleteUser(com.jiangxk.common.repository.QueryHashMap,okhttp3.RequestBody) -> d
+    io.reactivex.Observable getUserById(com.jiangxk.common.repository.QueryHashMap,okhttp3.RequestBody) -> e
+    io.reactivex.Observable modifyStatus(com.jiangxk.common.repository.QueryHashMap,okhttp3.RequestBody) -> f
+    io.reactivex.Observable getManagerUserList(com.jiangxk.common.repository.QueryHashMap,okhttp3.RequestBody) -> g
+    io.reactivex.Observable userLogin(com.jiangxk.common.repository.QueryHashMap,okhttp3.RequestBody) -> h
+    io.reactivex.Observable modifyPermissions(com.jiangxk.common.repository.QueryHashMap,okhttp3.RequestBody) -> i
+    io.reactivex.Observable getLearningTotalDurationList(com.jiangxk.common.repository.QueryHashMap,okhttp3.RequestBody) -> j
+    io.reactivex.Observable getUserLearningOrderList(com.jiangxk.common.repository.QueryHashMap,okhttp3.RequestBody) -> k
 com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CalligraphyCourseListActivity -> com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CalligraphyCourseListActivity:
     com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter lRecyclerViewAdapter -> D
     int status -> J
@@ -34213,10 +34273,11 @@ com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CalligraphyCourseListActi
     int page -> G
     com.jiangxk.zhengyuansmallclassroom.model.ParameterModel parameterModel -> I
     com.jiangxk.zhengyuansmallclassroom.ui.adapter.CoursePageAdapter coursePageAdapter -> C
-    void initOperate() -> A
-    void initView() -> B
-    void setListener() -> G
-    void injectComponent() -> M
+    void initData() -> A
+    void initOperate() -> B
+    void initView() -> C
+    void setListener() -> H
+    void injectComponent() -> N
     com.jiangxk.zhengyuansmallclassroom.ui.adapter.CoursePageAdapter access$getCoursePageAdapter$p(com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CalligraphyCourseListActivity) -> a
     void access$setPage$p(com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CalligraphyCourseListActivity,int) -> a
     void showCourseList(java.util.List) -> a
@@ -34227,8 +34288,7 @@ com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CalligraphyCourseListActi
     int access$getStatus$p(com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CalligraphyCourseListActivity) -> e
     int access$getUserId$p(com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CalligraphyCourseListActivity) -> f
     android.view.View _$_findCachedViewById(int) -> h
-    int getLayoutId() -> y
-    void initData() -> z
+    int getLayoutId() -> z
 com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CalligraphyCourseListActivity$Companion -> com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CalligraphyCourseListActivity$a:
     void start(android.content.Context,com.jiangxk.zhengyuansmallclassroom.model.ParameterModel) -> a
 com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CalligraphyCourseListActivity$setListener$1 -> com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CalligraphyCourseListActivity$b:
@@ -34254,10 +34314,11 @@ com.jiangxk.zhengyuansmallclassroom.ui.activity.course.ChapterPageActivity -> co
     int pageSize -> I
     com.jiangxk.zhengyuansmallclassroom.model.ParameterModel parameterModel -> G
     com.jiangxk.zhengyuansmallclassroom.ui.activity.course.ChapterPageActivity$Companion Companion -> M
-    void initOperate() -> A
-    void initView() -> B
-    void setListener() -> G
-    void injectComponent() -> M
+    void initData() -> A
+    void initOperate() -> B
+    void initView() -> C
+    void setListener() -> H
+    void injectComponent() -> N
     com.jiangxk.zhengyuansmallclassroom.ui.adapter.ChapterPageAdapter access$getChapterAdapter$p(com.jiangxk.zhengyuansmallclassroom.ui.activity.course.ChapterPageActivity) -> a
     void access$setPage$p(com.jiangxk.zhengyuansmallclassroom.ui.activity.course.ChapterPageActivity,int) -> a
     void showLimitCount(int) -> a
@@ -34268,8 +34329,7 @@ com.jiangxk.zhengyuansmallclassroom.ui.activity.course.ChapterPageActivity -> co
     int access$getUserId$p(com.jiangxk.zhengyuansmallclassroom.ui.activity.course.ChapterPageActivity) -> f
     android.view.View _$_findCachedViewById(int) -> h
     void showChapterList(java.util.List) -> i
-    int getLayoutId() -> y
-    void initData() -> z
+    int getLayoutId() -> z
 com.jiangxk.zhengyuansmallclassroom.ui.activity.course.ChapterPageActivity$Companion -> com.jiangxk.zhengyuansmallclassroom.ui.activity.course.ChapterPageActivity$a:
     void start(android.content.Context,com.jiangxk.zhengyuansmallclassroom.model.ParameterModel) -> a
 com.jiangxk.zhengyuansmallclassroom.ui.activity.course.ChapterPageActivity$setListener$1 -> com.jiangxk.zhengyuansmallclassroom.ui.activity.course.ChapterPageActivity$b:
@@ -34293,10 +34353,11 @@ com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CourseListPageActivity ->
     com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CourseListPageActivity$Companion Companion -> K
     com.jiangxk.zhengyuansmallclassroom.model.ParameterModel parameterModel -> I
     com.jiangxk.zhengyuansmallclassroom.ui.adapter.CoursePageAdapter coursePageAdapter -> C
-    void initOperate() -> A
-    void initView() -> B
-    void setListener() -> G
-    void injectComponent() -> M
+    void initData() -> A
+    void initOperate() -> B
+    void initView() -> C
+    void setListener() -> H
+    void injectComponent() -> N
     com.jiangxk.zhengyuansmallclassroom.ui.adapter.CoursePageAdapter access$getCoursePageAdapter$p(com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CourseListPageActivity) -> a
     void access$setPage$p(com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CourseListPageActivity,int) -> a
     void showCourseList(java.util.List) -> a
@@ -34304,8 +34365,7 @@ com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CourseListPageActivity ->
     int access$getPageSize$p(com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CourseListPageActivity) -> c
     com.jiangxk.zhengyuansmallclassroom.model.ParameterModel access$getParameterModel$p(com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CourseListPageActivity) -> d
     android.view.View _$_findCachedViewById(int) -> h
-    int getLayoutId() -> y
-    void initData() -> z
+    int getLayoutId() -> z
 com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CourseListPageActivity$Companion -> com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CourseListPageActivity$a:
     void start(android.content.Context,com.jiangxk.zhengyuansmallclassroom.model.ParameterModel) -> a
 com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CourseListPageActivity$setListener$1 -> com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CourseListPageActivity$b:
@@ -34327,20 +34387,20 @@ com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CourseVideoPlayerActivity
     com.jiangxk.zhengyuansmallclassroom.model.ParameterModel parameterModel -> C
     java.lang.Long[] learningDurationArray -> F
     java.lang.String logId -> D
-    void initOperate() -> A
-    void initView() -> B
-    boolean isSetPaddingTop() -> D
-    void setListener() -> G
-    void injectComponent() -> M
-    com.shuyu.gsyvideoplayer.utils.OrientationUtils getOrientationUtils() -> N
+    void initData() -> A
+    void initOperate() -> B
+    void initView() -> C
+    boolean isSetPaddingTop() -> E
+    void setListener() -> H
+    void injectComponent() -> N
+    com.shuyu.gsyvideoplayer.utils.OrientationUtils getOrientationUtils() -> O
     java.lang.Long[] access$getLearningDurationArray$p(com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CourseVideoPlayerActivity) -> a
     void access$setLearningDurationArray$p(com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CourseVideoPlayerActivity,java.lang.Long[]) -> a
     void access$setLearningStart$p(com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CourseVideoPlayerActivity,long) -> a
     long access$getLearningStart$p(com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CourseVideoPlayerActivity) -> b
-    void uploadSuccess(java.lang.String) -> b
+    void uploadSuccess(java.lang.String) -> c
     android.view.View _$_findCachedViewById(int) -> h
-    int getLayoutId() -> y
-    void initData() -> z
+    int getLayoutId() -> z
 com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CourseVideoPlayerActivity$Companion -> com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CourseVideoPlayerActivity$a:
     void start(android.content.Context,com.jiangxk.zhengyuansmallclassroom.model.ParameterModel) -> a
 com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CourseVideoPlayerActivity$initView$1 -> com.jiangxk.zhengyuansmallclassroom.ui.activity.course.CourseVideoPlayerActivity$b:
@@ -34364,16 +34424,16 @@ com.jiangxk.zhengyuansmallclassroom.ui.activity.course.NodePageActivity -> com.j
     com.jiangxk.zhengyuansmallclassroom.ui.activity.course.NodePageActivity$Companion Companion -> F
     com.jiangxk.zhengyuansmallclassroom.model.ParameterModel parameterModel -> D
     java.util.HashMap _$_findViewCache -> E
-    void initOperate() -> A
-    void initView() -> B
-    void setListener() -> G
-    void injectComponent() -> M
+    void initData() -> A
+    void initOperate() -> B
+    void initView() -> C
+    void setListener() -> H
+    void injectComponent() -> N
     com.jiangxk.zhengyuansmallclassroom.ui.adapter.NodePageAdapter access$getNodeAdapter$p(com.jiangxk.zhengyuansmallclassroom.ui.activity.course.NodePageActivity) -> a
     com.jiangxk.zhengyuansmallclassroom.model.ParameterModel access$getParameterModel$p(com.jiangxk.zhengyuansmallclassroom.ui.activity.course.NodePageActivity) -> b
     void showNodeList(java.util.List) -> c
     android.view.View _$_findCachedViewById(int) -> h
-    int getLayoutId() -> y
-    void initData() -> z
+    int getLayoutId() -> z
 com.jiangxk.zhengyuansmallclassroom.ui.activity.course.NodePageActivity$Companion -> com.jiangxk.zhengyuansmallclassroom.ui.activity.course.NodePageActivity$a:
     void start(android.content.Context,com.jiangxk.zhengyuansmallclassroom.model.ParameterModel) -> a
 com.jiangxk.zhengyuansmallclassroom.ui.activity.course.NodePageActivity$initView$2 -> com.jiangxk.zhengyuansmallclassroom.ui.activity.course.NodePageActivity$b:
@@ -34386,16 +34446,16 @@ com.jiangxk.zhengyuansmallclassroom.ui.activity.course.SubjectPageActivity -> co
     com.jiangxk.zhengyuansmallclassroom.ui.adapter.SubjectPageAdapter subjectAdapter -> C
     com.jiangxk.zhengyuansmallclassroom.model.ParameterModel parameterModel -> D
     java.util.HashMap _$_findViewCache -> E
-    void initOperate() -> A
-    void initView() -> B
-    void setListener() -> G
-    void injectComponent() -> M
+    void initData() -> A
+    void initOperate() -> B
+    void initView() -> C
+    void setListener() -> H
+    void injectComponent() -> N
     com.jiangxk.zhengyuansmallclassroom.model.ParameterModel access$getParameterModel$p(com.jiangxk.zhengyuansmallclassroom.ui.activity.course.SubjectPageActivity) -> a
     com.jiangxk.zhengyuansmallclassroom.ui.adapter.SubjectPageAdapter access$getSubjectAdapter$p(com.jiangxk.zhengyuansmallclassroom.ui.activity.course.SubjectPageActivity) -> b
     void showSubjectList(java.util.List) -> f
     android.view.View _$_findCachedViewById(int) -> h
-    int getLayoutId() -> y
-    void initData() -> z
+    int getLayoutId() -> z
 com.jiangxk.zhengyuansmallclassroom.ui.activity.course.SubjectPageActivity$Companion -> com.jiangxk.zhengyuansmallclassroom.ui.activity.course.SubjectPageActivity$a:
     void start(android.content.Context,com.jiangxk.zhengyuansmallclassroom.model.ParameterModel) -> a
 com.jiangxk.zhengyuansmallclassroom.ui.activity.course.SubjectPageActivity$initView$2 -> com.jiangxk.zhengyuansmallclassroom.ui.activity.course.SubjectPageActivity$b:
@@ -34406,15 +34466,15 @@ com.jiangxk.zhengyuansmallclassroom.ui.activity.course.SubjectPageActivity$setLi
 com.jiangxk.zhengyuansmallclassroom.ui.activity.home.HomeActivity -> com.jiangxk.zhengyuansmallclassroom.ui.activity.home.HomeActivity:
     com.jiangxk.zhengyuansmallclassroom.ui.activity.home.HomeActivity$Companion Companion -> D
     long clickTime -> C
-    void initView() -> B
-    void injectComponent() -> M
-    void exit() -> N
-    void requestPermissions() -> O
+    void initData() -> A
+    void initView() -> C
+    void injectComponent() -> N
+    void exit() -> O
+    void requestPermissions() -> P
     void onPermissionsDenied(int,java.util.List) -> a
     void showUpdateDialog(java.lang.String,java.lang.String,boolean) -> a
     void onPermissionsGranted(int,java.util.List) -> b
-    int getLayoutId() -> y
-    void initData() -> z
+    int getLayoutId() -> z
 com.jiangxk.zhengyuansmallclassroom.ui.activity.home.HomeActivity$Companion -> com.jiangxk.zhengyuansmallclassroom.ui.activity.home.HomeActivity$a:
     void start(android.content.Context) -> a
 com.jiangxk.zhengyuansmallclassroom.ui.activity.home.HomeActivity$initView$$inlined$AppBarConfiguration$1 -> com.jiangxk.zhengyuansmallclassroom.ui.activity.home.HomeActivity$b:
@@ -34429,17 +34489,17 @@ com.jiangxk.zhengyuansmallclassroom.ui.activity.learning.LearningOrderActivity -
     com.github.jdsjlzx.view.LoadingFooter loadingFooter -> F
     int page -> G
     com.jiangxk.zhengyuansmallclassroom.ui.adapter.LearningOrderAdapter learningOrderAdapter -> C
-    void initView() -> B
-    void setListener() -> G
-    void injectComponent() -> M
+    void initData() -> A
+    void initView() -> C
+    void setListener() -> H
+    void injectComponent() -> N
     com.jiangxk.zhengyuansmallclassroom.ui.adapter.LearningOrderAdapter access$getLearningOrderAdapter$p(com.jiangxk.zhengyuansmallclassroom.ui.activity.learning.LearningOrderActivity) -> a
     void access$setPage$p(com.jiangxk.zhengyuansmallclassroom.ui.activity.learning.LearningOrderActivity,int) -> a
     int access$getPage$p(com.jiangxk.zhengyuansmallclassroom.ui.activity.learning.LearningOrderActivity) -> b
     int access$getPageSize$p(com.jiangxk.zhengyuansmallclassroom.ui.activity.learning.LearningOrderActivity) -> c
     void showLearningOrderList(java.util.List) -> d
     android.view.View _$_findCachedViewById(int) -> h
-    int getLayoutId() -> y
-    void initData() -> z
+    int getLayoutId() -> z
 com.jiangxk.zhengyuansmallclassroom.ui.activity.learning.LearningOrderActivity$Companion -> com.jiangxk.zhengyuansmallclassroom.ui.activity.learning.LearningOrderActivity$a:
     void start(android.content.Context) -> a
 com.jiangxk.zhengyuansmallclassroom.ui.activity.learning.LearningOrderActivity$setListener$1 -> com.jiangxk.zhengyuansmallclassroom.ui.activity.learning.LearningOrderActivity$b:
@@ -34461,41 +34521,58 @@ com.jiangxk.zhengyuansmallclassroom.ui.activity.learning.StatisticalLearningActi
     java.util.ArrayList mDateList -> D
     java.util.ArrayList mDataList -> C
     java.lang.String openId -> E
-    void initOperate() -> A
-    void initView() -> B
-    void injectComponent() -> M
+    void initData() -> A
+    void initOperate() -> B
+    void initView() -> C
+    void injectComponent() -> N
     void showTotalDuration(long) -> a
     void showUser(com.jiangxk.zhengyuansmallclassroom.model.UserModel) -> a
     void showLearningList(java.util.List) -> g
     android.view.View _$_findCachedViewById(int) -> h
-    int getLayoutId() -> y
-    void initData() -> z
+    int getLayoutId() -> z
 com.jiangxk.zhengyuansmallclassroom.ui.activity.learning.StatisticalLearningActivity$Companion -> com.jiangxk.zhengyuansmallclassroom.ui.activity.learning.StatisticalLearningActivity$a:
     void start(android.content.Context,com.jiangxk.zhengyuansmallclassroom.model.UserModel) -> a
     void start(android.content.Context,java.lang.String,int) -> a
 com.jiangxk.zhengyuansmallclassroom.ui.activity.login.LoginActivity -> com.jiangxk.zhengyuansmallclassroom.ui.activity.login.LoginActivity:
     com.jiangxk.zhengyuansmallclassroom.ui.activity.login.LoginActivity$Companion Companion -> D
     java.util.HashMap _$_findViewCache -> C
-    void initView() -> B
-    boolean isSetPaddingTop() -> D
-    void injectComponent() -> M
+    void initData() -> A
+    void initView() -> C
+    boolean isSetPaddingTop() -> E
+    void injectComponent() -> N
     android.view.View _$_findCachedViewById(int) -> h
-    void loginSuccess() -> i
-    int getLayoutId() -> y
-    void initData() -> z
+    void loginSuccess() -> j
+    int getLayoutId() -> z
 com.jiangxk.zhengyuansmallclassroom.ui.activity.login.LoginActivity$Companion -> com.jiangxk.zhengyuansmallclassroom.ui.activity.login.LoginActivity$a:
     void start(android.content.Context) -> a
 com.jiangxk.zhengyuansmallclassroom.ui.activity.login.LoginActivity$initView$1 -> com.jiangxk.zhengyuansmallclassroom.ui.activity.login.LoginActivity$b:
     com.jiangxk.zhengyuansmallclassroom.ui.activity.login.LoginActivity this$0 -> f
+com.jiangxk.zhengyuansmallclassroom.ui.activity.login.LoginActivity$initView$2 -> com.jiangxk.zhengyuansmallclassroom.ui.activity.login.LoginActivity$c:
+    com.jiangxk.zhengyuansmallclassroom.ui.activity.login.LoginActivity this$0 -> f
+com.jiangxk.zhengyuansmallclassroom.ui.activity.login.RegisterActivity -> com.jiangxk.zhengyuansmallclassroom.ui.activity.login.RegisterActivity:
+    com.jiangxk.zhengyuansmallclassroom.ui.activity.login.RegisterActivity$Companion Companion -> D
+    java.util.HashMap _$_findViewCache -> C
+    void initData() -> A
+    void initView() -> C
+    void injectComponent() -> N
+    void showRegisterMethod(java.lang.String) -> b
+    android.view.View _$_findCachedViewById(int) -> h
+    void showDefaultMethod() -> h
+    int getLayoutId() -> z
+com.jiangxk.zhengyuansmallclassroom.ui.activity.login.RegisterActivity$Companion -> com.jiangxk.zhengyuansmallclassroom.ui.activity.login.RegisterActivity$a:
+    void start(android.content.Context) -> a
+com.jiangxk.zhengyuansmallclassroom.ui.activity.login.RegisterActivity$initView$1 -> com.jiangxk.zhengyuansmallclassroom.ui.activity.login.RegisterActivity$b:
+    com.jiangxk.zhengyuansmallclassroom.ui.activity.login.RegisterActivity this$0 -> f
 com.jiangxk.zhengyuansmallclassroom.ui.activity.manager.LimitCoursePageActivity -> com.jiangxk.zhengyuansmallclassroom.ui.activity.manager.LimitCoursePageActivity:
     com.jiangxk.zhengyuansmallclassroom.model.UserParameter user -> D
     com.jiangxk.zhengyuansmallclassroom.ui.adapter.LimitCourseAdapter nodeAdapter -> C
     java.util.HashMap _$_findViewCache -> E
     com.jiangxk.zhengyuansmallclassroom.ui.activity.manager.LimitCoursePageActivity$Companion Companion -> F
-    void initOperate() -> A
-    void initView() -> B
-    void setListener() -> G
-    void injectComponent() -> M
+    void initData() -> A
+    void initOperate() -> B
+    void initView() -> C
+    void setListener() -> H
+    void injectComponent() -> N
     com.jiangxk.zhengyuansmallclassroom.ui.adapter.LimitCourseAdapter access$getNodeAdapter$p(com.jiangxk.zhengyuansmallclassroom.ui.activity.manager.LimitCoursePageActivity) -> a
     void modifyLimitCount(int,int,com.jiangxk.zhengyuansmallclassroom.model.NodeLimitModel) -> a
     void showModifyLimitCount(int,com.jiangxk.zhengyuansmallclassroom.model.NodeLimitModel) -> a
@@ -34506,9 +34583,8 @@ com.jiangxk.zhengyuansmallclassroom.ui.activity.manager.LimitCoursePageActivity 
     void showOperatorDialog(int,com.jiangxk.zhengyuansmallclassroom.model.NodeLimitModel) -> c
     void showSurplus(int) -> d
     android.view.View _$_findCachedViewById(int) -> h
-    java.util.List getLimitCourseList() -> k
-    int getLayoutId() -> y
-    void initData() -> z
+    java.util.List getLimitCourseList() -> l
+    int getLayoutId() -> z
 com.jiangxk.zhengyuansmallclassroom.ui.activity.manager.LimitCoursePageActivity$Companion -> com.jiangxk.zhengyuansmallclassroom.ui.activity.manager.LimitCoursePageActivity$a:
     void start(android.content.Context,com.jiangxk.zhengyuansmallclassroom.model.UserModel) -> a
 com.jiangxk.zhengyuansmallclassroom.ui.activity.manager.LimitCoursePageActivity$setListener$1 -> com.jiangxk.zhengyuansmallclassroom.ui.activity.manager.LimitCoursePageActivity$b:
@@ -34542,9 +34618,10 @@ com.jiangxk.zhengyuansmallclassroom.ui.activity.manager.ManagerUserActivity -> c
     com.github.jdsjlzx.view.LoadingFooter loadingFooter -> F
     java.util.HashMap _$_findViewCache -> K
     int page -> G
-    void initView() -> B
-    void setListener() -> G
-    void injectComponent() -> M
+    void initData() -> A
+    void initView() -> C
+    void setListener() -> H
+    void injectComponent() -> N
     int access$getPage$p(com.jiangxk.zhengyuansmallclassroom.ui.activity.manager.ManagerUserActivity) -> a
     void access$limitCount(com.jiangxk.zhengyuansmallclassroom.ui.activity.manager.ManagerUserActivity,com.jiangxk.zhengyuansmallclassroom.model.UserModel) -> a
     void access$setPage$p(com.jiangxk.zhengyuansmallclassroom.ui.activity.manager.ManagerUserActivity,int) -> a
@@ -34564,9 +34641,8 @@ com.jiangxk.zhengyuansmallclassroom.ui.activity.manager.ManagerUserActivity -> c
     void showOperatorDialog(com.jiangxk.zhengyuansmallclassroom.model.UserModel) -> e
     android.view.View _$_findCachedViewById(int) -> h
     void showUserList(java.util.List) -> h
-    void modifyPermissionsSuccessful() -> j
-    int getLayoutId() -> y
-    void initData() -> z
+    void modifyPermissionsSuccessful() -> k
+    int getLayoutId() -> z
 com.jiangxk.zhengyuansmallclassroom.ui.activity.manager.ManagerUserActivity$Companion -> com.jiangxk.zhengyuansmallclassroom.ui.activity.manager.ManagerUserActivity$a:
     void start(android.content.Context) -> a
 com.jiangxk.zhengyuansmallclassroom.ui.activity.manager.ManagerUserActivity$modifyPermissions$1 -> com.jiangxk.zhengyuansmallclassroom.ui.activity.manager.ManagerUserActivity$b:
@@ -34604,13 +34680,13 @@ com.jiangxk.zhengyuansmallclassroom.ui.activity.manager.ManagerUserActivity$show
     com.jiangxk.zhengyuansmallclassroom.model.UserModel $user -> b
     void onItemClick(int) -> a
 com.jiangxk.zhengyuansmallclassroom.ui.activity.splash.SplashActivity -> com.jiangxk.zhengyuansmallclassroom.ui.activity.splash.SplashActivity:
-    void initView() -> B
-    boolean isSetPaddingTop() -> D
-    boolean isSetStateBar() -> E
-    void injectComponent() -> M
-    void authenticationComplete() -> l
-    int getLayoutId() -> y
-    void initData() -> z
+    void initData() -> A
+    void initView() -> C
+    boolean isSetPaddingTop() -> E
+    boolean isSetStateBar() -> F
+    void injectComponent() -> N
+    void authenticationComplete() -> m
+    int getLayoutId() -> z
 com.jiangxk.zhengyuansmallclassroom.ui.activity.splash.SplashActivity$Companion -> com.jiangxk.zhengyuansmallclassroom.ui.activity.splash.SplashActivity$a:
 com.jiangxk.zhengyuansmallclassroom.ui.activity.splash.SplashActivity$authenticationComplete$1 -> com.jiangxk.zhengyuansmallclassroom.ui.activity.splash.SplashActivity$b:
     long $loginTimestamp -> g
@@ -34660,18 +34736,18 @@ com.jiangxk.zhengyuansmallclassroom.ui.dialog.CheckForUpdatesDialog -> com.jiang
     java.lang.String updateInfo -> s0
     java.lang.String apkUrl -> q0
     java.lang.Boolean isForce -> r0
-    void _$_clearFindViewByIdCache() -> B0
-    int getLayoutId() -> G0
-    void initData() -> H0
-    void initView() -> K0
-    void setListener() -> N0
+    void _$_clearFindViewByIdCache() -> C0
+    int getLayoutId() -> H0
+    void initData() -> I0
+    void initView() -> L0
+    void setListener() -> O0
     void access$downloadFromBrowser(com.jiangxk.zhengyuansmallclassroom.ui.dialog.CheckForUpdatesDialog,java.lang.String) -> a
     java.lang.String access$getApkUrl$p(com.jiangxk.zhengyuansmallclassroom.ui.dialog.CheckForUpdatesDialog) -> a
     void autoInstall(java.io.File) -> a
     void onPermissionsDenied(int,java.util.List) -> a
     void onPermissionsGranted(int,java.util.List) -> b
-    void onDestroyView() -> c0
-    void downloadFromBrowser(java.lang.String) -> f
+    void onDestroyView() -> d0
+    void downloadFromBrowser(java.lang.String) -> g
     android.view.View _$_findCachedViewById(int) -> i
 com.jiangxk.zhengyuansmallclassroom.ui.dialog.CheckForUpdatesDialog$Builder -> com.jiangxk.zhengyuansmallclassroom.ui.dialog.CheckForUpdatesDialog$a:
     java.lang.String apkUrl -> a
@@ -34693,16 +34769,16 @@ com.jiangxk.zhengyuansmallclassroom.ui.fragment.home.HomeFragment -> com.jiangxk
     com.jiangxk.zhengyuansmallclassroom.ui.fragment.home.HomeViewModel homeViewModel -> j0
     com.jiangxk.zhengyuansmallclassroom.ui.adapter.HomeGradeAdapter homeGradeAdapter -> k0
     java.util.HashMap _$_findViewCache -> l0
-    void initOperate() -> A0
-    void initView() -> B0
-    void injectComponent() -> K0
+    void initData() -> A0
+    void initOperate() -> B0
+    void initView() -> C0
+    void injectComponent() -> L0
     com.jiangxk.zhengyuansmallclassroom.ui.adapter.HomeGradeAdapter access$getHomeGradeAdapter$p(com.jiangxk.zhengyuansmallclassroom.ui.fragment.home.HomeFragment) -> a
-    void onDestroyView() -> c0
+    void onDestroyView() -> d0
     void showGradeList(java.util.List) -> e
     android.view.View _$_findCachedViewById(int) -> i
-    void _$_clearFindViewByIdCache() -> w0
-    int getLayoutId() -> y0
-    void initData() -> z0
+    void _$_clearFindViewByIdCache() -> x0
+    int getLayoutId() -> z0
 com.jiangxk.zhengyuansmallclassroom.ui.fragment.home.HomeFragment$initOperate$1 -> com.jiangxk.zhengyuansmallclassroom.ui.fragment.home.HomeFragment$a:
     com.jiangxk.zhengyuansmallclassroom.ui.fragment.home.HomeFragment$initOperate$1 INSTANCE -> a
     void onChanged(java.lang.Object) -> a
@@ -34719,19 +34795,21 @@ com.jiangxk.zhengyuansmallclassroom.ui.fragment.my.MyFragment -> com.jiangxk.zhe
     com.jiangxk.zhengyuansmallclassroom.ui.fragment.my.MyViewModel myViewModel -> j0
     java.util.HashMap _$_findViewCache -> m0
     com.jiangxk.zhengyuansmallclassroom.model.UserModel user -> l0
-    void initOperate() -> A0
-    void initView() -> B0
-    void setListener() -> F0
-    void injectComponent() -> K0
+    void initData() -> A0
+    void initOperate() -> B0
+    void initView() -> C0
+    void setListener() -> G0
+    void injectComponent() -> L0
+    void logout() -> M0
     int access$getStatus$p(com.jiangxk.zhengyuansmallclassroom.ui.fragment.my.MyFragment) -> a
     void showUpdateDialog(java.lang.String,java.lang.String,boolean) -> a
     void showUser(com.jiangxk.zhengyuansmallclassroom.model.UserModel) -> a
     com.jiangxk.zhengyuansmallclassroom.model.UserModel access$getUser$p(com.jiangxk.zhengyuansmallclassroom.ui.fragment.my.MyFragment) -> b
-    void onDestroyView() -> c0
+    void access$logout(com.jiangxk.zhengyuansmallclassroom.ui.fragment.my.MyFragment) -> c
+    void onDestroyView() -> d0
     android.view.View _$_findCachedViewById(int) -> i
-    void _$_clearFindViewByIdCache() -> w0
-    int getLayoutId() -> y0
-    void initData() -> z0
+    void _$_clearFindViewByIdCache() -> x0
+    int getLayoutId() -> z0
 com.jiangxk.zhengyuansmallclassroom.ui.fragment.my.MyFragment$initOperate$1 -> com.jiangxk.zhengyuansmallclassroom.ui.fragment.my.MyFragment$a:
     com.jiangxk.zhengyuansmallclassroom.ui.fragment.my.MyFragment$initOperate$1 INSTANCE -> a
     void onChanged(java.lang.Object) -> a
@@ -34745,7 +34823,7 @@ com.jiangxk.zhengyuansmallclassroom.ui.fragment.my.MyFragment$setListener$3 -> c
 com.jiangxk.zhengyuansmallclassroom.ui.fragment.my.MyFragment$setListener$4 -> com.jiangxk.zhengyuansmallclassroom.ui.fragment.my.MyFragment$e:
     com.jiangxk.zhengyuansmallclassroom.ui.fragment.my.MyFragment this$0 -> f
 com.jiangxk.zhengyuansmallclassroom.ui.fragment.my.MyFragment$setListener$5 -> com.jiangxk.zhengyuansmallclassroom.ui.fragment.my.MyFragment$f:
-    com.jiangxk.zhengyuansmallclassroom.ui.fragment.my.MyFragment$setListener$5 INSTANCE -> f
+    com.jiangxk.zhengyuansmallclassroom.ui.fragment.my.MyFragment this$0 -> f
 com.jiangxk.zhengyuansmallclassroom.ui.fragment.my.MyViewModel -> g.g.d.e.b.b.a:
     androidx.lifecycle.MutableLiveData _text -> c
     androidx.lifecycle.LiveData text -> d
@@ -35191,11 +35269,11 @@ com.roughike.bottombar.VerticalScrollingBehavior -> g.i.a.u:
     void onStopNestedScroll(androidx.coordinatorlayout.widget.CoordinatorLayout,android.view.View,android.view.View) -> d
 com.shuyu.gsyvideoplayer.GSYBaseADActivityDetail -> com.shuyu.gsyvideoplayer.GSYBaseADActivityDetail:
     com.shuyu.gsyvideoplayer.utils.OrientationUtils mADOrientationUtils -> B
-    com.shuyu.gsyvideoplayer.video.GSYADVideoPlayer getGSYADVideoPlayer() -> C
-    boolean isADStarted() -> D
-    boolean isNeedAdOnStart() -> E
-    void showADFull() -> F
-    void startAdPlay() -> G
+    com.shuyu.gsyvideoplayer.video.GSYADVideoPlayer getGSYADVideoPlayer() -> D
+    boolean isADStarted() -> E
+    boolean isNeedAdOnStart() -> F
+    void showADFull() -> G
+    void startAdPlay() -> H
     void onPrepared(java.lang.String,java.lang.Object[]) -> d
     void onEnterFullscreen(java.lang.String,java.lang.Object[]) -> e
     void onStartPrepared(java.lang.String,java.lang.Object[]) -> i
@@ -35203,8 +35281,9 @@ com.shuyu.gsyvideoplayer.GSYBaseActivityDetail -> com.shuyu.gsyvideoplayer.GSYBa
     boolean isPlay -> y
     boolean isPause -> z
     com.shuyu.gsyvideoplayer.utils.OrientationUtils orientationUtils -> A
-    boolean hideStatusBarWhenFull() -> A
-    boolean isAutoFullWithSize() -> B
+    boolean hideActionBarWhenFull() -> A
+    boolean hideStatusBarWhenFull() -> B
+    boolean isAutoFullWithSize() -> C
     void onTouchScreenSeekPosition(java.lang.String,java.lang.Object[]) -> a
     void onClickBlankFullscreen(java.lang.String,java.lang.Object[]) -> b
     void onClickSeekbar(java.lang.String,java.lang.Object[]) -> c
@@ -35226,9 +35305,8 @@ com.shuyu.gsyvideoplayer.GSYBaseActivityDetail -> com.shuyu.gsyvideoplayer.GSYBa
     void onTouchScreenSeekVolume(java.lang.String,java.lang.Object[]) -> s
     void onClickBlank(java.lang.String,java.lang.Object[]) -> t
     void onClickStop(java.lang.String,java.lang.Object[]) -> u
-    boolean getDetailOrientationRotateAuto() -> x
-    com.shuyu.gsyvideoplayer.video.base.GSYBaseVideoPlayer getGSYVideoPlayer() -> y
-    boolean hideActionBarWhenFull() -> z
+    boolean getDetailOrientationRotateAuto() -> y
+    com.shuyu.gsyvideoplayer.video.base.GSYBaseVideoPlayer getGSYVideoPlayer() -> z
 com.shuyu.gsyvideoplayer.GSYVideoADManager -> g.j.a.a:
     com.shuyu.gsyvideoplayer.GSYVideoADManager videoManager -> t
     int SMALL_ID -> r
@@ -36407,6 +36485,7 @@ com.tencent.smtt.export.external.interfaces.IX5WebChromeClient$CustomViewCallbac
 com.tencent.smtt.export.external.interfaces.IX5WebSettings -> g.k.a.a.a.f.h:
 com.tencent.smtt.export.external.interfaces.IX5WebViewBase -> g.k.a.a.a.f.i:
     java.lang.String getOriginalUrl() -> a
+    void loadData(java.lang.String,java.lang.String,java.lang.String) -> a
     void loadDataWithBaseURL(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) -> a
     void removeJavascriptInterface(java.lang.String) -> a
     void setBackgroundColor(int) -> a
@@ -36747,6 +36826,7 @@ com.tencent.smtt.sdk.WebView -> com.tencent.smtt.sdk.WebView:
     com.tencent.smtt.sdk.WebView$a g -> h
     void b(com.tencent.smtt.sdk.WebView,int,int,int,int) -> a
     boolean b(android.content.Context) -> a
+    void loadData(java.lang.String,java.lang.String,java.lang.String) -> a
     void loadDataWithBaseURL(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) -> a
     void removeJavascriptInterface(java.lang.String) -> a
     void c(android.content.Context) -> b
@@ -54485,7 +54565,7 @@ pub.devrel.easypermissions.RationaleDialogFragmentCompat -> pub.devrel.easypermi
     pub.devrel.easypermissions.RationaleDialogFragmentCompat newInstance(java.lang.String,java.lang.String,java.lang.String,int,int,java.lang.String[]) -> a
     void onAttach(android.content.Context) -> a
     void showAllowingStateLoss(androidx.fragment.app.FragmentManager,java.lang.String) -> b
-    void onDetach() -> d0
+    void onDetach() -> e0
     android.app.Dialog onCreateDialog(android.os.Bundle) -> n
 pub.devrel.easypermissions.helper.ActivityPermissionHelper -> q.a.a.h.a:
     void directRequestPermissions(int,java.lang.String[]) -> a

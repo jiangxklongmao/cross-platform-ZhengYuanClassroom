@@ -2539,8 +2539,8 @@ androidx.navigation.ui.NavigationUI$2
 androidx.core.app.JobIntentService$CompatWorkEnqueuer
     void enqueueWork(android.content.Intent)
 org.mozilla.javascript.ast.ObjectProperty
-androidx.swiperefreshlayout.R$string
 androidx.activity.R$dimen
+androidx.swiperefreshlayout.R$string
 com.google.android.exoplayer2.text.ttml.TtmlStyle$FontSizeUnit
 com.github.jdsjlzx.progressindicator.indicators.BallClipRotatePulseIndicator$3
 com.youth.banner.transformer.CubeInTransformer
@@ -3223,8 +3223,8 @@ com.shuyu.gsyvideoplayer.player.PlayerFactory
 kotlinx.coroutines.flow.FlowKt__MigrationKt$switchMap$$inlined$flatMapLatest$1
 com.tencent.smtt.sdk.MimeTypeMap
 org.mozilla.javascript.tools.shell.JavaPolicySecurity$3
-io.reactivex.internal.operators.observable.ObservableTakeUntil$TakeUntilMainObserver$OtherObserver
 com.danikula.videocache.file.TotalCountLruDiskUsage
+io.reactivex.internal.operators.observable.ObservableTakeUntil$TakeUntilMainObserver$OtherObserver
 org.jetbrains.anko.db.CursorMapSequence
 com.jiangxk.zhengyuansmallclassroom.R$xml
 com.google.android.material.snackbar.BaseTransientBottomBar$9
@@ -10027,9 +10027,9 @@ io.reactivex.internal.observers.BasicIntQueueDisposable
     public final boolean offer(java.lang.Object,java.lang.Object)
     private static final long serialVersionUID
 androidx.navigation.fragment.FragmentNavigator$Extras$Builder
-io.reactivex.internal.operators.observable.ObservableDoFinally
 retrofit2.Platform$Android
     int defaultCallAdapterFactoriesSize()
+io.reactivex.internal.operators.observable.ObservableDoFinally
 kotlinx.coroutines.channels.ChannelsKt__Channels_commonKt$foldIndexed$1
 org.mozilla.javascript.ast.Loop
 com.alibaba.android.arouter.utils.MapUtils
@@ -11393,6 +11393,8 @@ io.reactivex.internal.operators.observable.ObservableCollectSingle
 io.reactivex.internal.operators.flowable.FlowableFromObservable
     protected void subscribeActual(org.reactivestreams.Subscriber)
 kotlin.io.ByteStreamsKt
+com.jiangxk.zhengyuansmallclassroom.mvp.contract.login.RegisterContract$Presenter
+    public abstract void getRegisterMethod()
 com.youth.banner.transformer.RotateUpTransformer
 kotlin.jvm.functions.Function14
     public abstract java.lang.Object invoke(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object)
@@ -13341,6 +13343,14 @@ androidx.transition.Fade
     private static final java.lang.String LOG_TAG
     public static final int IN
     public static final int OUT
+com.jiangxk.zhengyuansmallclassroom.mvp.presenter.login.RegisterPresenter_Factory
+    public void <init>(javax.inject.Provider,javax.inject.Provider)
+    public static com.jiangxk.zhengyuansmallclassroom.mvp.presenter.login.RegisterPresenter provideInstance(javax.inject.Provider,javax.inject.Provider)
+    public static com.jiangxk.zhengyuansmallclassroom.mvp.presenter.login.RegisterPresenter_Factory create(javax.inject.Provider,javax.inject.Provider)
+    public com.jiangxk.zhengyuansmallclassroom.mvp.presenter.login.RegisterPresenter get()
+    public synthetic bridge java.lang.Object get()
+    private final javax.inject.Provider userRepositoryProvider
+    private final javax.inject.Provider mViewAndViewProvider
 androidx.viewpager2.R$layout
 androidx.lifecycle.PausingDispatcher
 androidx.recyclerview.widget.AsyncListDiffer
@@ -13977,6 +13987,7 @@ androidx.fragment.app.FragmentStatePagerAdapter
 androidx.annotation.InspectableProperty$FlagEntry
 io.reactivex.internal.operators.observable.ObservableInternalHelper$ItemDelayFunction
 org.jetbrains.anko.AsyncKt$runOnUiThread$1
+com.jiangxk.zhengyuansmallclassroom.mvp.contract.login.RegisterContract
 com.google.android.exoplayer2.source.dash.manifest.Representation$SingleSegmentRepresentation
     public static com.google.android.exoplayer2.source.dash.manifest.Representation$SingleSegmentRepresentation newInstance(long,com.google.android.exoplayer2.Format,java.lang.String,long,long,long,long,java.util.List,java.lang.String,long)
 kotlinx.coroutines.flow.FlowKt__TransformKt$filter$$inlined$unsafeTransform$1$2
@@ -14698,6 +14709,13 @@ androidx.cursoradapter.widget.ResourceCursorAdapter
     public void <init>(android.content.Context,int,android.database.Cursor,int)
     public void setViewResource(int)
     public void setDropDownViewResource(int)
+com.jiangxk.zhengyuansmallclassroom.injection.module.RegisterModule_ProvideViewFactory
+    public void <init>(com.jiangxk.zhengyuansmallclassroom.injection.module.RegisterModule)
+    public static com.jiangxk.zhengyuansmallclassroom.mvp.contract.login.RegisterContract$View provideInstance(com.jiangxk.zhengyuansmallclassroom.injection.module.RegisterModule)
+    public static com.jiangxk.zhengyuansmallclassroom.injection.module.RegisterModule_ProvideViewFactory create(com.jiangxk.zhengyuansmallclassroom.injection.module.RegisterModule)
+    public com.jiangxk.zhengyuansmallclassroom.mvp.contract.login.RegisterContract$View get()
+    public synthetic bridge java.lang.Object get()
+    private final com.jiangxk.zhengyuansmallclassroom.injection.module.RegisterModule module
 org.mozilla.javascript.ast.CatchClause
 com.github.jdsjlzx.ItemDecoration.SpanLookupFactory
 io.reactivex.internal.operators.maybe.MaybeConcatArray
@@ -17042,6 +17060,7 @@ kotlin.comparisons.ComparisonsKt__ComparisonsKt$thenBy$2
 kotlin.reflect.jvm.internal.KParameterImpl$type$1
 com.google.android.flexbox.AlignSelf
 androidx.lifecycle.Transformations$2$1
+com.jiangxk.zhengyuansmallclassroom.ui.activity.login.RegisterActivity_MembersInjector
 io.reactivex.internal.operators.observable.ObservableTakeUntilPredicate
 com.github.jdsjlzx.ItemDecoration.SpanLookup
 androidx.navigation.fragment.ktx.R
@@ -17650,6 +17669,7 @@ kotlin.collections.CollectionsKt__CollectionsKt
     public static final int binarySearch(java.util.List,int,int,kotlin.jvm.functions.Function1)
     public static synthetic int binarySearch$default(java.util.List,int,int,kotlin.jvm.functions.Function1,int,java.lang.Object)
     public void <init>()
+com.jiangxk.zhengyuansmallclassroom.mvp.presenter.login.RegisterPresenter_MembersInjector
 androidx.cursoradapter.R
 retrofit2.HttpException
     public int code()
@@ -20508,6 +20528,13 @@ com.google.android.material.datepicker.DateStrings
     static androidx.core.util.Pair getDateRangeString(java.lang.Long,java.lang.Long)
     static androidx.core.util.Pair getDateRangeString(java.lang.Long,java.lang.Long,java.text.SimpleDateFormat)
 kotlinx.coroutines.internal.SynchronizedKt
+com.jiangxk.zhengyuansmallclassroom.injection.module.RegisterModule_ProvideUserRepositoryFactory
+    public void <init>(com.jiangxk.zhengyuansmallclassroom.injection.module.RegisterModule)
+    public static com.jiangxk.zhengyuansmallclassroom.repository.user.UserRepository provideInstance(com.jiangxk.zhengyuansmallclassroom.injection.module.RegisterModule)
+    public static com.jiangxk.zhengyuansmallclassroom.injection.module.RegisterModule_ProvideUserRepositoryFactory create(com.jiangxk.zhengyuansmallclassroom.injection.module.RegisterModule)
+    public com.jiangxk.zhengyuansmallclassroom.repository.user.UserRepository get()
+    public synthetic bridge java.lang.Object get()
+    private final com.jiangxk.zhengyuansmallclassroom.injection.module.RegisterModule module
 org.mozilla.javascript.tools.debugger.EvalTextArea
 kotlinx.coroutines.flow.FlowKt__MergeKt$unsafeTransform$$inlined$unsafeFlow$1$lambda$1$1
 kotlinx.coroutines.flow.internal.CombineKt$combineTransformInternal$2$invokeSuspend$$inlined$select$lambda$4
@@ -21724,7 +21751,6 @@ kotlin.coroutines.CombinedContext$Serialized
 kotlin.jvm.JvmMultifileClass
 com.youth.banner.R$animator
 com.jiangxk.zhengyuansmallclassroom.ui.fragment.my.MyFragment
-    private final void logout()
     public static final synthetic void access$setStatus$p(com.jiangxk.zhengyuansmallclassroom.ui.fragment.my.MyFragment,int)
     public static final synthetic void access$setUser$p(com.jiangxk.zhengyuansmallclassroom.ui.fragment.my.MyFragment,com.jiangxk.zhengyuansmallclassroom.model.UserModel)
 org.mozilla.javascript.regexp.GlobData
@@ -22447,7 +22473,6 @@ com.tencent.smtt.sdk.WebView
     public void loadUrl(java.lang.String,java.util.Map)
     public void loadUrl(java.lang.String)
     public void postUrl(java.lang.String,byte[])
-    public void loadData(java.lang.String,java.lang.String,java.lang.String)
     public void saveWebArchive(java.lang.String)
     public void saveWebArchive(java.lang.String,boolean,com.tencent.smtt.sdk.ValueCallback)
     public void stopLoading()
@@ -24704,7 +24729,6 @@ com.tencent.smtt.export.external.interfaces.IX5WebViewBase
     public abstract void goBack()
     public abstract void goBackOrForward(int)
     public abstract void goForward()
-    public abstract void loadData(java.lang.String,java.lang.String,java.lang.String)
     public abstract void loadUrl(java.lang.String)
     public abstract void loadUrl(java.lang.String,java.util.Map)
     public abstract boolean pageDown(boolean,int)
@@ -28257,6 +28281,8 @@ com.bumptech.glide.load.engine.cache.MemorySizeCalculator$Builder
 kotlinx.coroutines.flow.FlowKt__ZipKt$combineTransform$$inlined$combineTransform$1$2
 com.google.android.exoplayer2.text.Cue$TextSizeType
 kotlin.math.Constants
+com.jiangxk.zhengyuansmallclassroom.ui.activity.login.RegisterActivity
+    public void _$_clearFindViewByIdCache()
 org.mozilla.javascript.ExternalArrayData
 kotlin.jvm.internal.ArrayDoubleIterator
 com.google.android.exoplayer2.offline.DownloadHelper$DownloadTrackSelection$Factory
@@ -29450,10 +29476,10 @@ com.tencent.smtt.sdk.TbsLogReport
     public void reportTbsLog()
     public void setShouldUploadEventReport(boolean)
     public boolean getShouldUploadEventReport()
-okhttp3.Headers$Builder
-    public final okhttp3.Headers$Builder addAll(okhttp3.Headers)
 androidx.core.view.ViewPropertyAnimatorCompat$1
     public final synthetic androidx.core.view.ViewPropertyAnimatorCompat this$0
+okhttp3.Headers$Builder
+    public final okhttp3.Headers$Builder addAll(okhttp3.Headers)
 kotlin.collections.MapsKt___MapsKt
 kotlin.reflect.jvm.internal.impl.metadata.builtins.BuiltInsBinaryVersion
     public static final kotlin.reflect.jvm.internal.impl.metadata.builtins.BuiltInsBinaryVersion INVALID_VERSION
