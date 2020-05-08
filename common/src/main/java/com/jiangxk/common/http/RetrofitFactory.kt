@@ -6,9 +6,11 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody.Companion.toResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
+import okio.Buffer
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.nio.charset.Charset
 
 /**
  * @description com.jiangxk.common.model
@@ -91,8 +93,18 @@ class RetrofitFactory private constructor(baseUrl: String) {
 
             if (BuildConfig.DEBUG) {
                 val json = response.body?.string()
+
+                val requestBody = request.body
+                val buffer = Buffer()
+                var requestBodyString = ""
+                requestBody?.let {
+                    it.writeTo(buffer)
+                    requestBodyString = buffer.readString(Charset.forName("UTF-8"))
+                    buffer.close()
+                }
+
                 json?.let {
-                    Logger.i("$request+\n+$it")
+                    Logger.i("$request\nrequestBody = ${if (!requestBodyString.isNullOrEmpty()) requestBodyString else "无body"}\nResponse = $it")
                 }
 
                 response.newBuilder().body(json?.toResponseBody()).build()
