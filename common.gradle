@@ -13,8 +13,8 @@ versions.lifecycle_extensions = "2.2.0"
 
 versions.rxjava = "2.6.0"
 versions.rx_android = "2.0.1"
-versions.retrofit = "2.6.0"
-versions.okhttp3 = "4.0.1"
+versions.retrofit = "2.7.1"
+versions.okhttp3 = "4.7.2"
 versions.gson = "2.8.5"
 
 versions.rxkotlin = "2.0.0-RC1"
