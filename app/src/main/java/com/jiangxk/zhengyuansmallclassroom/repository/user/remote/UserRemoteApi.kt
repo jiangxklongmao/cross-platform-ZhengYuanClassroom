@@ -4,11 +4,11 @@ import com.google.gson.JsonObject
 import com.jiangxk.common.common.model.BaseModel
 import com.jiangxk.common.repository.QueryHashMap
 import com.jiangxk.common.rxjava.Mapper
+import com.jiangxk.zhengyuansmallclassroom.BuildConfig
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant.EXTRA_PLATFORM
 import com.jiangxk.zhengyuansmallclassroom.model.*
 import com.jiangxk.zhengyuansmallclassroom.repository.ApiRepository
-import com.orhanobut.logger.BuildConfig
 import com.orhanobut.logger.Logger
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers

@@ -2,6 +2,7 @@ package com.jiangxk.zhengyuansmallclassroom.repository.course.remote
 
 import com.google.gson.JsonObject
 import com.jiangxk.common.common.model.BaseModel
+import com.jiangxk.common.repository.FiledHashMap
 import com.jiangxk.common.repository.QueryHashMap
 import com.jiangxk.common.rxjava.Mapper
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant
@@ -27,14 +28,14 @@ object CourseRemoteApi : ApiRepository(), ICourseRemoteApi {
         return authentication()
             .flatMap {
 
-                val queryHashMap = QueryHashMap().apply {
+                val filedHashMap = FiledHashMap().apply {
                     put(Constant.PARAMETER_ACCESS_TOKEN, it)
                     put(Constant.PARAMETER_ENV, Constant.MINI_PROGRAM_CLASSROOM_ENV)
                     put(Constant.PARAMETER_NAME, "appGetGradeList")
                 }
 
                 //调用云函数 用户登录
-                courseService.getGradeList(queryHashMap)
+                courseService.getGradeList(filedHashMap)
             }
             .filter { miniProgramResponseFilter(it) }
             .concatMap {

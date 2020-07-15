@@ -19,7 +19,7 @@ import retrofit2.http.*
  */
 interface UserService {
 
-    @GET(METHOD_GET_TOKEN)
+    @POST(METHOD_GET_TOKEN)
     fun getToken(
         @Query(PARAMETER_GRANT_TYPE) grant_type: String,
         @Query(PARAMETER_APPID) appid: String,

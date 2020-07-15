@@ -1,11 +1,13 @@
 package com.jiangxk.zhengyuansmallclassroom.repository
 
 import com.jiangxk.common.common.model.BaseMiniProgramModel
+import com.jiangxk.common.repository.FiledHashMap
 import com.jiangxk.common.repository.QueryHashMap
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant
 import com.jiangxk.zhengyuansmallclassroom.model.TokenModel
 import io.reactivex.Observable
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Query
 import retrofit2.http.QueryMap
 
@@ -27,7 +29,7 @@ interface AuthenticationService {
         @Query(Constant.PARAMETER_SECRET) secret: String
     ): Observable<TokenModel>
 
-    @GET(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
-    fun getClassroomToken(@QueryMap queryHashMap: QueryHashMap): Observable<BaseMiniProgramModel<TokenModel>>
+    @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
+    fun getClassroomToken(@QueryMap filedHashMap: FiledHashMap): Observable<BaseMiniProgramModel<TokenModel>>
 
 }

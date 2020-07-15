@@ -1,6 +1,7 @@
 package com.jiangxk.zhengyuansmallclassroom.repository.course.remote
 
 import com.jiangxk.common.common.model.BaseMiniProgramModel
+import com.jiangxk.common.repository.FiledHashMap
 import com.jiangxk.common.repository.QueryHashMap
 import com.jiangxk.zhengyuansmallclassroom.constant.Constant
 import com.jiangxk.zhengyuansmallclassroom.model.*
@@ -20,8 +21,8 @@ interface CourseService {
      * @return Observable<BaseMiniProgramModel<List<GradeModel>>>
      */
     @Headers("Content-type:application/json")
-    @GET(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
-    fun getGradeList(@QueryMap queryHashMap: QueryHashMap): Observable<BaseMiniProgramModel<List<GradeModel>>>
+    @POST(Constant.METHOD_POST_INVOKE_CLOUD_FUNCTION)
+    fun getGradeList(@QueryMap filedHashMap: FiledHashMap): Observable<BaseMiniProgramModel<List<GradeModel>>>
 
     /**
      * 获取 Subject 列表

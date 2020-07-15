@@ -4,6 +4,7 @@ import com.jiangxk.common.common.model.BaseMiniProgramModel
 import com.jiangxk.common.common.model.BaseModel
 import com.jiangxk.common.http.RetrofitFactory
 import com.jiangxk.common.repository.BaseRepository
+import com.jiangxk.common.repository.FiledHashMap
 import com.jiangxk.common.repository.QueryHashMap
 import com.jiangxk.common.rxjava.ClassroomThrowable
 import com.jiangxk.common.utils.AppPrefsUtils
@@ -72,13 +73,13 @@ abstract class ApiRepository : BaseRepository() {
             Constant.MINI_PROGRAM_TRAINING_CENTRE_APP_SECRET
         ).concatMap {
 
-            val queryHashMap = QueryHashMap().apply {
+            val fileHashMap = FiledHashMap().apply {
                 put(Constant.PARAMETER_ACCESS_TOKEN, it.access_token)
                 put(Constant.PARAMETER_ENV, Constant.MINI_PROGRAM_TRAINING_CENTRE_ENV)
                 put(Constant.PARAMETER_NAME, "getClassroomToken")
             }
             //调用云函数 获取 正元小课堂 token
-            authenticationService.getClassroomToken(queryHashMap)
+            authenticationService.getClassroomToken(fileHashMap)
         }.map {
             Logger.i("Token = $it")
 
