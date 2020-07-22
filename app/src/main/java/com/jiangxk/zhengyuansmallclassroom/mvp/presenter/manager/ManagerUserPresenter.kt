@@ -61,7 +61,7 @@ class ManagerUserPresenter @Inject constructor(private val userRepository: UserR
 
                 override fun onSuccess(t: UpdateResultModel) {
                     if (t.stats.updated == 1) {
-                        mView.modifyPermissionsSuccessful()
+                        mView.modifyStatusSuccessful()
                     } else {
                         mView.showMessage("修改失败")
                     }

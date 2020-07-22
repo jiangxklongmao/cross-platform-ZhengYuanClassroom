@@ -185,6 +185,7 @@ object CourseRemoteApi : ApiRepository(), ICourseRemoteApi {
 
                 val jsonObject = JsonObject()
                 jsonObject.addProperty("userId", parameterModel.userId)
+                jsonObject.addProperty("openId", parameterModel.openId)
                 jsonObject.addProperty("userName", parameterModel.userName)
                 jsonObject.addProperty("phoneNumber", parameterModel.phoneNumber)
                 jsonObject.addProperty("gradeId", parameterModel.gradeId)
@@ -227,6 +228,7 @@ object CourseRemoteApi : ApiRepository(), ICourseRemoteApi {
                 val jsonObject = JsonObject()
                 jsonObject.addProperty("id", logId)
                 jsonObject.addProperty("userId", parameterModel.userId)
+                jsonObject.addProperty("openId", parameterModel.openId)
                 jsonObject.addProperty("userName", parameterModel.userName)
                 jsonObject.addProperty("courseId", parameterModel.courseId)
                 jsonObject.addProperty("courseName", parameterModel.courseName)

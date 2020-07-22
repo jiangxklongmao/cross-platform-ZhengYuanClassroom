@@ -12,6 +12,7 @@ import com.jiangxk.zhengyuansmallclassroom.constant.Constant
  */
 data class ParameterModel(
     var userId: Int,
+    var openId: String?,
     var userName: String?,
     var phoneNumber: String?,
     var gradeId: Int,
@@ -31,6 +32,7 @@ data class ParameterModel(
         parcel.readInt(),
         parcel.readString(),
         parcel.readString(),
+        parcel.readString(),
         parcel.readInt(),
         parcel.readString(),
         parcel.readInt(),
@@ -48,6 +50,7 @@ data class ParameterModel(
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(userId)
+        parcel.writeString(openId)
         parcel.writeString(userName)
         parcel.writeString(phoneNumber)
         parcel.writeInt(gradeId)
@@ -80,6 +83,7 @@ data class ParameterModel(
         fun getGradeParameter(gradeId: Int, gradeName: String?) =
             ParameterModel(
                 AppPrefsUtils.getInt(Constant.SP_PERSONAL_INFORMATION_USER_ID_KEY),
+                AppPrefsUtils.getString(Constant.SP_PERSONAL_INFORMATION_OPEN_ID_KEY),
                 AppPrefsUtils.getString(Constant.SP_PERSONAL_INFORMATION_USER_NAME_KEY),
                 AppPrefsUtils.getString(Constant.SP_PERSONAL_INFORMATION_PHONE_NUMBER_KEY),
                 gradeId,
