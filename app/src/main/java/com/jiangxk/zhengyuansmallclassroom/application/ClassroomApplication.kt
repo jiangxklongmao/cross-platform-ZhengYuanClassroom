@@ -17,6 +17,15 @@ class ClassroomApplication : BaseApplication() {
     }
 
     private fun initBugly() {
-        CrashReport.initCrashReport(this, "4d0ebef472", BuildConfig.DEBUG)
+        val strategy = CrashReport.UserStrategy(applicationContext)
+        val appChannel = "${BuildConfig.FLAVOR}-${BuildConfig.BUILD_TYPE}-"
+        val appVersion = BuildConfig.VERSION_NAME
+        //渠道
+        strategy.appChannel = appChannel
+        //版本号
+        strategy.appVersion = appVersion
+        //包名
+        strategy.appPackageName = BuildConfig.APPLICATION_ID
+        CrashReport.initCrashReport(this, "4d0ebef472", BuildConfig.DEBUG, strategy)
     }
 }
