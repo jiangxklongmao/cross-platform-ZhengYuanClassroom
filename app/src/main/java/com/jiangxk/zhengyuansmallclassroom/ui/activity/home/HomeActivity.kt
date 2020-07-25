@@ -7,6 +7,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.bytedance.sdk.openadsdk.TTAdManager
+import com.bytedance.sdk.openadsdk.TTAdSdk
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.jiangxk.common.common.activity.BaseMvpActivity
 import com.jiangxk.common.database.DatabaseOpenHelper
@@ -113,6 +115,9 @@ class HomeActivity : BaseMvpActivity<HomeActivityContract.View, HomeActivityPres
     }
 
     private fun requestPermissions() {
+
+        TTAdSdk.getAdManager().requestPermissionIfNecessary(this)
+
         val perms = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
         if (EasyPermissions.hasPermissions(this, *perms)) {
             // Already have permission, do the thing

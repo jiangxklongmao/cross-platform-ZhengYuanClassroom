@@ -83,8 +83,16 @@ android {
     }
 }
 
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
 
 dependencies {
+
+    implementation(name: 'open_ad_sdk', ext: 'aar')
+
     implementation project(':provider')
     implementation project(':common')
     kapt "com.alibaba:arouter-compiler:$arouter_compiler_version"
@@ -93,4 +101,6 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
     implementation 'com.tencent.bugly:crashreport:latest.release' //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
     implementation 'com.tencent.bugly:nativecrashreport:latest.release' //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0
+
+
 }
