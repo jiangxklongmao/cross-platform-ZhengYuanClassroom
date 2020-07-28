@@ -7,7 +7,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.bytedance.sdk.openadsdk.TTAdManager
 import com.bytedance.sdk.openadsdk.TTAdSdk
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.jiangxk.common.common.activity.BaseMvpActivity
@@ -25,7 +24,7 @@ import com.jiangxk.zhengyuansmallclassroom.repository.user.remote.UserRemoteApi
 import com.jiangxk.zhengyuansmallclassroom.ui.activity.login.LoginActivity
 import com.jiangxk.zhengyuansmallclassroom.ui.dialog.CheckForUpdatesDialog
 import com.orhanobut.logger.Logger
-import com.tencent.bugly.crashreport.CrashReport
+import com.umeng.analytics.MobclickAgent
 import pub.devrel.easypermissions.EasyPermissions
 
 
@@ -92,20 +91,17 @@ class HomeActivity : BaseMvpActivity<HomeActivityContract.View, HomeActivityPres
             finish()
         }
 
-        CrashReport.putUserData(
-            context,
-            "userId",
-            AppPrefsUtils.getInt(
-                Constant.SP_PERSONAL_INFORMATION_USER_ID_KEY
-            ).toString()
+        val user: MutableMap<String, Any> =
+            HashMap()
+        user["userId"] = AppPrefsUtils.getInt(
+            Constant.SP_PERSONAL_INFORMATION_USER_ID_KEY
         )
-        CrashReport.putUserData(
-            context,
-            "openId",
-            AppPrefsUtils.getString(
-                Constant.SP_PERSONAL_INFORMATION_OPEN_ID_KEY
-            )
-        )
+
+        user["openId"] = AppPrefsUtils.getString(
+            Constant.SP_PERSONAL_INFORMATION_OPEN_ID_KEY
+        ) ?: "null"
+
+        MobclickAgent.onEventObject(this, "user", user)
 
         requestPermissions()
     }

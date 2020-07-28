@@ -1,13 +1,9 @@
 package com.jiangxk.zhengyuansmallclassroom.application
 
-import com.bytedance.sdk.openadsdk.*
 import com.jiangxk.common.common.BaseApplication
-import com.jiangxk.common.utils.AppPrefsUtils
-import com.jiangxk.zhengyuansmallclassroom.BuildConfig
-import com.jiangxk.zhengyuansmallclassroom.R
-import com.jiangxk.zhengyuansmallclassroom.constant.Constant.SP_PERSONAL_INFORMATION_USER_ID_KEY
 import com.jiangxk.zhengyuansmallclassroom.utils.ad.TTAdManagerHolder
-import com.tencent.bugly.crashreport.CrashReport
+import com.umeng.analytics.MobclickAgent
+import com.umeng.commonsdk.UMConfigure
 
 
 /**
@@ -19,21 +15,25 @@ class ClassroomApplication : BaseApplication() {
     override fun onCreate() {
         super.onCreate()
 
-        initBugly()
+        initUmeng()
         initAd()
     }
 
-    private fun initBugly() {
-        val strategy = CrashReport.UserStrategy(applicationContext)
-        val appChannel = "${BuildConfig.FLAVOR}-${BuildConfig.BUILD_TYPE}-"
-        val appVersion = BuildConfig.VERSION_NAME
-        //渠道
-        strategy.appChannel = appChannel
-        //版本号
-        strategy.appVersion = appVersion
-        //包名
-        strategy.appPackageName = BuildConfig.APPLICATION_ID
-        CrashReport.initCrashReport(this, "4d0ebef472", BuildConfig.DEBUG, strategy)
+    private fun initUmeng() {
+        /**
+         * 注意: 即使您已经在AndroidManifest.xml中配置过appkey和channel值，也需要在App代码中调
+         * 用初始化接口（如需要使用AndroidManifest.xml中配置好的appkey和channel值，
+         * UMConfigure.init调用中appkey和channel参数请置为null）。
+         */
+        UMConfigure.init(
+            this,
+            "5f1f8b20d62dd10bc71c7e08",
+            "Umeng",
+            UMConfigure.DEVICE_TYPE_PHONE,
+            ""
+        )
+        // 选用AUTO页面采集模式
+        MobclickAgent.setPageCollectionMode(MobclickAgent.PageMode.AUTO)
     }
 
 
